@@ -88,42 +88,158 @@
 				\subsubsection{Opis obrazaca uporabe}
 					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
 					
-
-					\noindent \underbar{\textbf{UC$<$broj obrasca$>$ -$<$ime obrasca$>$}}
+					
+					
+					\noindent \underbar{\textbf{UC01 - pregled liste recepata}}
 					\begin{packed_item}
-	
-						\item \textbf{Glavni sudionik: }$<$sudionik$>$
-						\item  \textbf{Cilj:} $<$cilj$>$
-						\item  \textbf{Sudionici:} $<$sudionici$>$
-						\item  \textbf{Preduvjet:} $<$preduvjet$>$
-						\item  \textbf{Opis osnovnog tijeka:}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: prikazati recepte na web stranici}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: -}
 						
+						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-	
-							\item $<$opis korak jedan$>$
-							\item $<$opis korak dva$>$
-							\item $<$opis korak tri$>$
-							\item $<$opis korak četiri$>$
-							\item $<$opis korak pet$>$
+							\item korisnik odabere filtere i način sortiranja recepata
+							\item korisnik u polje za pretraživanje upiše tekst
+							\item web stranica poziva API te dohvaća i prikazuje listu recepata
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
-						
 						\item[] \begin{packed_item}
-	
-							\item[2.a] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[] \begin{packed_enum}
-								
-								\item $<$opis rješenja mogućeg scenarija korak 1$>$
-								\item $<$opis rješenja mogućeg scenarija korak 2$>$
-								
-							\end{packed_enum}
-							\item[2.b] $<$opis mogućeg scenarija odstupanja u koraku 2$>$
-							\item[3.a] $<$opis mogućeg scenarija odstupanja  u koraku 3$>$
-							
+							\item [2.a] nije upisan tekst po kojem se pretražuje
+							\item[] \begin{packed_item}
+								\item prikazuju se svi recepti
+							\end{packed_item}
 						\end{packed_item}
 					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC02 - stvaranje korisničkog računa}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: stvaranje novog korisničkog računa}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb za prijavu
+							\item korisnik upiše  željeno korisničko ime i lozinku
+							\item korisnik klikne na gumb "Registracija"
+							\item web stranica se preusmjeri na homepage, ali sa korisnikom prijavljenim u sustav
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[2.a] korisničko ime je zauzeto (već postoji)
+							\begin{packed_item}
+								\item prikazuje se poruka "Korisničko ime zauzeto!"
+							\end{packed_item}
+							\item[2.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\begin{packed_item}
+								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+
+
 				
+					\noindent \underbar{\textbf{UC03 - prijava u korisnički račun}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: prijava korisnika u vlastiti račun}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb za prijavu
+							\item korisnik unosi korisničko ime i lozinku
+							\item korisnik klikne na gumb "Prijava"
+							\item web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] korisničko ime ne postoji u bazi podataka
+							\begin{packed_item}
+								\item prikazuje se poruka "Korisničko ime ne postoji!"
+							\end{packed_item}
+							\item[2.b] pogrešna lozinka
+							\begin{packed_item}
+								\item prikazuje se poruka "Kriva lozinka!"
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC04 - promjena korisničkog imena}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: promjena korisničkog imena prijavljenog korisnika}
+						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb "Postavke"
+							\item korisnik promijeni korisničko ime upisivanjem novog imena
+							\item klikom na gumb "Pohrani promjene" se u bazu podataka upisuju promjene
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] novo korisničko ime je zauzeto
+							\begin{packed_item}
+								\item prikacuje se poruka "Korisničko ime zauzeto!"
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC05 - promjena lozinke}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: promijeniti trenutno lozinku korisnika u neku novu lozinku}
+						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb "Postavke"
+							\item korisnik promijeni lozinku upisivanjem nove lozinke
+							\item klikom na gumb "Pohrani promjene" se u bazu podataka upisuju promjene
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\begin{packed_item}
+								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: }
+						\item  \textbf{Cilj:}
+						\item  \textbf{Sudionici:}
+						\item  \textbf{Preduvjet:}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+						\end{packed_item}
+					\end{packed_item}
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
