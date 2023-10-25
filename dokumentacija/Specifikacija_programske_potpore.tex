@@ -226,6 +226,187 @@
 					\end{packed_item}
 
 
+
+					\noindent \underbar{\textbf{UC06 - pregled liste recepata}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: prikazati recepte na web stranici}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik odabere filtere i način sortiranja recepata
+							\item korisnik u polje za pretraživanje upiše tekst
+							\item web stranica poziva API te dohvaća i prikazuje listu recepata
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item [2.a] nije upisan tekst po kojem se pretražuje
+							\item[] \begin{packed_item}
+								\item prikazuju se svi recepti
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC07 - stvaranje novog recepta}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: kreiranje novog recepta}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb "Novi recept"
+							\item upišu se podaci o receptu kao postupak, slike, videi, kategorije itd.
+							\item klikom na objavi recept se on sprema u bazu podataka
+							\item recept postaje vidljiv drugim korisnicima
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] recept nema naslov
+							\begin{packed_item}
+								\item prikazuje se poruka "Potrebno je upisati ime recepta"
+							\end{packed_item}
+							\item[2.b] nije upisana lista sastojaka
+							\begin{packed_item}
+								\item prikazuje se poruka "Potrebno je upisati listu sastojaka"
+							\end{packed_item}
+							\item[2.c] ne postoji ni jedan korak pripreme
+							\begin{packed_item}
+								\item prikazuje se poruka "Potrebno je upisati barem jedan korak pripreme"
+							\end{packed_item}
+							\item[2.d] nije uneseno vijeme kuhanja
+							\begin{packed_item}
+								\item prikazuje se poruka "Potrebno je upisati vrijeme kuhanja"
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC08 - prijava na recepte korisnika}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnika}
+						\item  \textbf{Cilj: prijava korisnika na recepte autora kako bi primio obavijesti kada taj korisnik napravi novi recept}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item prijavljeni korisnik otvara recept nekog autora
+							\item klikom na gumb "???" se korisnik prijavljuje na recepte autora recepta
+							\item recepti autora se pokazuju u listi obavijesti
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item korisnik je već prijavljen na recepte autora
+							\begin{packed_item}
+								\item klikom na gumb za prijavu na recepte autora se korisnik odjavljuje sa recepata tog autora
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC09 - pregled obavijesti}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: pregled recepata autora koje korisnik prati}
+						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb koji izgleda kao zvonce
+							\item prikazuju se recepti svih autora koje korisnik prati
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC10 - spremanje/bookmarkanje recepta}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: spremanje recepata kako bi se kasnije mogli pregledati omiljeni recepti}
+						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item[1.a] korisnik klikne na gumb za spremanje recepta iz liste recepata
+							\item[1.b] korisnik klikne na gumb za spremanje recepata prilikom prikaza pojedinog recepta
+							\item[2.] recept se sprema pod omiljene recepte
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item recept je već spremljen kao omiljen
+							\begin{packed_item}
+								\item recept se miče is liste omiljenih recepata
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC11 - pregled specifičnog recepta}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: prikaz svih podataka vezanih uz recept}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik kliknuo na recept
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+						\end{packed_item}
+					\end{packed_item}
+					
+					
+					
+					\noindent \underbar{\textbf{UC12 - komentiranje na recept}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: ostavlanje komentara na nekom receptu}
+						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je otvorio stranicu recepta}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item scrollanjem do kraja recepta se dolazi do dijela sa komentarima
+							\item upisuje se tekst u polje za komentar
+							\item klikom na gumb "Objavi komentar" se on:
+							\begin{packed_enum}
+								\item upisuje u bazu podataka
+								\item odmah prikazuje na korisnikovom ekranu
+							\end{packed_enum}
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[2.a] tekst komentara je prazno
+							\begin{packed_enum}
+								\item gumb za objavljivanje komentara je zasivljen te je nemoguće kliknuti na njega
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+				
+				
 				
 					\noindent \underbar{\textbf{UC}}
 					\begin{packed_item}
