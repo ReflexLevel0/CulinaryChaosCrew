@@ -87,35 +87,10 @@
 				
 				\subsubsection{Opis obrazaca uporabe}
 					\textit{Funkcionalne zahtjeve razraditi u obliku obrazaca uporabe. Svaki obrazac je potrebno razraditi prema donjem predlošku. Ukoliko u nekom koraku može doći do odstupanja, potrebno je to odstupanje opisati i po mogućnosti ponuditi rješenje kojim bi se tijek obrasca vratio na osnovni tijek.}\\
-					
-					
-					
-					\noindent \underbar{\textbf{UC01 - pregled liste recepata}}
-					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
-						\item  \textbf{Cilj: prikazati recepte na web stranici}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
-						\item  \textbf{Preduvjet: -}
-						
-						\item  \textbf{Opis osnovnog tijeka:}
-						\item[] \begin{packed_enum}
-							\item korisnik odabere filtere i način sortiranja recepata
-							\item korisnik u polje za pretraživanje upiše tekst
-							\item web stranica poziva API te dohvaća i prikazuje listu recepata
-						\end{packed_enum}
-						
-						\item  \textbf{Opis mogućih odstupanja:}
-						\item[] \begin{packed_item}
-							\item [2.a] nije upisan tekst po kojem se pretražuje
-							\item[] \begin{packed_item}
-								\item prikazuju se svi recepti
-							\end{packed_item}
-						\end{packed_item}
-					\end{packed_item}
 
 
 
-					\noindent \underbar{\textbf{UC02 - stvaranje korisničkog računa}}
+					\noindent \underbar{\textbf{UC01 - stvaranje korisničkog računa}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: stvaranje novog korisničkog računa}
@@ -145,7 +120,7 @@
 
 
 				
-					\noindent \underbar{\textbf{UC03 - prijava u korisnički račun}}
+					\noindent \underbar{\textbf{UC02 - prijava u korisnički račun}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: prijava korisnika u vlastiti račun}
@@ -175,7 +150,7 @@
 
 
 				
-					\noindent \underbar{\textbf{UC04 - promjena korisničkog imena}}
+					\noindent \underbar{\textbf{UC03 - promjena korisničkog imena}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: promjena korisničkog imena prijavljenog korisnika}
@@ -200,7 +175,7 @@
 
 
 				
-					\noindent \underbar{\textbf{UC05 - promjena lozinke}}
+					\noindent \underbar{\textbf{UC04 - promjena lozinke}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: promijeniti trenutno lozinku korisnika u neku novu lozinku}
@@ -222,6 +197,33 @@
 							\end{packed_item}
 						\end{packed_item}
 					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC05 - brisanje korisničkog računa}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: brisanje korisničkog računa i svih podataka vezanih uz račun}
+						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb "Postavke"
+							\item korisnik klikne na gumb "Obriši račun"
+							\item pojavljuje se obavijest "Ovim postupkom će se obrisati svi Vaši receptii vaš račun, jesti li sigurni da želite nastaviti?"
+							\item klikom na gumb "Da" se briše račun i svi podaci vezani za račun iz baze podataka
+							\item korisnik se preusmjerava na homepage, te više nije prijavljen u sustav
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[2.a] korisnik kliknuo na gumb "Ne"
+							\begin{packed_item}
+								\item obavijest se zatvara te korisnik ostaje u postavkama
+							\end{packed_item}
+						\end{packed_item}
+					\end{packed_item}
 
 
 				
@@ -240,6 +242,8 @@
 						\item[] \begin{packed_item}							
 						\end{packed_item}
 					\end{packed_item}
+					
+					
 					
 				\subsubsection{Dijagrami obrazaca uporabe}
 					
