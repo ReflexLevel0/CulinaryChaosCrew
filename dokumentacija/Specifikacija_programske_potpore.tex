@@ -13,9 +13,9 @@
 			
 			\begin{packed_enum}
 				
-				\item Dionik 1
-				\item Dionik 2				
-				\item ...
+				\item Korisnik
+				\item Administrator				
+				\item Razvojni tim
 				
 			\end{packed_enum}
 			
@@ -23,30 +23,58 @@
 			
 			
 			\begin{packed_enum}
-				\item  \underbar{Aktor 1 (inicijator) može:}
-				
+				\item  \underbar{Neregistrirani korisnik (inicijator) može: }
 				\begin{packed_enum}
-					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
+					\item vidjeti listu recepata svih korisnika
 					\begin{packed_enum}
-						
-						\item  podfunkcionalnost 1 
-						\item  podfunkcionalnost 2
-				
+						\item filtrirati listu
+						\item sortirati listu
 					\end{packed_enum}
-					\item  funkcionalnost 3
-					
+					\item pretraživati recepte po naslovu i korisniku
+					\item napraviti novi račun
 				\end{packed_enum}
 			
-				\item  \underbar{Aktor 2 (sudionik) može:}
-				
+				\item  \underbar{Registrirani korisnik (inicijator) može:}
 				\begin{packed_enum}
-					
-					\item funkcionalnost 1
-					\item funkcionalnost 2
-					
+					\item raditi nove recepte
+					\item pregledati listu svojih recepata
+					\item obrisati vlastiti recept
+					\item promijeniti detalje računa:
+					\begin{packed_enum}
+						\item korisničko ime
+						\item lozinku
+					\end{packed_enum}
+					\item deaktivirati račun
 				\end{packed_enum}
+			
+				\item\underbar{Administrator (inicijator) može:}
+				\begin{packed_enum}
+					\item pregledati korisničke podatke
+					\item pregledati recepte
+					\item promijeniti korisničke podatke
+					\item promijeniti podatke o receptu
+					\item izbrisati korisnički račun
+					\item izbrisati recept
+				\end{packed_enum}
+			
+				\item\underbar{Baza podataka (sudionik):}
+				\begin{packed_enum}
+					\item pohranjuje podatke o:
+					\begin{packed_enum}
+						\item korisnicima
+						\item receptima
+					\end{packed_enum}
+				\end{packed_enum}
+			
+				\item\underbar{Web stranica(sudionik):}
+				\begin{packed_enum}
+					\item omogućava korisnicima interakciju sa:
+					\begin{packed_enum}
+						\item drugim korisnicima
+						\item listom recepata
+					\end{packed_enum}
+				\end{packed_enum}
+			
 			\end{packed_enum}
 			
 			\eject 
