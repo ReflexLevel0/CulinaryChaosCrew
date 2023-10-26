@@ -26,32 +26,45 @@
 				\item  \underbar{Neregistrirani korisnik (inicijator) može: }
 				\begin{packed_enum}
 					\item vidjeti listu recepata svih korisnika
+					\item pretražiti recepte po naslovu i korisniku
 					\begin{packed_enum}
-						\item filtrirati listu
-						\item sortirati listu
+						\item filtrirati listu prema kategoriji, vrsti kuhinje i sastojcima
 					\end{packed_enum}
-					\item pretraživati recepte po naslovu i korisniku
-					\item napraviti novi račun
+					\item pregledati detalje zasebnih recepata
+					\item stvoriti novi korisnički račun
 				\end{packed_enum}
 			
 				\item  \underbar{Registrirani korisnik (inicijator) može:}
 				\begin{packed_enum}
-					\item raditi nove recepte
-					\item pregledati listu svojih recepata
+					\item ulogirati se pomoću vlastitog korisničkog računa
+					\item objaviti nove recepte
+					\begin{packed_enum}
+						\item odrediti kategoriju recepta
+						\item dodati posebne značajke i tagove na recept
+						\item priložiti slike ili videozapise receptu
+					\end{packed_enum}
+					\item pregledati listu vlastitih recepata
 					\item obrisati vlastiti recept
-					\item promijeniti detalje računa:
+					\item komunicirati s drugim registriranim korisnicima
+					\begin{packed_enum}
+						\item razmjenjivati poruke i pozive
+						\item postaviti termine otvorene za komunikaciju
+					\end{packed_enum}
+					\item označiti, komentirati i spremiti recepte
+					\item pratiti omiljene autore i primati obavijesti o njihovim novim objavama
+					\item promijeniti detalje korisničkog računa:
 					\begin{packed_enum}
 						\item korisničko ime
 						\item lozinku
 					\end{packed_enum}
-					\item deaktivirati račun
+					\item deaktivirati vlastiti korisnički račun
 				\end{packed_enum}
 			
 				\item\underbar{Administrator (inicijator) može:}
 				\begin{packed_enum}
-					\item pregledati korisničke podatke
-					\item pregledati recepte
-					\item promijeniti korisničke podatke
+					\item pregledati korisničke podatke registriranih korisnika
+					\item pregledati objavljene recepte
+					\item promijeniti korisničke podatke registriranih korisnika
 					\item promijeniti podatke o receptu
 					\item izbrisati korisnički račun
 					\item izbrisati recept
@@ -122,6 +135,10 @@
 							\begin{packed_enum}
 								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
 							\end{packed_enum}
+							\item[1.c] unesena adresa e-pošte nije važeća
+							\begin{packed_enum}
+								\item prikazuje se poruka "Adresa e-pošte ne postoji ili nije važeća!"
+							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
 
@@ -141,7 +158,7 @@
 							\item korisnik klikne na gumb "Prijava"
 							\item šalje se zahtjev sa korisničkim podacima na API
 							\item API provjerava točnost podataka u bazi podataka
-							\item u slučaju da je korisnik unijeo točne podatke, web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
+							\item u slučaju da je korisnik unio točne podatke, web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -181,7 +198,7 @@
 						\item[] \begin{packed_item}
 							\item[3.a] novo korisničko ime je zauzeto
 							\begin{packed_enum}
-								\item prikacuje se poruka "Korisničko ime zauzeto!"
+								\item prikazuje se poruka "Korisničko ime zauzeto!"
 							\end{packed_enum}
 							\item[3.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
 							\begin{packed_enum}
