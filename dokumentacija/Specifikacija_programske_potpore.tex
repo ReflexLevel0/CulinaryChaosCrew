@@ -270,7 +270,34 @@
 
 
 
-					\noindent \underbar{\textbf{UC7 - prijava na recepte korisnika}}
+					\noindent \underbar{\textbf{UC7 - promjena podataka o receptu}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: korisnik}
+						\item  \textbf{Cilj: promjena bilo kojeg podatka o receptu kojeg je korisnik napravio}
+						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je on autor recepta kojeg želi promijeniti}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na svoj recept
+							\item korisnik klikne na gumb za uređivanje recepta
+							\item web stranica se preusmjerava na poveznicu za promjenu recepta
+							\item[7.a] korisnik promijeni podatke o receptu i klikne gumb "Spremi promjene"
+							\item[7.b] korisnik klikne na gumb "Izbriši recept"
+							\item na API se šalje zahtjev sa novim podacima o receptu
+							\item u bazu podataka se spremaju promjene
+							\item web stranica se preusmjerava na poveznicu na kojoj se može pregledati recept ukoliko nije obrisan
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[7.c] problem u novim podacima (referencirati se na odstupanja u UC6)
+						\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC8 - prijava na recepte korisnika}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnika}
 						\item  \textbf{Cilj: prijava korisnika na recepte autora kako bi primio obavijesti kada taj korisnik napravi novi recept}
