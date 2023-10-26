@@ -90,7 +90,7 @@
 
 
 
-					\noindent \underbar{\textbf{UC01 - stvaranje korisničkog računa}}
+					\noindent \underbar{\textbf{UC1 - stvaranje korisničkog računa}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: stvaranje novog korisničkog računa}
@@ -107,11 +107,11 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[2.a] korisničko ime je zauzeto (već postoji)
+							\item[1.a] korisničko ime je zauzeto (već postoji)
 							\begin{packed_item}
 								\item prikazuje se poruka "Korisničko ime zauzeto!"
 							\end{packed_item}
-							\item[2.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\item[1.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
 							\begin{packed_item}
 								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
 							\end{packed_item}
@@ -120,7 +120,7 @@
 
 
 				
-					\noindent \underbar{\textbf{UC02 - prijava u korisnički račun}}
+					\noindent \underbar{\textbf{UC2 - prijava u korisnički račun}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: prijava korisnika u vlastiti račun}
@@ -150,7 +150,7 @@
 
 
 				
-					\noindent \underbar{\textbf{UC03 - promjena korisničkih podataka}}
+					\noindent \underbar{\textbf{UC3 - promjena korisničkih podataka}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: promjena korisničkog imena i/ili lozinke}
@@ -160,18 +160,18 @@
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
 							\item korisnik klikne na gumb "Postavke"
-							\item[2.a] korisnik promijeni korisničko ime upisivanjem novog imena
-							\item[2.b] korisnik promijeni lozinku upisivanjem nove lozinke 
+							\item[3.a] korisnik promijeni korisničko ime upisivanjem novog imena
+							\item[3.b] korisnik promijeni lozinku upisivanjem nove lozinke 
 							\item klikom na gumb "Pohrani promjene" se u bazu podataka upisuju promjene
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[3.a] novo korisničko ime je zauzeto
+							\item[3.c] novo korisničko ime je zauzeto
 							\begin{packed_item}
 								\item prikacuje se poruka "Korisničko ime zauzeto!"
 							\end{packed_item}
-							\item[3.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\item[3.d] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
 							\begin{packed_item}
 								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
 							\end{packed_item}
@@ -180,7 +180,7 @@
 				
 				
 				
-					\noindent \underbar{\textbf{UC04 - brisanje korisničkog računa}}
+					\noindent \underbar{\textbf{UC4 - brisanje korisničkog računa}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: brisanje korisničkog računa i svih podataka vezanih uz račun}
@@ -198,7 +198,7 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[2.a] korisnik kliknuo na gumb "Ne"
+							\item[4.a] korisnik kliknuo na gumb "Ne"
 							\begin{packed_item}
 								\item obavijest se zatvara te korisnik ostaje u postavkama
 							\end{packed_item}
@@ -207,7 +207,7 @@
 
 
 
-					\noindent \underbar{\textbf{UC05 - pregled liste recepata}}
+					\noindent \underbar{\textbf{UC5 - pregled liste recepata}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: prikazati recepte na web stranici}
@@ -223,7 +223,7 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item [2.a] nije upisan tekst po kojem se pretražuje
+							\item [5.a] nije upisan tekst po kojem se pretražuje
 							\item[] \begin{packed_item}
 								\item prikazuju se svi recepti
 							\end{packed_item}
@@ -232,7 +232,7 @@
 
 
 				
-					\noindent \underbar{\textbf{UC06 - stvaranje novog recepta}}
+					\noindent \underbar{\textbf{UC6 - stvaranje novog recepta}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: kreiranje novog recepta}
@@ -249,19 +249,19 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[2.a] recept nema naslov
+							\item[6.a] recept nema naslov
 							\begin{packed_item}
 								\item prikazuje se poruka "Potrebno je upisati ime recepta"
 							\end{packed_item}
-							\item[2.b] nije upisana lista sastojaka
+							\item[6.b] nije upisana lista sastojaka
 							\begin{packed_item}
 								\item prikazuje se poruka "Potrebno je upisati listu sastojaka"
 							\end{packed_item}
-							\item[2.c] ne postoji ni jedan korak pripreme
+							\item[6.c] ne postoji ni jedan korak pripreme
 							\begin{packed_item}
 								\item prikazuje se poruka "Potrebno je upisati barem jedan korak pripreme"
 							\end{packed_item}
-							\item[2.d] nije uneseno vijeme kuhanja
+							\item[6.d] nije uneseno vijeme kuhanja
 							\begin{packed_item}
 								\item prikazuje se poruka "Potrebno je upisati vrijeme kuhanja"
 							\end{packed_item}
@@ -270,7 +270,7 @@
 
 
 
-					\noindent \underbar{\textbf{UC07 - prijava na recepte korisnika}}
+					\noindent \underbar{\textbf{UC7 - prijava na recepte korisnika}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnika}
 						\item  \textbf{Cilj: prijava korisnika na recepte autora kako bi primio obavijesti kada taj korisnik napravi novi recept}
@@ -295,7 +295,7 @@
 				
 				
 				
-					\noindent \underbar{\textbf{UC08 - pregled obavijesti}}
+					\noindent \underbar{\textbf{UC8 - pregled obavijesti}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: pregled recepata autora koje korisnik prati}
@@ -315,7 +315,7 @@
 				
 				
 				
-					\noindent \underbar{\textbf{UC09 - spremanje/bookmarkanje recepta}}
+					\noindent \underbar{\textbf{UC9 - spremanje/bookmarkanje recepta}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: spremanje recepata kako bi se kasnije mogli pregledati omiljeni recepti}
@@ -324,14 +324,14 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item[1.a] korisnik klikne na gumb za spremanje recepta iz liste recepata
-							\item[1.b] korisnik klikne na gumb za spremanje recepata prilikom prikaza pojedinog recepta
-							\item[2.] recept se sprema pod omiljene recepte
+							\item[9.a] korisnik klikne na gumb za spremanje recepta iz liste recepata
+							\item[9.b] korisnik klikne na gumb za spremanje recepata prilikom prikaza pojedinog recepta
+							\item recept se sprema pod omiljene recepte
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item recept je već spremljen kao omiljen
+							\item[9.c] recept je već spremljen kao omiljen
 							\begin{packed_item}
 								\item recept se miče is liste omiljenih recepata
 							\end{packed_item}
@@ -379,7 +379,7 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[2.a] tekst komentara je prazno
+							\item[10.a] tekst komentara je prazno
 							\begin{packed_enum}
 								\item gumb za objavljivanje komentara je zasivljen te je nemoguće kliknuti na njega
 							\end{packed_enum}
