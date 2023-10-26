@@ -66,6 +66,11 @@
 					\end{packed_enum}
 				\end{packed_enum}
 			
+				\item\underbar{API (sudionik):}
+				\begin{packed_enum}
+					\item omogućava dohvaćanje i strukturirano slanje podataka iz baze podataka
+				\end{packed_enum}
+			
 				\item\underbar{Web stranica(sudionik):}
 				\begin{packed_enum}
 					\item omogućava korisnicima interakciju sa:
@@ -94,7 +99,7 @@
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: stvaranje novog korisničkog računa}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: web stranica, API, baza podataka}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -102,7 +107,9 @@
 							\item korisnik klikne na gumb za prijavu
 							\item korisnik upiše  željeno korisničko ime i lozinku
 							\item korisnik klikne na gumb "Registracija"
-							\item web stranica se preusmjeri na homepage, ali sa korisnikom prijavljenim u sustav
+							\item šalje se zahtjev na API
+							\item API zapisuje novog korisnika u bazu podataka
+							\item ako je registracija uspješna web stranica se preusmjeri na homepage, ali sa korisnikom prijavljenim u sustav
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -124,7 +131,7 @@
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: prijava korisnika u vlastiti račun}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: web stranica, API, baza podataka}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -132,7 +139,9 @@
 							\item korisnik klikne na gumb za prijavu
 							\item korisnik unosi korisničko ime i lozinku
 							\item korisnik klikne na gumb "Prijava"
-							\item web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
+							\item šalje se zahtjev sa korisničkim podacima na API
+							\item API provjerava točnost podataka u bazi podataka
+							\item u slučaju da je korisnik unijeo točne podatke, web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -154,24 +163,27 @@
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: promjena korisničkog imena i/ili lozinke}
-						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Sudionici: web stanica, API, baza podataka}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
 							\item korisnik klikne na gumb "Postavke"
-							\item[3.a] korisnik promijeni korisničko ime upisivanjem novog imena
-							\item[3.b] korisnik promijeni lozinku upisivanjem nove lozinke 
-							\item klikom na gumb "Pohrani promjene" se u bazu podataka upisuju promjene
+							\item[2.a] korisnik promijeni korisničko ime upisivanjem novog imena
+							\item[2.b] korisnik promijeni lozinku upisivanjem nove lozinke 
+							\item[3.] korisnik klikne na gumb "Pohrani promjene"
+							\item[4.] šalje se zahtjev za promjenom podataka na API
+							\item[5.] u bazu podataka se upisuju promjene
+							\item[6.] korisnik se automatski odjavi za stranice
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[3.c] novo korisničko ime je zauzeto
+							\item[3.a] novo korisničko ime je zauzeto
 							\begin{packed_enum}
 								\item prikacuje se poruka "Korisničko ime zauzeto!"
 							\end{packed_enum}
-							\item[3.d] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\item[3.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
 							\begin{packed_enum}
 								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
 							\end{packed_enum}
@@ -184,7 +196,7 @@
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: brisanje korisničkog računa i svih podataka vezanih uz račun}
-						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Sudionici: web stanica, API, baza podataka}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -192,7 +204,8 @@
 							\item korisnik klikne na gumb "Postavke"
 							\item korisnik klikne na gumb "Obriši račun"
 							\item pojavljuje se obavijest "Ovim postupkom će se obrisati svi Vaši receptii vaš račun, jesti li sigurni da želite nastaviti?"
-							\item klikom na gumb "Da" se briše račun i svi podaci vezani za račun iz baze podataka
+							\item klikom na gumb "Da" se šalje zahtjev za brisanje računa API-u
+							\item API briše račun iz baze podataka
 							\item korisnik se preusmjerava na homepage, te više nije prijavljen u sustav
 						\end{packed_enum}
 						
@@ -218,7 +231,9 @@
 						\item[] \begin{packed_enum}
 							\item korisnik odabere filtere i način sortiranja recepata
 							\item korisnik u polje za pretraživanje upiše tekst
-							\item web stranica poziva API te dohvaća i prikazuje listu recepata
+							\item web stranica šalje zahtjev za dohvaćanje recepata API-u
+							\item API dohvaća recepte iz baze podataka i šalje ih web stranici
+							\item na web stranici se prikazuje lista recepata
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -236,14 +251,15 @@
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: kreiranje novog recepta}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: web stranica, API, baza podataka}
 						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
 							\item korisnik klikne na gumb "Novi recept"
 							\item upišu se podaci o receptu kao postupak, slike, videi, kategorije itd.
-							\item klikom na objavi recept se on sprema u bazu podataka
+							\item klikom na objavi recept se šalje zahtjev API-u
+							\item API sprema recept u bazu podataka
 							\item recept postaje vidljiv drugim korisnicima
 						\end{packed_enum}
 						
@@ -282,16 +298,16 @@
 							\item korisnik klikne na svoj recept
 							\item korisnik klikne na gumb za uređivanje recepta
 							\item web stranica se preusmjerava na poveznicu za promjenu recepta
-							\item[7.a] korisnik promijeni podatke o receptu i klikne gumb "Spremi promjene"
-							\item[7.b] korisnik klikne na gumb "Izbriši recept"
-							\item na API se šalje zahtjev sa novim podacima o receptu
-							\item u bazu podataka se spremaju promjene
-							\item web stranica se preusmjerava na poveznicu na kojoj se može pregledati recept ukoliko nije obrisan
+							\item[4.a] korisnik promijeni podatke o receptu i klikne gumb "Spremi promjene"
+							\item[4.b] korisnik klikne na gumb "Izbriši recept"
+							\item[5.] na API se šalje zahtjev sa novim podacima o receptu
+							\item[6.] u bazu podataka se spremaju promjene
+							\item[7.] web stranica se preusmjerava na poveznicu na kojoj se može pregledati recept ukoliko nije obrisan
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[7.c] problem u novim podacima (referencirati se na odstupanja u UC6)
+							\item[7.a] problem u novim podacima (referencirati se na odstupanja u UC6)
 						\end{packed_item}
 					\end{packed_item}
 
@@ -301,19 +317,20 @@
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnika}
 						\item  \textbf{Cilj: prijava korisnika na recepte autora kako bi primio obavijesti kada taj korisnik napravi novi recept}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: web stranica, API, baza podataka}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
 							\item prijavljeni korisnik otvara recept nekog autora
-							\item klikom na gumb "???" se korisnik prijavljuje na recepte autora recepta
+							\item klikom na gumb "???" se šalje zahtjev na API
+							\item u bazu podataka se zapisuje da je korisnik prijavljen na recepte odabranog autora
 							\item recepti autora se pokazuju u listi obavijesti
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item korisnik je već prijavljen na recepte autora
+							\item[8.a] korisnik je već prijavljen na recepte autora
 							\begin{packed_enum}
 								\item klikom na gumb za prijavu na recepte autora se korisnik odjavljuje sa recepata tog autora
 							\end{packed_enum}
@@ -322,16 +339,18 @@
 				
 				
 				
-					\noindent \underbar{\textbf{UC8 - pregled obavijesti}}
+					\noindent \underbar{\textbf{UC9 - pregled obavijesti}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: pregled recepata autora koje korisnik prati}
-						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Sudionici: web stanica, API, baza podataka}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
 							\item korisnik klikne na gumb koji izgleda kao zvonce
+							\item šalje se zahtjev na API
+							\item iz baze podataka se čitaju obavijesti korisnika te se podaci vraćaju web stranici
 							\item prikazuju se recepti svih autora koje korisnik prati
 						\end{packed_enum}
 						
@@ -342,23 +361,24 @@
 				
 				
 				
-					\noindent \underbar{\textbf{UC9 - spremanje/bookmarkanje recepta}}
+					\noindent \underbar{\textbf{UC10 - spremanje/bookmarkanje recepta}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: spremanje recepata kako bi se kasnije mogli pregledati omiljeni recepti}
-						\item  \textbf{Sudionici: web stanica, baza podataka}
+						\item  \textbf{Sudionici: web stanica, API, baza podataka}
 						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item[9.a] korisnik klikne na gumb za spremanje recepta iz liste recepata
-							\item[9.b] korisnik klikne na gumb za spremanje recepata prilikom prikaza pojedinog recepta
-							\item recept se sprema pod omiljene recepte
+							\item[1.a] korisnik klikne na gumb za spremanje recepta iz liste recepata
+							\item[1.b] korisnik klikne na gumb za spremanje recepata prilikom prikaza pojedinog recepta
+							\item[2.] šalje se zahtjev na API
+							\item[3.] u bazu podataka se upisuje recept kao omiljen od korisnika
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[9.c] recept je već spremljen kao omiljen
+							\item[10.a] recept je već spremljen kao omiljen
 							\begin{packed_enum}
 								\item recept se miče is liste omiljenih recepata
 							\end{packed_enum}
@@ -367,16 +387,19 @@
 				
 				
 				
-					\noindent \underbar{\textbf{UC10 - pregled specifičnog recepta}}
+					\noindent \underbar{\textbf{UC11 - pregled specifičnog recepta}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: prikaz svih podataka vezanih uz recept}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: web stranica, API, baza podataka}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
 							\item korisnik kliknuo na recept
+							\item šalje se zahtjev na API za dohvaćanje podataka o receptu
+							\item iz baze podataka se čitaju podaci o receptu
+							\item na web stranici se prikazuju dohvaćeni podaci
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -386,7 +409,7 @@
 					
 					
 					
-					\noindent \underbar{\textbf{UC11 - komentiranje na recept}}
+					\noindent \underbar{\textbf{UC12 - komentiranje na recept}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: korisnik}
 						\item  \textbf{Cilj: ostavlanje komentara na nekom receptu}
@@ -397,16 +420,14 @@
 						\item[] \begin{packed_enum}
 							\item scrollanjem do kraja recepta se dolazi do dijela sa komentarima
 							\item upisuje se tekst u polje za komentar
-							\item klikom na gumb "Objavi komentar" se on:
-							\begin{packed_enum}
-								\item upisuje u bazu podataka
-								\item odmah prikazuje na korisnikovom ekranu
-							\end{packed_enum}
+							\item klikom na gumb "Objavi komentar" se šalje zahtjev na API
+							\item u bazu podataka se upisuje komentar
+							\item web stranica se osvježava
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[10.a] tekst komentara je prazno
+							\item[12.a] tekst komentara je prazno
 							\begin{packed_enum}
 								\item gumb za objavljivanje komentara je zasivljen te je nemoguće kliknuti na njega
 							\end{packed_enum}
