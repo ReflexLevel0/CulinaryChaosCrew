@@ -62,28 +62,13 @@
 					\item izbrisati korisnički račun
 					\item izbrisati recept
 				\end{packed_enum}
-			
-				\item\underbar{Baza podataka (sudionik):}
+
+				\item\underbar{Online-chat platforma (sudionik) može:}
 				\begin{packed_enum}
-					\item pohranjuje podatke o:
-					\begin{packed_enum}
-						\item korisnicima
-						\item receptima
-					\end{packed_enum}
-				\end{packed_enum}
-			
-				\item\underbar{API (sudionik):}
-				\begin{packed_enum}
-					\item omogućava dohvaćanje i strukturirano slanje podataka iz baze podataka
-				\end{packed_enum}
-			
-				\item\underbar{Web stranica(sudionik):}
-				\begin{packed_enum}
-					\item omogućava korisnicima interakciju sa:
-					\begin{packed_enum}
-						\item drugim korisnicima
-						\item listom recepata
-					\end{packed_enum}
+					\item slati i primati poruke između registriranih korisnika
+					\item pohranjivati poruke
+					\item pratiti i prikazivati dostupnost registriranih korisnika
+					\item uspostaviti videopoziv među registriranim korisnicima
 				\end{packed_enum}
 			
 			\end{packed_enum}
@@ -96,19 +81,19 @@
 
 					\noindent \underbar{\textbf{UC1 - stvaranje korisničkog računa}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik}
 						\item  \textbf{Cilj: stvaranje novog korisničkog računa}
-						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na gumb za prijavu
-							\item korisnik upiše  željeno korisničko ime i lozinku
-							\item korisnik klikne na gumb "Registracija"
-							\item šalje se zahtjev na API
-							\item API zapisuje novog korisnika u bazu podataka
-							\item ako je registracija uspješna web stranica se preusmjeri na homepage, ali sa korisnikom prijavljenim u sustav
+							\item Korisnik klikne na gumb za prijavu
+							\item Korisnik upiše  željeno korisničko ime i lozinku
+							\item Korisnik klikne na gumb za registraciju
+							\item Šalje se zahtjev sustavu
+							\item Sustav zapisuje novog korisnika u bazu podataka
+							\item Ako je registracija uspješna web stranica se preusmjeri na homepage, ali sa korisnikom prijavljenim u sustav
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -132,19 +117,19 @@
 				
 					\noindent \underbar{\textbf{UC2 - prijava u korisnički račun}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
 						\item  \textbf{Cilj: prijava korisnika u vlastiti račun}
-						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na gumb za prijavu
-							\item korisnik unosi korisničko ime i lozinku
-							\item korisnik klikne na gumb "Prijava"
-							\item šalje se zahtjev sa korisničkim podacima na API
-							\item API provjerava točnost podataka u bazi podataka
-							\item u slučaju da je korisnik unio točne podatke, web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
+							\item Korisnik klikne na gumb za prijavu
+							\item Korisnik unosi korisničko ime i lozinku
+							\item Korisnik klikne na gumb za prijavu
+							\item Šalje se zahtjev sa korisničkim podacima sustavu
+							\item Sustav provjerava točnost podataka u bazi podataka
+							\item U slučaju da je korisnik unio točne podatke, web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
@@ -164,9 +149,9 @@
 				
 					\noindent \underbar{\textbf{UC3 - promjena korisničkih podataka}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
 						\item  \textbf{Cilj: promjena korisničkog imena i/ili lozinke}
-						\item  \textbf{Sudionici: web stanica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -197,9 +182,9 @@
 				
 					\noindent \underbar{\textbf{UC4 - brisanje korisničkog računa}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
 						\item  \textbf{Cilj: brisanje korisničkog računa i svih podataka vezanih uz račun}
-						\item  \textbf{Sudionici: web stanica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -225,9 +210,9 @@
 
 					\noindent \underbar{\textbf{UC5 - pregled liste recepata}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik, registrirani korisnik}
 						\item  \textbf{Cilj: prikazati recepte na web stranici}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -252,9 +237,9 @@
 				
 					\noindent \underbar{\textbf{UC6 - stvaranje novog recepta}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
 						\item  \textbf{Cilj: kreiranje novog recepta}
-						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -291,9 +276,9 @@
 
 					\noindent \underbar{\textbf{UC7 - promjena podataka o receptu}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
 						\item  \textbf{Cilj: promjena bilo kojeg podatka o receptu kojeg je korisnik napravio}
-						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je on autor recepta kojeg želi promijeniti}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -318,9 +303,9 @@
 
 					\noindent \underbar{\textbf{UC8 - prijava na recepte korisnika}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnika}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
 						\item  \textbf{Cilj: prijava korisnika na recepte autora kako bi primio obavijesti kada taj korisnik napravi novi recept}
-						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -344,9 +329,9 @@
 				
 					\noindent \underbar{\textbf{UC9 - pregled obavijesti}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
 						\item  \textbf{Cilj: pregled recepata autora koje korisnik prati}
-						\item  \textbf{Sudionici: web stanica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -366,9 +351,9 @@
 				
 					\noindent \underbar{\textbf{UC10 - spremanje/bookmarkanje recepta}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
 						\item  \textbf{Cilj: spremanje recepata kako bi se kasnije mogli pregledati omiljeni recepti}
-						\item  \textbf{Sudionici: web stanica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -392,9 +377,9 @@
 				
 					\noindent \underbar{\textbf{UC11 - pregled specifičnog recepta}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik, registrirani korisnik}
 						\item  \textbf{Cilj: prikaz svih podataka vezanih uz recept}
-						\item  \textbf{Sudionici: web stranica, API, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: -}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -414,9 +399,9 @@
 					
 					\noindent \underbar{\textbf{UC12 - komentiranje na recept}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: korisnik}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
 						\item  \textbf{Cilj: ostavlanje komentara na nekom receptu}
-						\item  \textbf{Sudionici: web stranica, baza podataka}
+						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je otvorio stranicu recepta}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
