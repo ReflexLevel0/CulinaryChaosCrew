@@ -98,17 +98,17 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[1.a] korisničko ime je zauzeto (već postoji)
+							\item[5.a] Korisničko ime je zauzeto (već postoji)
 							\begin{packed_enum}
-								\item prikazuje se poruka "Korisničko ime zauzeto!"
+								\item Prikazuje se poruka "Korisničko ime zauzeto!"
 							\end{packed_enum}
-							\item[1.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\item[5.b] Lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
 							\begin{packed_enum}
-								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
+								\item Prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
 							\end{packed_enum}
-							\item[1.c] unesena adresa e-pošte nije važeća
+							\item[5.c] Unesena adresa e-pošte nije važeća
 							\begin{packed_enum}
-								\item prikazuje se poruka "Adresa e-pošte ne postoji ili nije važeća!"
+								\item Prikazuje se poruka "Adresa e-pošte ne postoji ili nije važeća!"
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -134,13 +134,13 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[2.a] korisničko ime ne postoji u bazi podataka
+							\item[5.a] Korisničko ime ne postoji u bazi podataka
 							\begin{packed_enum}
-								\item prikazuje se poruka "Korisničko ime ne postoji!"
+								\item Prikazuje se poruka "Korisničko ime ne postoji!"
 							\end{packed_enum}
-							\item[2.b] pogrešna lozinka
+							\item[5.b] Pogrešna lozinka
 							\begin{packed_enum}
-								\item prikazuje se poruka "Kriva lozinka!"
+								\item Prikazuje se poruka "Kriva lozinka!"
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -156,24 +156,23 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na gumb "Postavke"
-							\item[2.a] korisnik promijeni korisničko ime upisivanjem novog imena
-							\item[2.b] korisnik promijeni lozinku upisivanjem nove lozinke 
-							\item[3.] korisnik klikne na gumb "Pohrani promjene"
-							\item[4.] šalje se zahtjev za promjenom podataka na API
-							\item[5.] u bazu podataka se upisuju promjene
-							\item[6.] korisnik se automatski odjavi za stranice
+							\item Korisnik kliknom na gumb pristupi postavkama
+							\item Korisnik promijeni korisničko ime ili lozinku upisivanjem novog imena ili lozinke
+							\item Korisnik klikne na gumb za spremanje promjena
+							\item Sustavu se šalje zahtjev za promjenom podataka 
+							\item U bazu podataka se upisuju promjene
+							\item Korisnik se automatski odjavi za stranice
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[3.a] novo korisničko ime je zauzeto
+							\item[5.a] Novo korisničko ime je već zauzeto
 							\begin{packed_enum}
-								\item prikazuje se poruka "Korisničko ime zauzeto!"
+								\item Prikazuje se poruka "Korisničko ime zauzeto!"
 							\end{packed_enum}
-							\item[3.b] lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\item[5.b] Lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
 							\begin{packed_enum}
-								\item prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
+								\item Prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -189,19 +188,23 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na gumb "Postavke"
-							\item korisnik klikne na gumb "Obriši račun"
-							\item pojavljuje se obavijest "Ovim postupkom će se obrisati svi Vaši receptii vaš račun, jesti li sigurni da želite nastaviti?"
-							\item klikom na gumb "Da" se šalje zahtjev za brisanje računa API-u
-							\item API briše račun iz baze podataka
-							\item korisnik se preusmjerava na homepage, te više nije prijavljen u sustav
+							\item Korisnik klikne na gumb za pristup postavkama
+							\item Korisnik klikne na gumb za brisanje računa
+							\item Pojavljuje se upozorenje i prozor sa zahtjevom za potvrdom
+							\item Klikom na gumb "Da" šalje se zahtjev za brisanje računa sustavu
+							\item Sustav briše račun iz baze podataka
+							\item Korisnik se preusmjerava na homepage, te više nije prijavljen u sustav
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[4.a] korisnik kliknuo na gumb "Ne"
+							\item[4.a] Korisnik klikne na gumb "Ne"
 							\begin{packed_enum}
-								\item obavijest se zatvara te korisnik ostaje u postavkama
+								\item Prozor sa zahtjevom se zatvara te korisnik ostaje u postavkama
+							\end{packed_enum}
+							\item[6.a] Brisanje korisničkog računa je obavio administrator
+							\begin{packed_enum}
+								\item Nakon brisanja korisničkog računa administrator ostaje u postavkama
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -217,18 +220,18 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik odabere filtere i način sortiranja recepata
-							\item korisnik u polje za pretraživanje upiše tekst
-							\item web stranica šalje zahtjev za dohvaćanje recepata API-u
-							\item API dohvaća recepte iz baze podataka i šalje ih web stranici
-							\item na web stranici se prikazuje lista recepata
+							\item Korisnik odabere filtere i način sortiranja recepata
+							\item Korisnik u polje za pretraživanje upiše tekst
+							\item Šalje se zahtjev za dohvaćanje recepata sustavu
+							\item Sustav dohvaća recepte iz baze podataka
+							\item Korisniku se prikaže lista recepata
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item [5.a] nije upisan tekst po kojem se pretražuje
+							\item [2.a] Nije upisan tekst po kojem se pretražuje
 							\item[] \begin{packed_enum}
-								\item prikazuju se svi recepti
+								\item Prikazuju se svi recepti
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -244,30 +247,30 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na gumb "Novi recept"
-							\item upišu se podaci o receptu kao postupak, slike, videi, kategorije itd.
-							\item klikom na objavi recept se šalje zahtjev API-u
-							\item API sprema recept u bazu podataka
-							\item recept postaje vidljiv drugim korisnicima
+							\item Korisnik klikne na gumb za početak stvaranja novog recepta
+							\item Korisnik upisuje podatke o receptu kao što su postupak, slike, videi, kategorije itd.
+							\item Klikom na gumb za objavu recepta šalje se zahtjev sustavu
+							\item Sustav sprema recept u bazu podataka
+							\item Recept postaje vidljiv drugim korisnicima
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[6.a] recept nema naslov
+							\item[3.a] Recept nema naslov
 							\begin{packed_enum}
-								\item prikazuje se poruka "Potrebno je upisati ime recepta"
+								\item Prikazuje se poruka "Potrebno je upisati ime recepta"
 							\end{packed_enum}
-							\item[6.b] nije upisana lista sastojaka
+							\item[3.b] Nije upisana lista sastojaka
 							\begin{packed_enum}
-								\item prikazuje se poruka "Potrebno je upisati listu sastojaka"
+								\item Prikazuje se poruka "Potrebno je upisati listu sastojaka"
 							\end{packed_enum}
-							\item[6.c] ne postoji ni jedan korak pripreme
+							\item[3.c] Ne postoji ni jedan korak pripreme
 							\begin{packed_enum}
-								\item prikazuje se poruka "Potrebno je upisati barem jedan korak pripreme"
+								\item Prikazuje se poruka "Potrebno je upisati barem jedan korak pripreme"
 							\end{packed_enum}
-							\item[6.d] nije uneseno vijeme kuhanja
+							\item[3.d] Nije uneseno vrijeme pripreme
 							\begin{packed_enum}
-								\item prikazuje se poruka "Potrebno je upisati vrijeme kuhanja"
+								\item Prikazuje se poruka "Potrebno je upisati vrijeme pripreme"
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
