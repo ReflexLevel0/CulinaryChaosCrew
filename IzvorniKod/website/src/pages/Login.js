@@ -1,7 +1,7 @@
 import '../styles/LoginViewDesktop.css'
 import {useState} from "react";
 
-function LoginView(){
+function Login(){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     return(
@@ -30,4 +30,4 @@ function LoginView(){
     )
 }
 
-export default LoginView;
+export default Login;

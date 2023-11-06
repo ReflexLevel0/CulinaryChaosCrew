@@ -1,4 +1,4 @@
-import '../styles/RecipeCard.css'
+import '../styles/RecipeCardDesktop.css'
 
 function RecipeCard({recipeName, description, imageSrc}){
     return(
