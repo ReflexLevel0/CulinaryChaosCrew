@@ -1,9 +1,9 @@
 import './App.css';
-import RecipeList from "./components/RecipeList";
+import LoginView from "./views/LoginView"
 
 function App() {
   return (<>
-    <RecipeList/>
+    <LoginView/>
   </>);
 }
 
