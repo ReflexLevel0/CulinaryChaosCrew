@@ -9,6 +9,7 @@
 				\item Korisnik
 				\item Administrator				
 				\item Razvojni tim
+				\item Vanjski sustav za komunikaciju
 				
 			\end{packed_enum}
 			
@@ -55,7 +56,6 @@
 			
 				\item\underbar{Administrator (inicijator) može:}
 				\begin{packed_enum}
-					\item pregledati korisničke podatke registriranih korisnika
 					\item pregledati objavljene recepte
 					\item promijeniti korisničke podatke registriranih korisnika
 					\item promijeniti podatke o receptu
@@ -213,7 +213,7 @@
 
 					\noindent \underbar{\textbf{UC5 - pregled liste recepata}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: neregistrirani korisnik, registrirani korisnik}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik, registrirani korisnik administrator}
 						\item  \textbf{Cilj: prikazati recepte na web stranici}
 						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: -}
@@ -229,8 +229,16 @@
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
+							\item[1.a] Odabran je pregled vlastitih recepata
+							\begin{packed_enum}
+								\item Korak 2 se preskače i zahtjev se šalje za receptima koje je korisnik objavio
+							\end{packed_enum}
+							\item[1.b] Odabran je pregled omiljenih recepata
+							\begin{packed_enum}
+								\item Korak 2 se preskače i zahtjev se šalje za receptima koje je korisnik označio omiljenima
+							\end{packed_enum}
 							\item [2.a] Nije upisan tekst po kojem se pretražuje
-							\item[] \begin{packed_enum}
+							\begin{packed_enum}
 								\item Prikazuju se svi recepti
 							\end{packed_enum}
 						\end{packed_item}
@@ -406,7 +414,7 @@
 					\noindent \underbar{\textbf{UC12 - komentiranje na recept}}
 					\begin{packed_item}
 						\item \textbf{Glavni sudionik: registrirani korisnik}
-						\item  \textbf{Cilj: ostavlanje komentara na nekom receptu}
+						\item  \textbf{Cilj: ostavljanje komentara na nekom receptu}
 						\item  \textbf{Sudionici: -}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je otvorio stranicu recepta}
 						
@@ -428,7 +436,119 @@
 						\end{packed_item}
 					\end{packed_item}
 				
+
+					\noindent \underbar{\textbf{UC13 - razmjena poruka među registriranim korisnicima}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik, online-chat platforma}
+						\item  \textbf{Cilj: razmjena poruka među korisnicima}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i omogućio je platformi pristup za komunikaciju}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik na javnom profilu drugog korisnika klikne da gumb za uspostavu kontakta
+							\item Sustav preusmjerava zahtjev online-chat platformi koja obrađuje daljnje zahtjeve
+							\item Online-chat platforma prikazuje njihove dosadašnje poruke (ako ih ima)
+							\item Korisnik upisuje novu poruku i stisne gumb za slanje
+							\item Online-chat platforma poruku sprema i šalje drugom korisniku
+							\item Korisniku se poruka prikazuje među dosad izmijenjenim porukama kao poslana
+							\item Korisnik izlazi iz prozora za razmjenu poruka i poziva
+							\item Online-chat platforma šalje sustavu obavijest o završetku radnje
+							\item Sustav preuzima daljnju obradu zahtjeva
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+							\begin{packed_item}
+								\item[1.a] Korisnik kojeg se želi kontaktirati nije omogućio opciju komunikacije online-chat platformi
+								\begin{packed_enum}
+									\item Gumb za uspostavu kontakta je blokiran te nije moguće kliknuti na njega
+									\item Svi daljnji koraci se ne izvode
+								\end{packed_enum}
+								\item[7.a] Korisnik želi poslati još poruka
+								\begin{packed_enum}
+									\item Ponavljaju se koraci 4, 5, i 6
+								\end{packed_enum}
+							\end{packed_item}
+					\end{packed_item}
 				
+
+
+					\noindent \underbar{\textbf{UC14 - razmjena poziva među registriranim korisnicima}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnici}
+						\item  \textbf{Cilj: razmjena poziva među korisnicima}
+						\item  \textbf{Sudionici: online-chat platforma}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i odobrio je platformi pristup mikrofonu i kameri}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik na javnom profilu drugog korisnika klikne da gumb za uspostavu kontakta
+							\item Sustav preusmjerava zahtjev online-chat platformi koja obrađuje daljnje zahtjeve
+							\item Online-chat platforma prikazuje stare poruke i gumb za opciju pozivanja
+							\item Korisnik klikne na gumb za opciju pozivanja
+							\item Online-chat platforma dohvaća podatke o dostupnosti korisnika i prikazuje ih korisniku koji inicira komunikaciju
+							\item Korisnik klikne gumb za uspostavljanje poziva
+							\item Online-chat platforma upućuje poziv korisniku
+							\item Korisnik kojeg se zove prihvaća poziv
+							\item Klikom na gumb za prekid poziva šalje se zahtjev online-chat platformi koja gasi poziv
+							\item Korisnik izlazi iz prozora za razmjenu poruka i poziva
+							\item Online-chat platforma šalje sustavu obavijest o završetku radnje
+							\item Sustav preuzima daljnju obradu zahtjeva
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+							\begin{packed_item}
+								\item[1.a] Korisnik kojeg se želi kontaktirati nije omogućio opciju komunikacije online-chat platformi
+								\begin{packed_enum}
+									\item Gumb za uspostavu kontakta je blokiran te nije moguće kliknuti na njega
+									\item Svi daljnji koraci se ne izvode
+								\end{packed_enum}
+								\item[6.a] Korisnik kojeg se pokušava nazvati nije dostupan u tom vremenu
+								\begin{packed_enum}
+									\item Gumb za uspostavu poziva je blokiran te nije moguće kliknuti na njega
+									\item Prikazuje se kalendar u kojem su označeni termini u kojima je traženi korisnik dostupan
+									\item Korisnik inicijator može označiti termin u kojem želi razgovarati
+									\item Online-chat platforma zapisuje taj podatak i prenosi ga traženom korisniku
+									\item Koraci 7, 8 i 9 se ne izvode
+								\end{packed_enum}
+								\item[8.a] Korisnik kojeg se zove odbija poziv
+								\begin{packed_enum}
+									\item Poziv se prekida
+								\end{packed_enum}
+							\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC15 - označavanje dostupnosti za pozive}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: spremanje termina slobodnih za pozive i njihov prikaz drugim korisnicima}
+						\item  \textbf{Sudionici: online-chat platforma}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i omogućio je platformi pristup za komunikaciju}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za postavke
+							\item Korisnik klikne na gumb za uređivanje kalendara
+							\item Šalje se zahtjev sustavu za dohvaćanje dosad unesenih podataka u kalendaru
+							\item Šalje se zahtjev online-chat platformi za podatke o zatraženim pozivima
+							\item Korisniku se prikazuje kalendar s njegovim označenim terminima i zahtjevima za poziv
+							\item Korisnik klikom na određeni dan upisuje vrijeme kad je slobodan i stisne gumb za spremanje
+							\item Sustav pohranjuje promjene kalendara u bazu podataka
+							\item Sustav šalje platformi novouneseni podatak
+							\item Korisnik izlazi iz postavki
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+							\begin{packed_item}
+								\item[6.a] Korisnik klikne na termin zatraženog poziva
+								\begin{packed_enum}
+									\item Pojavljuje se prozor za prihvaćanje odnosno odbijanje zahtjeva
+									\item Korisnik bira klikom na gumb za prihvaćanje odnosno odbijanje
+								\end{packed_enum}
+							\end{packed_item}
+					\end{packed_item}
 				
 					\noindent \underbar{\textbf{UC}}
 					\begin{packed_item}
