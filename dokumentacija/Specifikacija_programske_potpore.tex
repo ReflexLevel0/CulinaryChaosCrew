@@ -282,23 +282,27 @@
 						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
 						\item  \textbf{Cilj: promjena bilo kojeg podatka o receptu kojeg je korisnik napravio}
 						\item  \textbf{Sudionici: -}
-						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je on autor recepta kojeg želi promijeniti}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je on autor recepta kojeg želi promijeniti ili je administrator}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na svoj recept
-							\item korisnik klikne na gumb za uređivanje recepta
-							\item web stranica se preusmjerava na poveznicu za promjenu recepta
-							\item[4.a] korisnik promijeni podatke o receptu i klikne gumb "Spremi promjene"
-							\item[4.b] korisnik klikne na gumb "Izbriši recept"
-							\item[5.] na API se šalje zahtjev sa novim podacima o receptu
-							\item[6.] u bazu podataka se spremaju promjene
-							\item[7.] web stranica se preusmjerava na poveznicu na kojoj se može pregledati recept ukoliko nije obrisan
+							\item Korisnik klikne na recept
+							\item Korisnik klikne na gumb za uređivanje recepta
+							\item Preusmjerava se na poveznicu za promjenu recepta
+							\item Korisnik promijeni podatke o receptu i klikne na gumb za spremanje
+							\item Sustavu se šalje zahtjev sa novim podacima o receptu
+							\item U bazu podataka se spremaju promjene
+							\item Korisnika se preusmjerava na poveznicu na kojoj se može pregledati recept
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[7.a] problem u novim podacima (referencirati se na odstupanja u UC6)
+							\item[4.a] Korisnik klikne na gumb za brisanje recepta
+							\begin{packed_enum}
+								\item Pojavljuje se upozorenje i prozor sa zahtjevom za potvrdom
+								\item Korak 5 se preskače
+							\end{packed_enum}
+							\item[5.a] Problem u novim podacima (referencirati se na odstupanja u UC6) 
 						\end{packed_item}
 					\end{packed_item}
 
@@ -313,17 +317,17 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item prijavljeni korisnik otvara recept nekog autora
-							\item klikom na gumb "???" se šalje zahtjev na API
-							\item u bazu podataka se zapisuje da je korisnik prijavljen na recepte odabranog autora
-							\item recepti autora se pokazuju u listi obavijesti
+							\item Prijavljeni korisnik otvara recept nekog autora
+							\item Klikom na gumb za praćenje se sustavu šalje zahtjev
+							\item U bazu podataka se zapisuje da je korisnik prijavljen na recepte odabranog autora
+							\item Recepti odabranog autora prikazuju se u listi obavijesti
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}							
-							\item[8.a] korisnik je već prijavljen na recepte autora
+							\item[3.a] Korisnik je već prijavljen na recepte autora
 							\begin{packed_enum}
-								\item klikom na gumb za prijavu na recepte autora se korisnik odjavljuje sa recepata tog autora
+								\item Klikom na gumb za praćenje autora se korisnik odjavljuje sa recepata tog autora
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -339,13 +343,13 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik klikne na gumb koji izgleda kao zvonce
-							\item šalje se zahtjev na API
-							\item iz baze podataka se čitaju obavijesti korisnika te se podaci vraćaju web stranici
-							\item prikazuju se recepti svih autora koje korisnik prati
+							\item Korisnik klikne na gumb za pregled obavijesti
+							\item Sustavu se šalje zahtjev
+							\item Iz baze podataka čitaju se obavijesti korisnika
+							\item Prikazuju se recepti svih autora koje korisnik prati
 						\end{packed_enum}
 						
-						\item  \textbf{Opis mogućih odstupanja:}
+						\item  \textbf{Opis mogućih odstupanja: -}
 						\item[] \begin{packed_item}							
 						\end{packed_item}
 					\end{packed_item}
@@ -361,17 +365,16 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item[1.a] korisnik klikne na gumb za spremanje recepta iz liste recepata
-							\item[1.b] korisnik klikne na gumb za spremanje recepata prilikom prikaza pojedinog recepta
-							\item[2.] šalje se zahtjev na API
-							\item[3.] u bazu podataka se upisuje recept kao omiljen od korisnika
+							\item korisnik klikne na gumb za spremanje recepta
+							\item Šalje se zahtjev sustavu
+							\item U bazu podataka se upisuje recept kao omiljen korisniku
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[10.a] recept je već spremljen kao omiljen
+							\item[3.a] Recept je već spremljen kao omiljen
 							\begin{packed_enum}
-								\item recept se miče is liste omiljenih recepata
+								\item Recept se miče is liste omiljenih recepata
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
@@ -387,13 +390,13 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item korisnik kliknuo na recept
-							\item šalje se zahtjev na API za dohvaćanje podataka o receptu
-							\item iz baze podataka se čitaju podaci o receptu
-							\item na web stranici se prikazuju dohvaćeni podaci
+							\item Korisnik klikne na recept
+							\item Sustavu se šalje zahtjev za dohvaćanje podataka o receptu
+							\item Iz baze podataka se čitaju podaci o receptu
+							\item Korisniku se prikazuju dohvaćeni podaci
 						\end{packed_enum}
 						
-						\item  \textbf{Opis mogućih odstupanja:}
+						\item  \textbf{Opis mogućih odstupanja: -}
 						\item[] \begin{packed_item}							
 						\end{packed_item}
 					\end{packed_item}
@@ -409,18 +412,18 @@
 						
 						\item  \textbf{Opis osnovnog tijeka:}
 						\item[] \begin{packed_enum}
-							\item scrollanjem do kraja recepta se dolazi do dijela sa komentarima
-							\item upisuje se tekst u polje za komentar
-							\item klikom na gumb "Objavi komentar" se šalje zahtjev na API
-							\item u bazu podataka se upisuje komentar
-							\item web stranica se osvježava
+							\item Scrollanjem do kraja recepta se dolazi do dijela sa komentarima
+							\item Upisuje se tekst u polje za komentar
+							\item Klikom na gumb za objavu komentara šalje se zahtjev sustavu
+							\item U bazu podataka se upisuje komentar
+							\item Web stranica se osvježava i komentar je sad vidljiv
 						\end{packed_enum}
 						
 						\item  \textbf{Opis mogućih odstupanja:}
 						\item[] \begin{packed_item}
-							\item[12.a] tekst komentara je prazno
+							\item[3.a] Tekst komentara je prazan
 							\begin{packed_enum}
-								\item gumb za objavljivanje komentara je zasivljen te je nemoguće kliknuti na njega
+								\item Gumb za objavljivanje komentara je blokiran te nije moguće kliknuti na njega
 							\end{packed_enum}
 						\end{packed_item}
 					\end{packed_item}
