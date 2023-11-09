@@ -12,3 +12,7 @@
 label{
     font-size: 24px;
 }
+
+#passwordRepeatInput{
+    margin-top: 10px;
+}

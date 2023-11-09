@@ -2,8 +2,10 @@ import '../styles/LoginViewDesktop.css'
 import {useState} from "react";
 
 function Login(){
+function Login({ login }){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [passwordRepeat, setPasswordRepeat] = useState("")
     return(
         <div className="formWrapper">
             <div/>
@@ -11,18 +13,21 @@ function Login(){
             <form>
                 <div className="form-group">
                     <label htmlFor="usernameInput">Username</label>
-                    <input type="text" className="form-control" id="usernameInput" aria-describedby="usernameHelp" placeholder="Enter username"
-                           minLength={6} required={true} value={username} onChange={e => setUsername(e.target.value)}/>
+                    <input type="text" className="form-control" id="usernameInput" aria-describedby="usernameHelp" placeholder="Enter username" value={username} onChange={e => setUsername(e.target.value)}/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="passwordInput">Password</label>
-                    <input type="password" className="form-control" id="passwordInput" placeholder="Password"
-                           minLength={6} required={true} value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input type="password" id="passwordInput" className="form-control" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    {login ?
+                        (<></>) :
+                        (<input type="password" id="passwordRepeatInput" className="form-control" placeholder="Repeat password"
+                           value={passwordRepeat} onChange={e => setPasswordRepeat(e.target.value)} />)
+                    }
                 </div>
-                <div className="buttonWrapper">
-                    <button type="login" className="btn btn-primary" onClick={() => alert(`log in with ${username} ${password}`)}>Login</button>
-                    <button type="register" className="btn btn-primary" onClick={() => alert(`sign up with ${username} ${password}`)}>Sign up</button>
-                </div>
+                {login ?
+                    (<button type="submit" className="btn btn-primary">Login</button>) :
+                    (<button type="submit" className="btn btn-primary">Register</button>)
+                }
             </form>
             <div/>
             <div/>
