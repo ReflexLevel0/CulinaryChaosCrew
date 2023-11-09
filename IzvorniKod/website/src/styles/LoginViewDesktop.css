@@ -1,0 +1,14 @@
+.formWrapper{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    height: 100vh;
+    align-items: center;
+}
+
+.buttonWrapper>button{
+    margin-right: 10px;
+}
+
+label{
+    font-size: 24px;
+}
