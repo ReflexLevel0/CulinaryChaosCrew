@@ -27,6 +27,7 @@ public class RecipeController {
         recipeService.addRecipe(recipe);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "allRecipes")
     public List<Recipe> getAllRecipes() {
         return recipeService.getAllRecipes();
