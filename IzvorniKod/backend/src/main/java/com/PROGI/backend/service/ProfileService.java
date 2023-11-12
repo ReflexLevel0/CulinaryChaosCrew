@@ -31,6 +31,14 @@ public class ProfileService {
         return profileDao.selectProfileById(id);
     }
 
+    public Optional<Profile> getProfileByUsername(String username) {
+        return profileDao.selectProfileByUsername(username);
+    }
+
+    public Optional<Profile> getProfileByPassword(String password) {
+        return profileDao.selectProfileByPassword(password);
+    }
+
     public int deleteProfile(UUID id) {
         return profileDao.deleteProfileById(id);
     }
@@ -38,4 +46,35 @@ public class ProfileService {
     public int updateProfile(UUID id, Profile newProfile) {
         return profileDao.updateProfileById(id, newProfile);
     }
+
+    public boolean usernameTaken(String username) {
+        List<Profile> allProfiles = getAllProfiles();
+        for (Profile profile : allProfiles) {
+            if (username.equals(profile.getUsername())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean emailTaken(String email) {
+        List<Profile> allProfiles = getAllProfiles();
+        for (Profile profile : allProfiles) {
+            if (email.equals(profile.getEmail())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean profileExists(String username, String password) {
+        List<Profile> allProfiles = getAllProfiles();
+        for (Profile profile : allProfiles) {
+            if (profile.getUsername().equals(username) && profile.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

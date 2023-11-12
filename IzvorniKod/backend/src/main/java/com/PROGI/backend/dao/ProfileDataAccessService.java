@@ -26,6 +26,16 @@ public class ProfileDataAccessService implements ProfileDao {
     }
 
     @Override
+    public Optional<Profile> selectProfileByUsername(String username) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Profile> selectProfileByPassword(String password) {
+        return Optional.empty();
+    }
+
+    @Override
     public int deleteProfileById(UUID id) {
         return 0;
     }

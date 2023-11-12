@@ -3,6 +3,7 @@ package com.PROGI.backend.model;
 import org.springframework.lang.NonNull;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Profile {
@@ -64,5 +65,18 @@ public class Profile {
 
     public int getAge() {
         return age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Profile profile = (Profile) o;
+        return age == profile.age && userId.equals(profile.userId) && username.equals(profile.username) && password.equals(profile.password) && email.equals(profile.email) && Objects.equals(name, profile.name) && Objects.equals(surname, profile.surname);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, username, password, email, name, surname, age);
     }
 }
