@@ -15,7 +15,7 @@ public class RecipeService {
     private final RecipeDao recipeDao;
 
     @Autowired
-    public RecipeService(@Qualifier("fakeDao") RecipeDao recipeDao) {
+    public RecipeService(@Qualifier("fakeRecipeDao") RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
     }
 

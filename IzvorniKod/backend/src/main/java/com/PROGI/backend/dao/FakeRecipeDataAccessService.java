@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("fakeDao")
+@Repository("fakeRecipeDao")
 public class FakeRecipeDataAccessService implements RecipeDao{
 
     private static List<Recipe> DB = new ArrayList<>();

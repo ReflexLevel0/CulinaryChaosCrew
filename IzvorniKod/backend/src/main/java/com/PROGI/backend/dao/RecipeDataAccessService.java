@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("postgres")
+@Repository("recipePostgres")
 public class RecipeDataAccessService implements RecipeDao{
     @Override
     public int insertRecipe(UUID id, Recipe recipe) {
