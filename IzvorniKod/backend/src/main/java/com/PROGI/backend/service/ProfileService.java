@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class ProfileService {
@@ -75,6 +77,17 @@ public class ProfileService {
             }
         }
         return false;
+    }
+
+    public boolean goodEmailFormat(String email) {
+        String emailRegex = "^(.+)@([^.]+)\\.(.+)$";
+        if (email.endsWith(".")) return false;
+        return email.matches(emailRegex);
+    }
+
+    public boolean strongPassword(String password) {
+        String passwordRegex = "^(?=.*[0-9])(.{6,})$";
+        return password.matches(passwordRegex);
     }
 
 }

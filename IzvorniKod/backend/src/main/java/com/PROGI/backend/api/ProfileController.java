@@ -23,6 +23,12 @@ public class ProfileController {
 
     @PostMapping(path = "register")
     public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalAccessException {
+        if (!profileService.goodEmailFormat(profile.getEmail())) {
+            throw new IllegalArgumentException("Email is in the wrong format");
+        }
+        if (!profileService.strongPassword(profile.getPassword())) {
+            throw new IllegalArgumentException("Password must have at least one number at least 6 characters (including numbers)");
+        }
         if (profileService.usernameTaken(profile.getUsername())) {
             throw new IllegalArgumentException("Username is taken");
         }
