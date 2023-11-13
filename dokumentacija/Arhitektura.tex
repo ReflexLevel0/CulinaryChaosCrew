@@ -17,14 +17,15 @@
 				
 		\section{Baza podataka}
 			
-			\textbf{\textit{dio 1. revizije}}\\
-			
-		\textit{Potrebno je opisati koju vrstu i implementaciju baze podataka ste odabrali, glavne komponente od kojih se sastoji i slično.}
+		Za našu platformu koristit ćemo relacijsku bazu podataka. Objekt takve baze je relacija, odnosno tablica koja je definirana svojim imenom i skupom atributa. Atributi unutar jednog entiteta mogu poprimiti funkciju primarnog ili stranog ključa.
+Baza podataka ove aplikacije sastoji se od 3 entiteta:
 		
 			\subsection{Opis tablica}
 			
-
-				\textit{Svaku tablicu je potrebno opisati po zadanom predlošku. Lijevo se nalazi točno ime varijable u bazi podataka, u sredini se nalazi tip podataka, a desno se nalazi opis varijable. Svjetlozelenom bojom označite primarni ključ. Svjetlo plavom označite strani ključ}
+\textbf{\textit{login}}\\
+\begin{samepage}
+Ovaj entitet sastoji se od jednog atributa - atributa username. To je ujedno i primarni ključ entiteta i predstavlja jedinstveni identifikator korisnika - korisničko ime.
+\end{samepage}
 				
 				
 				\begin{longtblr}[
@@ -35,18 +36,72 @@
 						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{korisnik - ime tablice}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}IDKorisnik & INT	&  	Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod  	\\ \hline
-					korisnickoIme	& VARCHAR &   	\\ \hline 
-					email & VARCHAR &   \\ \hline 
-					ime & VARCHAR	&  		\\ \hline 
-					\SetCell{LightBlue} primjer	& VARCHAR &   	\\ \hline 
+					\hline \SetCell[c=3]{c}{\textbf{login}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}username & VARCHAR	&  	jedinstveni identifikator korisnika 	\\ \hline
+				\end{longtblr}
+
+    \eject
+\noindent \textbf{\textit{profile}}\\
+\begin{samepage}
+Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od sljedećih atributa: email (email adresa), username (korisničko ime), name (ime), surname (prezime) i age (dob). Email i username su primarni ključevi entiteta \textbf{profile}, a username ujedno i strani ključ koji povezuje \textbf{profile} i \textbf{login}.
+\end{samepage}
+
+    				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+     
+					\hline \SetCell[c=3]{c}{\textbf{profile}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}email & VARCHAR	&  	e-mail adresa korisnika 	\\ \hline
+     				\SetCell{LightGreen}username & VARCHAR	&  	jedinstveni identifikator korisnika	\\ \hline
+          			\SetCell{} name & VARCHAR	&  ime korisnika 	\\ \hline
+               			\SetCell{} surname & VARCHAR	&  	prezime korisnika 	\\ \hline
+                    \SetCell{} age & INT	&  	dob korisnika 	\\ \hline
+                    
+				\end{longtblr}
+
+    
+\noindent \textbf{\textit{recipe}}\\
+\begin{samepage}
+Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ recipeID - ID recepta, a strani ključevi email i username koji povezuju \textbf{recipe} i \textbf{profile}. Ostali atributi su likes - broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika, ingredients - sastojci jela koje recept opisuje, recipeName (ime recepta), instructions (niz uputa pripreme jela opisanog receptom), origin (mjesto podrijetla jela), category (kategorija jela), specialTags - dodatne oznake te videoURL - URL videa koji korisnik prilaže uz postavljeni recept.
+\end{samepage}
+    
+    				\begin{longtblr}[
+					label=none,
+					entry=none
+					]{
+						width = \textwidth,
+						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
+						rowhead = 1,
+					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
+					\hline \SetCell[c=3]{c}{\textbf{recipe}}	 \\ \hline[3pt]
+					\SetCell{LightGreen}recipeID & VARCHAR	&  	jedinstveni identifikator recepta 	\\ \hline
+          				\SetCell{LightBlue}email & VARCHAR	&  	e-mail adresa korisnika 	\\ \hline
+          			\SetCell{LightBlue}username & VARCHAR	&  	jedinstveni identifikator korisnika 	\\ \hline
+               			\SetCell{} likes & INT	&  	broj oznaka "sviđa mi se" recepta 	\\ \hline
+                    \SetCell{} ingredients & VARCHAR	&  	popis sastojaka receptnog jela 	\\ \hline
+                    \SetCell{} recipeName & VARCHAR	&  	ime recepta 	\\ \hline
+                    \SetCell{} instructions & VARCHAR	&  	niz uputa za pripremu jela prema receptu 	\\ \hline
+                    \SetCell{} origin & VARCHAR	&  	mjesto podrijetla receptnog jela	\\ \hline
+                    \SetCell{} category & VARCHAR	&  	vrsta (kategorija) receptnog jela 	\\ \hline
+                    \SetCell{} specialTags & VARCHAR	&  	specijalne dodatne oznake receptnog jela 	\\ \hline
+                    \SetCell{} videoURL & VARCHAR	&  	URL videa priloženog uz recept 	\\ \hline
 				\end{longtblr}
 				
 				
 			
 			\subsection{Dijagram baze podataka}
-				\textit{ U ovom potpoglavlju potrebno je umetnuti dijagram baze podataka. Primarni i strani ključevi moraju biti označeni, a tablice povezane. Bazu podataka je potrebno normalizirati. Podsjetite se kolegija "Baze podataka".}
+			
+\begin{figure}[h]
+			    \centering
+			    \includegraphics[width=1\linewidth]{image (1).png}
+			    \caption{ER dijagram baze podataka}
+			    \label{fig:enter-label}
+			\end{figure}
 			
 			\eject
 			
