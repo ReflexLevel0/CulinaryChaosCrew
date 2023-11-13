@@ -1,5 +1,6 @@
 import '../styles/LoginViewDesktop.css'
 import React from "react";
+import ApiHelper from "../ApiHelper";
 
 export default class Login extends React.Component{
     constructor(props) {
@@ -8,7 +9,8 @@ export default class Login extends React.Component{
         this.state = {
             username: "",
             password: "",
-            passwordRepeat: ""
+            passwordRepeat: "",
+            email: ""
         }
     }
 
@@ -16,6 +18,7 @@ export default class Login extends React.Component{
         let username = document.getElementById("usernameInput").value
         let password = document.getElementById("passwordInput").value
         let passwordRepeat = login ? null : document.getElementById("passwordRepeatInput").value
+        let email = login ? null : document.getElementById('emailInput').value
         if(username.length === 0){
             alert("Please enter username!")
         }
@@ -30,8 +33,38 @@ export default class Login extends React.Component{
         }
         else if(login === false && password !== passwordRepeat) {
             alert("Passwords don't match!")
-        }else{
-            alert(`${login ? "log in" : "sign up" } with ${username} ${password}`)
+        }else if(login === false && email.length === 0){
+            alert("Please enter email!")
+        }
+        else{
+            //Trying to log in with provided data
+            if(login){
+                ApiHelper.Login(username, password).then(response => {
+                    //If log in is successful
+                    if(response.status === 200){
+                        alert("LOGGED IN")
+                    }
+
+                    //If log in failed
+                    else{
+                        response.json().then(json => alert(json.message))
+                    }
+                })
+            }else{
+                console.log(email)
+                ApiHelper.Register(username, password, email).then(response => {
+                    //If register is successful
+                    if(response.status === 200){
+                        alert("REGISTERED")
+                    }
+
+                    //If register failed
+                    else{
+                        response.json().then(json => alert(json.message))
+                    }
+                })
+            }
+            event.preventDefault()
             return true
         }
         event.preventDefault()
@@ -45,6 +78,13 @@ export default class Login extends React.Component{
                 <div/>
                 <div/>
                 <form onSubmit={e => this.login(e, login)}>
+                    {login ?
+                        (<></>) :
+                        (<div className="form-group">
+                            <label htmlFor="emailInput">Email</label>
+                            <input type="text" className="form-control" id="emailInput" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={e => this.setState({email: e.target.value})}/>
+                        </div>)
+                    }
                     <div className="form-group">
                         <label htmlFor="usernameInput">Username</label>
                         <input type="text" className="form-control" id="usernameInput" aria-describedby="usernameHelp" placeholder="Enter username" value={this.state.username} onChange={e => this.setState({username: e.target.value})}/>

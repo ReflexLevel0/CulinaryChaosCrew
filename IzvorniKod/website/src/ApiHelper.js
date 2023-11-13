@@ -22,4 +22,47 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
+    //Logs the user into the account
+    static Login(username, password) {
+        try {
+            const url = this.apiUrl + '/profile/login'
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //Creates a new account with the specified information
+    static Register(username, password, email){
+        let body = JSON.stringify({
+            username: username,
+            password: password,
+            email: email
+        })
+        console.log(body)
+        try {
+            const url = this.apiUrl + '/profile/register'
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: body
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
 }
