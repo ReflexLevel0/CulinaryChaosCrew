@@ -15,6 +15,7 @@ public class RecipeService {
     private final RecipeDao recipeDao;
 
     @Autowired
+//    fakeRecipeDao za fake bazu, postgresRecipe za real bazu (valjda)
     public RecipeService(@Qualifier("fakeRecipeDao") RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
     }

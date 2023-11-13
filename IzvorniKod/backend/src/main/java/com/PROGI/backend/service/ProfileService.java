@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 public class ProfileService {
     private final ProfileDao profileDao;
 
+    //    fakeProfileDao za fake bazu, postgresProfile za real bazu (valjda)
     @Autowired
     public ProfileService(@Qualifier("fakeProfileDao") ProfileDao profileDao) {
         this.profileDao = profileDao;

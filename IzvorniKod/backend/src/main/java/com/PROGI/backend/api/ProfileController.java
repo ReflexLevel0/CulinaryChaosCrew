@@ -39,7 +39,7 @@ public class ProfileController {
     }
 
     @PostMapping(path = "login")
-    public Profile getProfileByUsernameAndPassword(@RequestBody LoginRequest loginRequest) throws IllegalAccessException {
+    public String getProfileByUsernameAndPassword(@RequestBody LoginRequest loginRequest) throws IllegalAccessException {
         Profile profile1 = profileService.getProfileByUsername(loginRequest.getUsername()).orElse(null);
         Profile profile2 = profileService.getProfileByPassword(loginRequest.getPassword()).orElse(null);
         if (profile1 == null) {
@@ -48,7 +48,7 @@ public class ProfileController {
         if (profile2 == null || !profile1.equals(profile2)) {
             throw new IllegalArgumentException("Wrong username or password");
         }
-        return profile1;
+        return loginRequest.getUsername();
     }
 
     @CrossOrigin(origins = "*")
