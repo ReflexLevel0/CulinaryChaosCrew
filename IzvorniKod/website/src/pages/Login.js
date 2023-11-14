@@ -42,7 +42,7 @@ export default class Login extends React.Component{
                 ApiHelper.Login(username, password).then(response => {
                     //If log in is successful
                     if(response.status === 200){
-                        alert("LOGGED IN")
+                        this.props.loggedIn(username)
                     }
 
                     //If log in failed
@@ -55,7 +55,7 @@ export default class Login extends React.Component{
                 ApiHelper.Register(username, password, email).then(response => {
                     //If register is successful
                     if(response.status === 200){
-                        alert("REGISTERED")
+                        window.location.href = '/login'
                     }
 
                     //If register failed
