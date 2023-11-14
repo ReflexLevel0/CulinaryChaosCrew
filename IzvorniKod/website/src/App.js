@@ -16,9 +16,15 @@ function App() {
         navigate('/');
     };
 
+    const handleSignout = () => {
+        setUsername("")
+        setLoggedin(false)
+        navigate('/')
+    }
+
     return (
         <>
-            <Header loggedIn={loggedIn} username={username} />
+            <Header loggedIn={loggedIn} username={username} signedOut={handleSignout} />
             <Routes>
                 <Route path="/" element={<Recipes />} />
                 <Route path="/login" element={<Login login={true} loggedIn={handleLogin} />} />

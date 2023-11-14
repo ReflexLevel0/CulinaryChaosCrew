@@ -3,8 +3,19 @@
     justify-content: space-between;
 }
 
+.rightButtonWrapper{
+    display: flex;
+    flex-direction: row;
+}
+
 .rightButtonWrapper>button{
     margin-left: 10px;
+}
+
+.rightButtonWrapper>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .usernameText{
