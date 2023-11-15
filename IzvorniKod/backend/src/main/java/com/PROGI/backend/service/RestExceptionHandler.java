@@ -15,9 +15,9 @@ import java.util.Map;
 @ControllerAdvice
 public class RestExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
-    protected ResponseEntity<?> handleIllegalArgument(Exception e, WebRequest request) {
+    protected ResponseEntity<?> handleIllegalArgument(Exception exception, WebRequest request) {
         Map<String, String> props = new HashMap<>();
-        props.put("message", e.getMessage());
+        props.put("message", exception.getMessage());
         props.put("status", "400");
         props.put("error", "Bad Request");
         return new ResponseEntity<>(props, HttpStatus.BAD_REQUEST);

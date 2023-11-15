@@ -46,8 +46,8 @@ public class ProfileService {
         return profileDao.deleteProfileById(id);
     }
 
-    public int updateProfile(UUID id, Profile newProfile) {
-        return profileDao.updateProfileById(id, newProfile);
+    public int updateProfile(UUID id, Profile profile) {
+        return profileDao.updateProfileById(id, profile);
     }
 
     public boolean usernameTaken(String username) {
