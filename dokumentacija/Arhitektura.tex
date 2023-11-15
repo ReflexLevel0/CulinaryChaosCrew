@@ -6,29 +6,10 @@
 Baza podataka ove aplikacije sastoji se od 3 entiteta:
 		
 			\subsection{Opis tablica}
-			
-\textbf{\textit{login}}\\
-\begin{samepage}
-Ovaj entitet sastoji se od jednog atributa - atributa username. To je ujedno i primarni ključ entiteta i predstavlja jedinstveni identifikator korisnika - korisničko ime.
-\end{samepage}
-				
-				
-				\begin{longtblr}[
-					label=none,
-					entry=none
-					]{
-						width = \textwidth,
-						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
-						rowhead = 1,
-					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
-					\hline \SetCell[c=3]{c}{\textbf{login}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}username & VARCHAR	&  	jedinstveni identifikator korisnika 	\\ \hline
-				\end{longtblr}
 
-    \eject
 \noindent \textbf{\textit{profile}}\\
 \begin{samepage}
-Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od sljedećih atributa: email (email adresa), username (korisničko ime), name (ime), surname (prezime) i age (dob). Email i username su primarni ključevi entiteta \textbf{profile}, a username ujedno i strani ključ koji povezuje \textbf{profile} i \textbf{login}.
+Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od sljedećih atributa: userID (autogenerirani identifikator korisnika) email (email adresa), username (korisničko ime), password(lozinka) name (ime), surname (prezime) i age (dob). UserID je primarni ključ entiteta \textbf{profile}.  
 \end{samepage}
 
     				\begin{longtblr}[
@@ -41,18 +22,20 @@ Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
      
 					\hline \SetCell[c=3]{c}{\textbf{profile}}	 \\ \hline[3pt]
-					\SetCell{LightGreen}email & VARCHAR	&  	e-mail adresa korisnika 	\\ \hline
-     				\SetCell{LightGreen}username & VARCHAR	&  	jedinstveni identifikator korisnika	\\ \hline
-          			\SetCell{} name & VARCHAR	&  ime korisnika 	\\ \hline
-               			\SetCell{} surname & VARCHAR	&  	prezime korisnika 	\\ \hline
-                    \SetCell{} age & INT	&  	dob korisnika 	\\ \hline
+					\SetCell{LightGreen}userID & VARCHAR	&  	jedinstveni identifikator korisnika	\\ \hline
+					\SetCell{}email & VARCHAR	&  	jedinstvena e-mail adresa korisnika 	\\ \hline
+     				\SetCell{}username & VARCHAR	&  	jedinstveno korisničko ime	\\ \hline
+					\SetCell{} password & VARCHAR	&  lozinka korisnika 	\\ \hline
+          			\SetCell{} name & VARCHAR	&  ime korisnika (opcionalno)	\\ \hline
+               		\SetCell{} surname & VARCHAR	&  	prezime korisnika (opcionalno)	\\ \hline
+                    \SetCell{} age & INT	&  	dob korisnika (opcionalno)	\\ \hline
                     
 				\end{longtblr}
 
     
 \noindent \textbf{\textit{recipe}}\\
 \begin{samepage}
-Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ recipeID - ID recepta, a strani ključevi email i username koji povezuju \textbf{recipe} i \textbf{profile}. Ostali atributi su likes - broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika, ingredients - sastojci jela koje recept opisuje, name (ime recepta), instructions (niz uputa pripreme jela opisanog receptom), origin (mjesto podrijetla jela), category (kategorija jela), specialTags - dodatne oznake, URL\_to\_image - URL slike koju korisnik prilaže uz postavljeni recept te URL\_to\_video - URL videa koji korisnik prilaže uz postavljeni recept.
+Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ recipeID - (autogenerirani identifikator recepta), a strani ključ userID koji povezuje \textbf{recipe} i \textbf{profile}. Ostali atributi su likes (broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika) koji je inicijalno postavljen na 0, ingredients (sastojci jela koje recept opisuje), name (ime recepta), instructions (niz uputa pripreme jela opisanog receptom), origin (mjesto podrijetla jela), category (kategorija jela), specialTags (dodatne oznake), imageURL (URL slike koju korisnik prilaže uz postavljeni recept) te videoURL (URL videa koji korisnik prilaže uz postavljeni recept).
 \end{samepage}
     
     				\begin{longtblr}[
@@ -65,27 +48,26 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{recipe}}	 \\ \hline[3pt]
 					\SetCell{LightGreen}recipeID & VARCHAR	&  	jedinstveni identifikator recepta 	\\ \hline
-          				\SetCell{LightBlue}email & VARCHAR	&  	e-mail adresa korisnika 	\\ \hline
-          			\SetCell{LightBlue}username & VARCHAR	&  	jedinstveni identifikator korisnika 	\\ \hline
-               			\SetCell{} likes & INT	&  	broj oznaka "sviđa mi se" recepta 	\\ \hline
+					\SetCell{LightBlue}userID & VARCHAR	&  	jedinstveni identifikator korisnika 	\\ \hline
+               		\SetCell{} likes & INT	&  	broj oznaka "sviđa mi se" recepta 	\\ \hline
                     \SetCell{} ingredients & VARCHAR	&  	popis sastojaka receptnog jela 	\\ \hline
                     \SetCell{} name & VARCHAR	&  	ime recepta 	\\ \hline
                     \SetCell{} instructions & VARCHAR	&  	niz uputa za pripremu jela prema receptu 	\\ \hline
-                    \SetCell{} origin & VARCHAR	&  	mjesto podrijetla receptnog jela	\\ \hline
+                    \SetCell{} origin & VARCHAR	&  	mjesto podrijetla receptnog jela (opcionalno)	\\ \hline
                     \SetCell{} category & VARCHAR	&  	vrsta (kategorija) receptnog jela 	\\ \hline
-                    \SetCell{} specialTags & VARCHAR	&  	specijalne dodatne oznake receptnog jela 	\\ \hline
-                    \SetCell{} URL\_to\_video & VARCHAR	&  	URL videa priloženog uz recept 	\\ \hline
-					\SetCell{} URL\_to\_image & VARCHAR	&  	URL slike priložene uz recept 	\\ \hline
+                    \SetCell{} specialTags & VARCHAR	&  	specijalne dodatne oznake receptnog jela (opcionalno)	\\ \hline
+                    \SetCell{} videoURL & VARCHAR	&  	URL videa priloženog uz recept (opcionalno)	\\ \hline
+					\SetCell{} imageURL & VARCHAR	&  	URL slike priložene uz recept 	\\ \hline
 				\end{longtblr}
 				
 				
 			
 			\subsection{Dijagram baze podataka}
 			
-\begin{figure}[h]
+			\begin{figure}[H]
 			    \centering
 			    \includegraphics[width=1\linewidth]{slike/ERdiagram.png}
-			    \caption{ER dijagram baze podataka}
+			    \caption{Dijagram baze podataka}
 			    \label{fig:enter-label}
 			\end{figure}
 			
