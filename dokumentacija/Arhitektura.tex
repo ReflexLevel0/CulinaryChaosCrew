@@ -1,20 +1,5 @@
 \chapter{Arhitektura i dizajn sustava}
-		
-		\textbf{\textit{dio 1. revizije}}\\
 
-		\textit{ Potrebno je opisati stil arhitekture te identificirati: podsustave, preslikavanje na radnu platformu, spremišta podataka, mrežne protokole, globalni upravljački tok i sklopovsko-programske zahtjeve. Po točkama razraditi i popratiti odgovarajućim skicama:}
-	\begin{itemize}
-		\item 	\textit{izbor arhitekture temeljem principa oblikovanja pokazanih na predavanjima (objasniti zašto ste baš odabrali takvu arhitekturu)}
-		\item 	\textit{organizaciju sustava s najviše razine apstrakcije (npr. klijent-poslužitelj, baza podataka, datotečni sustav, grafičko sučelje)}
-		\item 	\textit{organizaciju aplikacije (npr. slojevi frontend i backend, MVC arhitektura) }		
-	\end{itemize}
-
-	
-		
-
-		
-
-				
 		\section{Baza podataka}
 			
 		Za našu platformu koristit ćemo relacijsku bazu podataka. Objekt takve baze je relacija, odnosno tablica koja je definirana svojim imenom i skupom atributa. Atributi unutar jednog entiteta mogu poprimiti funkciju primarnog ili stranog ključa.
@@ -67,7 +52,7 @@ Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od
     
 \noindent \textbf{\textit{recipe}}\\
 \begin{samepage}
-Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ recipeID - ID recepta, a strani ključevi email i username koji povezuju \textbf{recipe} i \textbf{profile}. Ostali atributi su likes - broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika, ingredients - sastojci jela koje recept opisuje, recipeName (ime recepta), instructions (niz uputa pripreme jela opisanog receptom), origin (mjesto podrijetla jela), category (kategorija jela), specialTags - dodatne oznake te videoURL - URL videa koji korisnik prilaže uz postavljeni recept.
+Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ recipeID - ID recepta, a strani ključevi email i username koji povezuju \textbf{recipe} i \textbf{profile}. Ostali atributi su likes - broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika, ingredients - sastojci jela koje recept opisuje, name (ime recepta), instructions (niz uputa pripreme jela opisanog receptom), origin (mjesto podrijetla jela), category (kategorija jela), specialTags - dodatne oznake, URL\_to\_image - URL slike koju korisnik prilaže uz postavljeni recept te URL\_to\_video - URL videa koji korisnik prilaže uz postavljeni recept.
 \end{samepage}
     
     				\begin{longtblr}[
@@ -84,12 +69,13 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
           			\SetCell{LightBlue}username & VARCHAR	&  	jedinstveni identifikator korisnika 	\\ \hline
                			\SetCell{} likes & INT	&  	broj oznaka "sviđa mi se" recepta 	\\ \hline
                     \SetCell{} ingredients & VARCHAR	&  	popis sastojaka receptnog jela 	\\ \hline
-                    \SetCell{} recipeName & VARCHAR	&  	ime recepta 	\\ \hline
+                    \SetCell{} name & VARCHAR	&  	ime recepta 	\\ \hline
                     \SetCell{} instructions & VARCHAR	&  	niz uputa za pripremu jela prema receptu 	\\ \hline
                     \SetCell{} origin & VARCHAR	&  	mjesto podrijetla receptnog jela	\\ \hline
                     \SetCell{} category & VARCHAR	&  	vrsta (kategorija) receptnog jela 	\\ \hline
                     \SetCell{} specialTags & VARCHAR	&  	specijalne dodatne oznake receptnog jela 	\\ \hline
-                    \SetCell{} videoURL & VARCHAR	&  	URL videa priloženog uz recept 	\\ \hline
+                    \SetCell{} URL\_to\_video & VARCHAR	&  	URL videa priloženog uz recept 	\\ \hline
+					\SetCell{} URL\_to\_image & VARCHAR	&  	URL slike priložene uz recept 	\\ \hline
 				\end{longtblr}
 				
 				
