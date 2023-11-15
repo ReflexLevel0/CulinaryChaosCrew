@@ -19,10 +19,10 @@
     "build": "yarn install && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-prod": "PORT=8080 react-scripts start"
+    "start-prod": "yarn build && react-scripts start"
   },
   "engines": {
-    "node": ">=18.18.0 <19.0.0"
+    "node": ">=18.18.0 <22.0.0"
   },
   "eslintConfig": {
     "extends": [
