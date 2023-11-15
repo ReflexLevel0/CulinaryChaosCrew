@@ -17,9 +17,9 @@
   "scripts": {
     "start": "BROWSER=none react-scripts start",
     "build": "yarn install && react-scripts build",
-    "start-prod": "node app.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-prod": "BROWSER=none PORT=8080 react-scripts start"
   },
   "engines": {
     "node": ">=18.18.0 <19.0.0"
