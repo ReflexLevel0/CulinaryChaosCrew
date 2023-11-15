@@ -27,7 +27,7 @@ public class ProfileController {
             throw new IllegalArgumentException("Email is in the wrong format");
         }
         if (!profileService.strongPassword(profile.getPassword())) {
-            throw new IllegalArgumentException("Password must have at least one number at least 6 characters (including numbers)");
+            throw new IllegalArgumentException("Password must have at least one number, at least 6 characters (including numbers)");
         }
         if (profileService.usernameTaken(profile.getUsername())) {
             throw new IllegalArgumentException("Username is taken");
