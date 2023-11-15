@@ -7,10 +7,10 @@ CREATE TABLE recipe
     origin VARCHAR,
     category VARCHAR NOT NULL,
     specialTag VARCHAR,
-    URL_to_video VARCHAR,
+    videoURL VARCHAR,
     recipeID VARCHAR NOT NULL,
-    URL_to_image VARCHAR NOT NULL,
+    imageURL VARCHAR NOT NULL,
     userID VARCHAR NOT NULL,
-    PRIMARY KEY (recipeID)
-    --FOREIGN KEY (userID) REFERENCES profile(userID)
+    PRIMARY KEY (recipeID),
+    FOREIGN KEY (userID) REFERENCES profile(userID)
 );
