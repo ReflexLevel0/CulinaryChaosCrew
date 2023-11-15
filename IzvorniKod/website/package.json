@@ -20,7 +20,7 @@
     "build": "npm install && yarn install && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-prod": "yarn build && react-scripts start"
+    "start-prod": "react-scripts start"
   },
   "engines": {
     "node": ">=18.18.0 <22.0.0"
