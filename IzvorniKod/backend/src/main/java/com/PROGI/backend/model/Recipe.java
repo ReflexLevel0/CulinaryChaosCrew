@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.UUID;
 
 public class Recipe {
+    @NonNull
     private final UUID recipeId;
     @NonNull
     private final UUID userId;
@@ -18,6 +19,7 @@ public class Recipe {
     private final String instructions;
     private final String origin;
     private final String tags;
+    private final URL imageURL;
     private final URL videoURL;
     private final int likes;
 
@@ -29,7 +31,8 @@ public class Recipe {
                   @JsonProperty("instr") String instructions,
                   @JsonProperty("origin") String origin,
                   @JsonProperty("tags") String tags,
-                  @JsonProperty("url") URL videoURL) {
+                  @JsonProperty("iurl") URL imageURL,
+                  @JsonProperty("vurl") URL videoURL) {
         this.recipeId = recipeId;
         this.userId = userId;
         this.name = name;
@@ -39,6 +42,7 @@ public class Recipe {
         this.origin = origin;
         this.tags = tags;
         this.videoURL = videoURL;
+        this.imageURL = imageURL;
         this.likes = 0;
     }
 
@@ -52,6 +56,10 @@ public class Recipe {
 
     public String getName() {
         return name;
+    }
+
+    public URL getImageURL() {
+        return imageURL;
     }
 
     public URL getVideoURL() {
