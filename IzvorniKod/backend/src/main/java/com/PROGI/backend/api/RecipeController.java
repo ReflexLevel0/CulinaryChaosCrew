@@ -11,7 +11,7 @@ import java.time.Period;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("/recipes")
+@RequestMapping("/recipe")
 @RestController
 public class RecipeController {
 
