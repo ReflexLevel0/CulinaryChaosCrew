@@ -26,4 +26,6 @@ public interface ProfileDao {
     int deleteProfileById(UUID id);
 
     int updateProfileById(UUID id, Profile profile);
+
+    void deleteAllProfiles();
 }

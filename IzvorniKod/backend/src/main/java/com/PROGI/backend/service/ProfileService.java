@@ -50,6 +50,7 @@ public class ProfileService {
         return profileDao.updateProfileById(id, profile);
     }
 
+    public void deleteAllProfiles(){ profileDao.deleteAllProfiles();}
     public boolean usernameTaken(String username) {
         List<Profile> allProfiles = getAllProfiles();
         for (Profile profile : allProfiles) {

@@ -80,4 +80,9 @@ public class FakeProfileDataAccessService implements ProfileDao {
                     return 0;
                 }).orElse(0);
     }
+
+    @Override
+    public void deleteAllProfiles() {
+        DB.clear();
+    }
 }

@@ -72,5 +72,8 @@ public class ProfileController {
         profileService.updateProfile(id, profile);
     }
 
-
+    @DeleteMapping(path = "deleteAllProfiles")
+    public void deleteAllProfiles(){
+        profileService.deleteAllProfiles();
+    }
 }

@@ -21,13 +21,24 @@ public class ProfileDataAccessService implements ProfileDao {
 
     @Override
     public int insertProfile(UUID id, Profile profile) {
+        String sql = "INSERT INTO profile (userid, username, email, password, name, surname, age)" +
+                "VALUES (?, ?, ?, ?, ?, ? ,?)";
+        jdbcTemplate.update(sql,
+                id,
+                profile.getUsername(),
+                profile.getEmail(),
+                profile.getPassword(),
+                profile.getName(),
+                profile.getSurname(),
+                profile.getAge());
         return 0;
     }
 
     @Override
     public List<Profile> selectAllProfiles() {
         String sql = "SELECT * FROM profile";
-        List<Profile> profiles = jdbcTemplate.query(sql, (resultSet, i) -> {
+
+        return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("userID"));
             String username = resultSet.getString("username");
             String password = resultSet.getString("password");
@@ -37,8 +48,6 @@ public class ProfileDataAccessService implements ProfileDao {
             int age = Integer.parseInt(resultSet.getString("age"));
             return new Profile(id, password, username, email, name, surname, age);
         });
-
-        return profiles;
     }
 
     @Override
@@ -76,5 +85,11 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public int updateProfileById(UUID id, Profile profile) {
         return 0;
+    }
+
+    @Override
+    public void deleteAllProfiles() {
+        String sql = "DELETE FROM profile";
+        jdbcTemplate.update(sql);
     }
 }
