@@ -10,6 +10,7 @@ CREATE TABLE recipe
     videoURL VARCHAR,
     recipeID VARCHAR NOT NULL,
     imageURL VARCHAR NOT NULL,
+    preparationTime INT NOT NULL,
     userID VARCHAR NOT NULL,
     PRIMARY KEY (recipeID),
     FOREIGN KEY (userID) REFERENCES profile(userID)

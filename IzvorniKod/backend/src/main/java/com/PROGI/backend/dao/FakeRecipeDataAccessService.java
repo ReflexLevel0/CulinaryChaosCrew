@@ -23,7 +23,8 @@ public class FakeRecipeDataAccessService implements RecipeDao{
                 recipe.getOrigin(),
                 recipe.getTags(),
                 recipe.getVideoURL(),
-                recipe.getImageURL())
+                recipe.getImageURL(),
+                recipe.getPreparationTime())
         );
         return 1;
     }
@@ -65,7 +66,8 @@ public class FakeRecipeDataAccessService implements RecipeDao{
                                                         recipe.getOrigin(),
                                                         recipe.getTags(),
                                                         recipe.getVideoURL(),
-                                                        recipe.getImageURL()));
+                                                        recipe.getImageURL(),
+                                                        recipe.getPreparationTime()));
                         return 1;
                     }
                     return 0;

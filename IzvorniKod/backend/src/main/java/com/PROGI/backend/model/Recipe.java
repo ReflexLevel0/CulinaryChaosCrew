@@ -22,6 +22,7 @@ public class Recipe {
     private final URL imageURL;
     private final URL videoURL;
     private final int likes;
+    private final int preparationTime;
 
     public Recipe(@JsonProperty("rid") UUID recipeId,
                   @JsonProperty("uid") UUID userId,
@@ -32,7 +33,8 @@ public class Recipe {
                   @JsonProperty("origin") String origin,
                   @JsonProperty("tags") String tags,
                   @JsonProperty("iurl") URL imageURL,
-                  @JsonProperty("vurl") URL videoURL) {
+                  @JsonProperty("vurl") URL videoURL,
+                  @JsonProperty("preptime") int preparationTime) {
         this.recipeId = recipeId;
         this.userId = userId;
         this.name = name;
@@ -44,6 +46,7 @@ public class Recipe {
         this.videoURL = videoURL;
         this.imageURL = imageURL;
         this.likes = 0;
+        this.preparationTime = preparationTime;
     }
 
     public UUID getUserId() {
@@ -89,4 +92,5 @@ public class Recipe {
     public int getLikes() {
         return likes;
     }
+    public int getPreparationTime() { return preparationTime; }
 }
