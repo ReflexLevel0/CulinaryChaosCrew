@@ -41,12 +41,12 @@ public class ProfileController {
     @PostMapping(path = "login")
     public String getProfileByUsernameAndPassword(@RequestBody LoginRequest loginRequest) throws IllegalAccessException {
         Profile profile1 = profileService.getProfileByUsername(loginRequest.getUsername()).orElse(null);
-        Profile profile2 = profileService.getProfileByPassword(loginRequest.getPassword()).orElse(null);
+        Profile profile2 = profileService.getProfileByCredentials(loginRequest.getUsername(), loginRequest.getPassword()).orElse(null);
         if (profile1 == null) {
             throw new IllegalArgumentException("Username doesn't exist");
         }
-        if (profile2 == null || !profile1.equals(profile2)) {
-            throw new IllegalArgumentException("Wrong username or password");
+        if (!profile1.equals(profile2)) {
+            throw new IllegalArgumentException("Wrong password");
         }
         return loginRequest.getUsername();
     }

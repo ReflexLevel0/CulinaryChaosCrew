@@ -38,8 +38,8 @@ public class ProfileService {
         return profileDao.selectProfileByUsername(username);
     }
 
-    public Optional<Profile> getProfileByPassword(String password) {
-        return profileDao.selectProfileByPassword(password);
+    public Optional<Profile> getProfileByCredentials(String username, String password){
+        return profileDao.selectProfileByCredentials(username, password);
     }
 
     public int deleteProfile(UUID id) {

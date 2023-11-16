@@ -37,7 +37,6 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public List<Profile> selectAllProfiles() {
         String sql = "SELECT * FROM profile";
-
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("userID"));
             String username = resultSet.getString("username");
@@ -69,27 +68,64 @@ public class ProfileDataAccessService implements ProfileDao {
 
     @Override
     public Optional<Profile> selectProfileByUsername(String username) {
-        return Optional.empty();
+        String sql = "SELECT * FROM profile WHERE username = ?";
+        Profile profile = jdbcTemplate.queryForObject(sql,
+                new Object[]{username},
+                (resultSet, i) -> {
+                    UUID id = UUID.fromString(resultSet.getString("userID"));
+                    String password = resultSet.getString("password");
+                    String email = resultSet.getString("email");
+                    String name = resultSet.getString("name");
+                    String surname = resultSet.getString("surname");
+                    int age = resultSet.getInt("age");
+
+                    return new Profile(id, username, password, email, name, surname, age);
+                });
+        return Optional.ofNullable(profile);
     }
 
-    @Override
-    public Optional<Profile> selectProfileByPassword(String password) {
-        return Optional.empty();
-    }
 
     @Override
     public int deleteProfileById(UUID id) {
+        String sql = "DELETE FROM profile WHERE userId = ?";
+        jdbcTemplate.update(sql, id);
         return 0;
     }
 
     @Override
     public int updateProfileById(UUID id, Profile profile) {
-        return 0;
+        String sql = "UPDATE profile SET username = ?, password = ?, email = ?, name = ?, surname = ?, age = ? WHERE userID = ?";
+        return jdbcTemplate.update(
+                sql,
+                profile.getUsername(),
+                profile.getPassword(),
+                profile.getEmail(),
+                profile.getName(),
+                profile.getSurname(),
+                profile.getAge(),
+                id.toString());
     }
 
     @Override
     public void deleteAllProfiles() {
         String sql = "DELETE FROM profile";
         jdbcTemplate.update(sql);
+    }
+
+    @Override
+    public Optional<Profile> selectProfileByCredentials(String username, String password) {
+        String sql = "SELECT * FROM profile WHERE username = ? AND password = ?";
+        Profile profile = jdbcTemplate.queryForObject(sql,
+         new Object[]{username, password},
+                (resultSet, i) -> {
+                    UUID id = UUID.fromString(resultSet.getString("userID"));
+                    String email = resultSet.getString("email");
+                    String name = resultSet.getString("name");
+                    String surname = resultSet.getString("surname");
+                    int age = resultSet.getInt("age");
+
+                    return new Profile(id, username, password, email, name, surname, age);
+                });
+        return Optional.ofNullable(profile);
     }
 }

@@ -19,13 +19,15 @@ public interface ProfileDao {
 
     List<Profile> selectAllProfiles();
 
-
     Optional<Profile> selectProfileById(UUID id);
+
     Optional<Profile> selectProfileByUsername(String username);
-    Optional<Profile> selectProfileByPassword(String password);
+
     int deleteProfileById(UUID id);
 
     int updateProfileById(UUID id, Profile profile);
 
     void deleteAllProfiles();
+
+    Optional<Profile> selectProfileByCredentials(String username, String password);
 }
