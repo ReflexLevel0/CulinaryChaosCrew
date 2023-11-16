@@ -28,7 +28,7 @@ public class ProfileDataAccessService implements ProfileDao {
     public List<Profile> selectAllProfiles() {
         String sql = "SELECT * FROM profile";
         List<Profile> profiles = jdbcTemplate.query(sql, (resultSet, i) -> {
-            UUID id = UUID.fromString(resultSet.getString("userId"));
+            UUID id = UUID.fromString(resultSet.getString("userID"));
             String username = resultSet.getString("username");
             String password = resultSet.getString("password");
             String email = resultSet.getString("email");
