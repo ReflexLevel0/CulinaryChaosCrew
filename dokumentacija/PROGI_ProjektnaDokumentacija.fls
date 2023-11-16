@@ -325,13 +325,9 @@ OUTPUT Dnevnik_promjena_dokumentacije.aux
 INPUT .\Dnevnik_promjena_dokumentacije.tex
 INPUT .\Dnevnik_promjena_dokumentacije.tex
 INPUT Dnevnik_promjena_dokumentacije.tex
-INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbit7t.tfm
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
-INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\vf\public\kpfonts\jkpbit7t.vf
-INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbite.tfm
-INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbit8r.tfm
 INPUT .\Opis_projektnog_zadatka.tex
 INPUT .\Opis_projektnog_zadatka.tex
 OUTPUT Opis_projektnog_zadatka.aux
@@ -372,6 +368,52 @@ INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\j
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\vf\public\kpfonts\jkpbn7t.vf
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbne.tfm
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbn8r.tfm
+INPUT .\slike\dijagrami\UML cijeli.jpeg
+INPUT .\slike\dijagrami\UML cijeli.jpeg
+INPUT .\slike\dijagrami\UML cijeli.jpeg
+INPUT .\slike\dijagrami\UML cijeli.jpeg
+INPUT .\slike\dijagrami\UML cijeli.jpeg
+INPUT .\slike\dijagrami\UML cijeli.jpeg
+INPUT .\slike\dijagrami\UML 1-4.jpeg
+INPUT .\slike\dijagrami\UML 1-4.jpeg
+INPUT .\slike\dijagrami\UML 1-4.jpeg
+INPUT .\slike\dijagrami\UML 1-4.jpeg
+INPUT .\slike\dijagrami\UML 1-4.jpeg
+INPUT .\slike\dijagrami\UML 1-4.jpeg
+INPUT .\slike\dijagrami\UML 13-15.jpeg
+INPUT .\slike\dijagrami\UML 13-15.jpeg
+INPUT .\slike\dijagrami\UML 13-15.jpeg
+INPUT .\slike\dijagrami\UML 13-15.jpeg
+INPUT .\slike\dijagrami\UML 13-15.jpeg
+INPUT .\slike\dijagrami\UML 13-15.jpeg
+INPUT .\slike\dijagrami\Seq 1-4.jpeg
+INPUT .\slike\dijagrami\Seq 1-4.jpeg
+INPUT .\slike\dijagrami\Seq 1-4.jpeg
+INPUT .\slike\dijagrami\Seq 1-4.jpeg
+INPUT .\slike\dijagrami\Seq 1-4.jpeg
+INPUT .\slike\dijagrami\Seq 1-4.jpeg
+INPUT .\slike\dijagrami\Seq 6-7.jpeg
+INPUT .\slike\dijagrami\Seq 6-7.jpeg
+INPUT .\slike\dijagrami\Seq 6-7.jpeg
+INPUT .\slike\dijagrami\Seq 6-7.jpeg
+INPUT .\slike\dijagrami\Seq 6-7.jpeg
+INPUT .\slike\dijagrami\Seq 6-7.jpeg
+INPUT .\slike\dijagrami\Seq 8-10,12.jpeg
+INPUT .\slike\dijagrami\Seq 8-10,12.jpeg
+INPUT .\slike\dijagrami\Seq 8-10,12.jpeg
+INPUT .\slike\dijagrami\Seq 8-10,12.jpeg
+INPUT .\slike\dijagrami\Seq 8-10,12.jpeg
+INPUT .\slike\dijagrami\Seq 8-10,12.jpeg
+INPUT .\slike\dijagrami\Seq 13-14.jpeg
+INPUT .\slike\dijagrami\Seq 13-14.jpeg
+INPUT .\slike\dijagrami\Seq 13-14.jpeg
+INPUT .\slike\dijagrami\Seq 13-14.jpeg
+INPUT .\slike\dijagrami\Seq 13-14.jpeg
+INPUT .\slike\dijagrami\Seq 13-14.jpeg
+INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbit7t.tfm
+INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\vf\public\kpfonts\jkpbit7t.vf
+INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbite.tfm
+INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpbit8r.tfm
 INPUT .\Arhitektura.tex
 INPUT .\Arhitektura.tex
 OUTPUT Arhitektura.aux
@@ -384,13 +426,13 @@ INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\avukovic\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
-INPUT .\slike\ERdiagram.png
-INPUT .\slike\ERdiagram.png
-INPUT .\slike\ERdiagram.png
-INPUT .\slike\ERdiagram.png
-INPUT .\slike\ERdiagram.png
-INPUT .\slike\ERdiagram.png
-INPUT .\slike\ERdiagram.png
+INPUT .\slike\DBdiagram.png
+INPUT .\slike\DBdiagram.png
+INPUT .\slike\DBdiagram.png
+INPUT .\slike\DBdiagram.png
+INPUT .\slike\DBdiagram.png
+INPUT .\slike\DBdiagram.png
+INPUT .\slike\DBdiagram.png
 INPUT .\Implementacija.tex
 INPUT .\Implementacija.tex
 OUTPUT Implementacija.aux
