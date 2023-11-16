@@ -3,13 +3,13 @@
 		\section{Baza podataka}
 			
 		Za našu platformu koristit ćemo relacijsku bazu podataka. Objekt takve baze je relacija, odnosno tablica koja je definirana svojim imenom i skupom atributa. Atributi unutar jednog entiteta mogu poprimiti funkciju primarnog ili stranog ključa.
-Baza podataka ove aplikacije sastoji se od 3 entiteta:
+Baza podataka u našem se slučaju sastoji se od 2 entiteta - \textbf{profile} i \textbf{recipe}.
 		
 			\subsection{Opis tablica}
 
 \noindent \textbf{\textit{profile}}\\
 \begin{samepage}
-Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od sljedećih atributa: userID (autogenerirani identifikator korisnika) email (email adresa), username (korisničko ime), password(lozinka) name (ime), surname (prezime) i age (dob). UserID je primarni ključ entiteta \textbf{profile}.  
+Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od sljedećih atributa: \textit{userID} (autogenerirani identifikator korisnika), \textit{email }(e-mail adresa), \textit{username} (korisničko ime), \textit{password} (lozinka), \textit{name} (ime), \textit{surname} (prezime) i \textit{age} (dob). Atribut\textit{ userID} primarni je ključ entiteta \textbf{profile}. 
 \end{samepage}
 
     				\begin{longtblr}[
@@ -35,7 +35,12 @@ Ovaj entitet sadrži osnovne informacije o korisničkom profilu i  sastoji se od
     
 \noindent \textbf{\textit{recipe}}\\
 \begin{samepage}
-Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ recipeID - (autogenerirani identifikator recepta), a strani ključ userID koji povezuje \textbf{recipe} i \textbf{profile}. Ostali atributi su likes (broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika) koji je inicijalno postavljen na 0, ingredients (sastojci jela koje recept opisuje), name (ime recepta), instructions (niz uputa pripreme jela opisanog receptom), origin (mjesto podrijetla jela), category (kategorija jela), specialTags (dodatne oznake), imageURL (URL slike koju korisnik prilaže uz postavljeni recept) te videoURL (URL videa koji korisnik prilaže uz postavljeni recept).
+Ovaj entitet opisuje recept postavljen na platformu od strane registriranog korisnika. Primarni je ključ entiteta \textit{recipeID} (autogenerirani identifikator recepta), a strani ključ \textit{userID} koji povezuje entitete \textbf{recipe} i \textbf{profile}.
+\end{samepage}
+\eject
+
+\begin{samepage}
+\noindent Ostali atributi su: \textit{likes} (broj oznaka "sviđa mi se" na receptu od strane registriranih korisnika), koji je inicijalno postavljen na 0, \textit{ingredients} (sastojci jela koje recept opisuje), \textit{name} (ime recepta), \textit{instructions} (niz uputa pripreme jela opisanog receptom), \textit{origin} (mjesto podrijetla jela), \textit{category} (kategorija jela), \textit{specialTags} (dodatne oznake), \textit{imageURL} (URL slike koju korisnik prilaže uz postavljeni recept), \textit{videoURL} (URL videa koji korisnik prilaže uz postavljeni recept) te \textit{preparationTime} (vrijeme potrebno za spremanje receptnog jela).
 \end{samepage}
     
     				\begin{longtblr}[
@@ -43,7 +48,7 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 					entry=none
 					]{
 						width = \textwidth,
-						colspec={|X[6,l]|X[6, l]|X[20, l]|}, 
+						colspec={|X[8, l]|X[6, l]|X[20, l]|}, 
 						rowhead = 1,
 					} %definicija širine tablice, širine stupaca, poravnanje i broja redaka naslova tablice
 					\hline \SetCell[c=3]{c}{\textbf{recipe}}	 \\ \hline[3pt]
@@ -54,10 +59,11 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
                     \SetCell{} name & VARCHAR	&  	ime recepta 	\\ \hline
                     \SetCell{} instructions & VARCHAR	&  	niz uputa za pripremu jela prema receptu 	\\ \hline
                     \SetCell{} origin & VARCHAR	&  	mjesto podrijetla receptnog jela (opcionalno)	\\ \hline
-                    \SetCell{} category & VARCHAR	&  	vrsta (kategorija) receptnog jela 	\\ \hline
+                    \SetCell{} category & VARCHAR	&  	vrsta (kategorija) receptnog jela	\\ \hline
                     \SetCell{} specialTags & VARCHAR	&  	specijalne dodatne oznake receptnog jela (opcionalno)	\\ \hline
-                    \SetCell{} videoURL & VARCHAR	&  	URL videa priloženog uz recept (opcionalno)	\\ \hline
-					\SetCell{} imageURL & VARCHAR	&  	URL slike priložene uz recept 	\\ \hline
+                    \SetCell{} imageURL & VARCHAR	&  	URL slike priložene uz recept 	\\ \hline
+					\SetCell{} videoURL & VARCHAR	&  	URL videa priloženog uz recept (opcionalno)	\\ \hline
+    				\SetCell{} preparationTime & INT	&  	vrijeme kuhanja jela u minutama	\\ \hline
 				\end{longtblr}
 				
 				
@@ -66,7 +72,7 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 			
 			\begin{figure}[H]
 			    \centering
-			    \includegraphics[width=1\linewidth]{slike/ERdiagram.png}
+			    \includegraphics[width=1\linewidth]{slike/DBdiagram.png}
 			    \caption{Dijagram baze podataka}
 			    \label{fig:enter-label}
 			\end{figure}
@@ -75,8 +81,6 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 			
 			
 		\section{Dijagram razreda}
-		
-			\textit{Potrebno je priložiti dijagram razreda s pripadajućim opisom. Zbog preglednosti je moguće dijagram razlomiti na više njih, ali moraju biti grupirani prema sličnim razinama apstrakcije i srodnim funkcionalnostima.}\\
 			
 			\textbf{\textit{dio 1. revizije}}\\
 			
