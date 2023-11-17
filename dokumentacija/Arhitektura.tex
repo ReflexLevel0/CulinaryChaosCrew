@@ -1,5 +1,13 @@
 \chapter{Arhitektura i dizajn sustava}
 
+\noindent Arhitekturu sustava dijelimo na tri različita dijela: \textbf{frontend}, \textbf{backend} i \textbf{bazu podataka}. Jedino koordinirana implementacija ovih podsustava zajedno dovodi do finalnog proizvoda u obliku web platforme koju ostvarujemo. 
+\newline \newline
+\noindent \textbf{\textit{Frontend}} predstavlja sučelje između korisnika i same platforme. Konkretno, on pruža korisniku pregled sadržaja web stranice i omogućava mu komunikaciju s aplikacijom putem \textit{HTTP} (\textit{HyperText Transfer Protocol}) zahtjeva.
+\newline\newline\noindent \textbf{\textit{Backend}} je taj koji te zahtjeve obrađuje i upravlja podatcima u bazi podataka. Neke od funkcionalnosti koje omogućuje backend su primjerice registracija novog korisnika ili brisanje korisnika od strane sistemskog administratora. 
+\newline\newline\noindent \textbf{\textit{Baza podataka}} spremište je entiteta koji su prikazani u obliku tablica s atributima. Iz nje se često čitaju podatci i po potrebi ažuriraju. Kritičan je dio arhitekture sustava. 
+ \textbf{\newline\newline\noindent Controller - Service - Repository} troslojna arhitektura temelj je backend implementacije aplikacije. \textit{Controller} sloj povezuje frontend i backend, pozivajući \textit{Service} sloj da obradi zahtjeve korisnika. Ako je za obradu tih zahtjeva potreban pristup bazi podataka, Service sloj poziva funkcije \textit{Repository} sloja koji to omogućuje. 
+ \newline\newline\noindent Frontend je implementiran uz pomoć \textit{JavaScripta} (radnog okvira \textit{React.js}), \textit{HTML-a} i \textit{CSS-}a. Za backend je korišten programski jezik \textit{Java} (radni okvir \textit{Spring Boot}), a odabrana je razvojna okolina \textit{Intellij IDEA}. Ispitivanje backend funkcionalnosti omogućeno je korištenjem \textit{Postman} platforme. Baza podataka izgrađena je korištenjem \textit{PostgreSQL} sustava za upravljanje bazom podataka. Aplikacija je stavljena u pogon na \textit{Render} servisu. 
+
 		\section{Baza podataka}
 			
 		Za našu platformu koristit ćemo relacijsku bazu podataka. Objekt takve baze je relacija, odnosno tablica koja je definirana svojim imenom i skupom atributa. Atributi unutar jednog entiteta mogu poprimiti funkciju primarnog ili stranog ključa.
@@ -85,8 +93,15 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 			\textbf{\textit{dio 1. revizije}}\\
 			
 			\textit{Prilikom prve predaje projekta, potrebno je priložiti potpuno razrađen dijagram razreda vezan uz \textbf{generičku funkcionalnost} sustava. Ostale funkcionalnosti trebaju biti idejno razrađene u dijagramu sa sljedećim komponentama: nazivi razreda, nazivi metoda i vrste pristupa metodama (npr. javni, zaštićeni), nazivi atributa razreda, veze i odnosi između razreda.}\\
-			
-			\textbf{\textit{dio 2. revizije}}\\			
+
+\begin{figure}[H]
+			    \centering
+			    \includegraphics[width=1\linewidth]{slike//dijagrami/Dijagram razreda.png}
+			    \caption{Dijagram razreda}
+			    \label{fig:enter-label}
+			\end{figure}
+	\eject		
+   \textbf{\textit{dio 2. revizije}}\\			
 			
 			\textit{Prilikom druge predaje projekta dijagram razreda i opisi moraju odgovarati stvarnom stanju implementacije}
 			
