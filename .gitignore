@@ -31,3 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+
+*.aux
+
+*.lof
+*.log
+
+*.lot
+
+*.out
+
+*.synctex.gz
+
+*.toc
