@@ -1,0 +1,12 @@
+services:
+  - name: backend
+    type: web
+    env: java
+    buildCommand: "docker-compose build backend"
+    startCommand: "docker-compose up backend"
+
+  - name: frontend
+    type: web
+    env: node
+    buildCommand: "docker-compose build frontend"
+    startCommand: "docker-compose up frontend"
