@@ -1,0 +1,16 @@
+#version: '3.8'
+#
+#services:
+#  backend-template-db:
+#    image: postgres:16.1
+#    environment:
+#      POSTGRES_DB: demodb
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: password
+#    volumes:
+#      - backend-template-db-data:/var/lib/postgresql/data
+#    ports:
+#      - '5432:5432'
+#
+#volumes:
+#  backend-template-db-data:
