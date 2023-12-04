@@ -1,18 +1,18 @@
-#app:
+app:
+  datasource:
+    jdbcUrl: jdbc:postgresql://localhost:5432/demodb
+    username: postgres
+    password: password
+    pool-size: 30
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+#spring:
 #  datasource:
 #    url: jdbc:postgresql://database:5432/demodb
 #    username: postgres
 #    password: password
-#    pool-size: 30
 #    driver-class-name: org.postgresql.Driver
-#  flyway:
-#    enabled: true
-#    locations: classpath:db/migration
-
-spring:
-  datasource:
-    url: jdbc:postgresql://database:5432/demodb
-    username: postgres
-    password: password
-    driver-class-name: org.postgresql.Driver
 
