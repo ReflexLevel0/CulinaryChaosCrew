@@ -17,7 +17,7 @@ public interface ProfileDao {
         return insertProfile(id, profile);
     }
 
-    List<Profile> selectAllProfiles();
+    List<Profile> getAllProfiles();
 
     Optional<Profile> selectProfileById(UUID id);
 
