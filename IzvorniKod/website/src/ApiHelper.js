@@ -6,7 +6,7 @@ export default class ApiHelper {
     //Returns the list of all recipes
     static GetRecipes() {
         try {
-            const url = this.apiUrl + '/recipes/allRecipes'
+            const url = this.apiUrl + '/recipe/allRecipes'
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
