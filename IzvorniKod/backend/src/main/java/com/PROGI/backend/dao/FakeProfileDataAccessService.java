@@ -27,7 +27,7 @@ public class FakeProfileDataAccessService implements ProfileDao {
     }
 
     @Override
-    public List<Profile> selectAllProfiles() {
+    public List<Profile> getAllProfiles() {
         return DB;
     }
 

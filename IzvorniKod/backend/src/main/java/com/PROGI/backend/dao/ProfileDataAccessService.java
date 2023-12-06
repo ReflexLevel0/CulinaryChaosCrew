@@ -35,7 +35,7 @@ public class ProfileDataAccessService implements ProfileDao {
     }
 
     @Override
-    public List<Profile> selectAllProfiles() {
+    public List<Profile> getAllProfiles() {
         String sql = "SELECT * FROM profile";
         return jdbcTemplate.query(sql, (resultSet, i) -> {
             UUID id = UUID.fromString(resultSet.getString("userID"));

@@ -18,7 +18,7 @@ public class ProfileService {
 
     //    fakeProfileDao za fake bazu, postgresProfile za real bazu (valjda)
     @Autowired
-    public ProfileService(@Qualifier("postgresProfile") ProfileDao profileDao) {
+    public ProfileService(@Qualifier("fakeProfileDao") ProfileDao profileDao) {
         this.profileDao = profileDao;
     }
 
@@ -27,7 +27,7 @@ public class ProfileService {
     }
 
     public List<Profile> getAllProfiles() {
-        return profileDao.selectAllProfiles();
+        return profileDao.getAllProfiles();
     }
 
     public Optional<Profile> getProfileById(UUID id) {
