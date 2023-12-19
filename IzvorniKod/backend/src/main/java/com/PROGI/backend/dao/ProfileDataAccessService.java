@@ -1,10 +1,12 @@
 package com.PROGI.backend.dao;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.PROGI.backend.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.security.CryptoPrimitive;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,11 +25,12 @@ public class ProfileDataAccessService implements ProfileDao {
     public int insertProfile(UUID id, Profile profile) {
         String sql = "INSERT INTO profile (userid, username, email, password, name, surname, age)" +
                 "VALUES (?, ?, ?, ?, ?, ? ,?)";
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, profile.getPassword().toCharArray());
         jdbcTemplate.update(sql,
                 id,
                 profile.getUsername(),
                 profile.getEmail(),
-                profile.getPassword(),
+                bcryptHashString,
                 profile.getName(),
                 profile.getSurname(),
                 profile.getAge());
@@ -51,10 +54,10 @@ public class ProfileDataAccessService implements ProfileDao {
 
     @Override
     public Optional<Profile> selectProfileById(UUID id) {
-        String sql = "SELECT * FROM profile WHERE userId = ?";
+        String sql = "SELECT * FROM profile WHERE userID = ?";
         Profile profile = jdbcTemplate.queryForObject
                 (sql, new Object[]{id}, (resultSet, i) -> {
-            UUID uid = UUID.fromString(resultSet.getString("userId"));
+            UUID uid = UUID.fromString(resultSet.getString("userID"));
             String username = resultSet.getString("username");
             String password = resultSet.getString("password");
             String email = resultSet.getString("email");
@@ -115,8 +118,9 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public Optional<Profile> selectProfileByCredentials(String username, String password) {
         String sql = "SELECT * FROM profile WHERE username = ? AND password = ?";
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
         Profile profile = jdbcTemplate.queryForObject(sql,
-         new Object[]{username, password},
+         new Object[]{username, bcryptHashString},
                 (resultSet, i) -> {
                     UUID id = UUID.fromString(resultSet.getString("userID"));
                     String email = resultSet.getString("email");
@@ -124,7 +128,7 @@ public class ProfileDataAccessService implements ProfileDao {
                     String surname = resultSet.getString("surname");
                     int age = resultSet.getInt("age");
 
-                    return new Profile(id, username, password, email, name, surname, age);
+                    return new Profile(id, username, bcryptHashString, email, name, surname, age);
                 });
         return Optional.ofNullable(profile);
     }
