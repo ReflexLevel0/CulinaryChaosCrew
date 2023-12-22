@@ -4,6 +4,7 @@ import Login from "./pages/Login"
 import Header from "./components/Header"
 import {Routes, Route, useNavigate} from "react-router-dom";
 import {useState} from "react";
+import SingleRecipe from './pages/SingleRecipe';
 
 function App() {
     const [username, setUsername] = useState("");
@@ -29,6 +30,8 @@ function App() {
                 <Route path="/" element={<Recipes />} />
                 <Route path="/login" element={<Login login={true} loggedIn={handleLogin} />} />
                 <Route path="/signup" element={<Login login={false} />} />
+                <Route path="/recipes" element={<Recipes />} />
+                <Route path="/singleRecipe" element={<SingleRecipe />} />
             </Routes>
         </>
     );
