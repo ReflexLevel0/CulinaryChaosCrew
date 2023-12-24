@@ -1,0 +1,15 @@
+.recipe-cards-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    justify-content: center; 
+  }
+  
+  
+  .paging-container {
+    text-align: center;
+  }
+  
