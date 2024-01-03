@@ -67,7 +67,59 @@ const dummyRecipes = [
         name: 'ijauuu',
         description: 'Ovo je recept za palentu',
         imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
-    },
+    },{
+      name: 'ijauuu',
+      description: 'Ovo je recept za palentu',
+      imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+  },{
+    name: 'ijauuu',
+    description: 'Ovo je recept za palentu',
+    imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},{
+  name: 'ijauuu',
+  description: 'Ovo je recept za palentu',
+  imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
+},
 ];
 const itemsPerPage = 6;
 
@@ -75,7 +127,6 @@ function RecipeList() {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
-  const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

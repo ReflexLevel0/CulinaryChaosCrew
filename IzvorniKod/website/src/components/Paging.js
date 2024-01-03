@@ -1,33 +1,54 @@
 import React from 'react';
 import '../styles/Paging.css';
 
-function Paging({totalItems, itemsPerPage, currentPage, onPageChange }) {
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+function Paging({ totalItems, itemsPerPage, currentPage, onPageChange }) {
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const handlePageChange = (page) => {
-    if (page >= 1 && page <= totalPages && page !== currentPage) {
-      onPageChange(page);
-    }
-  };
+    const handleFirstClick = () => {
+        onPageChange(1);
+    };
 
-  // Generate an array of page numbers
-  const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
+    const handleLastClick = () => {
+        onPageChange(totalPages);
+    };
 
-  return (
-    <div className='pagination-container'>
-      <ul className="pagination">
-        {pages.map((page) => (
-          <li
-            key={page}
-            className={page === currentPage ? 'active' : ''}
-            onClick={() => handlePageChange(page)}
-          >
-            {page}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    const handlePrevClick = () => {
+        const prevPage = currentPage > 1 ? currentPage - 1 : 1;
+        onPageChange(prevPage);
+    };
+
+    const handleNextClick = () => {
+        const nextPage = currentPage < totalPages ? currentPage + 1 : totalPages;
+        onPageChange(nextPage);
+    };
+
+    return (
+        <div className="paging">
+            {currentPage > 2 && (
+                <button onClick={handleFirstClick}>
+                    1
+                </button>
+            )}
+            {currentPage > 1 && (
+                <button onClick={handlePrevClick}>
+                    {currentPage - 1}
+                </button>
+            )}
+            <button disabled>
+                {currentPage}
+            </button>
+            {currentPage < totalPages && (
+                <button onClick={handleNextClick}>
+                    {currentPage + 1}
+                </button>
+            )}
+            {currentPage < totalPages - 1 && (
+                <button onClick={handleLastClick}>
+                    {totalPages}
+                </button>
+            )}
+        </div>
+    );
 }
 
 export default Paging;

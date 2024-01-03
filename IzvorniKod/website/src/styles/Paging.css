@@ -1,25 +1,67 @@
 .pagination-container {
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-  }
-  
-  .pagination {
-    list-style: none;
-    padding: 0;
-    display: flex;
-  }
-  
-  .pagination li {
-    cursor: pointer;
-    padding: 5px 10px;
-    margin: 0 2px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .pagination li.active {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.pagination li {
+  cursor: pointer;
+  padding: 10px 16px;
+  margin: 0 4px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination li.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+/* Hover effect for non-active buttons */
+.pagination li:not(.active):hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+
+/*.paging {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.paging button {
+  cursor: pointer;
+  padding: 10px 16px;
+  margin: 0 4px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.paging button:disabled {
+  background-color: #ddd;
+  color: #333;
+  border-color: #ddd;
+}
+
+.paging button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.paging button:not(.active):hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+*/
