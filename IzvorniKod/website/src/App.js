@@ -7,6 +7,8 @@ import {useState} from "react";
 import SingleRecipe from './pages/SingleRecipe';
 import SavedRecipesPage from './pages/SavedRecipesPage';
 import Home from './pages/Home';
+import ErrorPage from './pages/Errorpage';
+
 function App() {
     const [username, setUsername] = useState("");
     const [loggedIn, setLoggedin] = useState(false);
@@ -34,6 +36,7 @@ function App() {
                 <Route path="/recipes" element={<Recipes />} />
                 <Route path="/singleRecipe" element={<SingleRecipe />} />
                 <Route path="/saved" element={<SavedRecipesPage/>} />
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
         </>
     );

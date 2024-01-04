@@ -1,0 +1,12 @@
+import React from 'react';
+
+const Error = () => {
+  return (
+    <div>
+      <h1>404 - Not Found</h1>
+      <p>Stranica kojoj pristupate ne postoji.</p>
+    </div>
+  );
+};
+
+export default Error;
