@@ -16,7 +16,7 @@ const sampleRecipe = {
 function SingleRecipe() {
     return (
         <div className="recipe-details-page">
-            <h1>Informacije o receptu</h1>
+            <h1>Recipe information</h1>
             <RecipeView {...sampleRecipe} />
         </div>
     );

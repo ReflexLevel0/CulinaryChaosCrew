@@ -6,7 +6,10 @@ function RecipeCard({recipeName, description, imageSrc}){
         <h3>{recipeName}</h3>
         <div className="descriptionContainer">
             <img src={imageSrc} alt=""/>
-            <p>{description}</p>
+            <div className='des'>
+                <p>{description}</p>
+            </div>
+            
         </div>
     </div>
     )

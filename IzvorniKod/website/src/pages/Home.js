@@ -1,23 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Home.css';
+import Gallery from "../components/Gallery";
 
 function Home() {
   return (
     <div className="welcome-container">
-      <h1>Dobrodošli na Kulinarski Kutak</h1>
-      <p>
-        Ovdje ćete pronaći raznolike recepte za ukusna jela. Bez obzira jeste li
-        početnik u kuhinji ili iskusni kuhar, inspirirajte se i stvarajte
-        nevjerojatne okuse.
-      </p>
-      <Link to="/recipes" className="explore-link">
-        Istraži Recepte
-      </Link>
-      <Link to="/saved" className="explore-link">
-        Spremljeni recepti
-      </Link>
-    </div>
+      <div>
+        <Gallery></Gallery>
+      </div>
+  <h1>Welcome to CulinaryChaosCrew</h1>
+  <p>
+    Here you will find diverse recipes for delicious dishes. Whether you are
+    a beginner in the kitchen or an experienced chef, get inspired and create
+    amazing flavors.
+  </p>
+  <Link to="/recipes" className="explore-link">
+    Explore Recipes
+  </Link>
+  <Link to="/saved" className="explore-link">
+    Saved Recipes
+  </Link>
+</div>
   );
 }
 

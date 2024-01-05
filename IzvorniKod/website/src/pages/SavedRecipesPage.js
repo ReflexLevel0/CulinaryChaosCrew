@@ -5,7 +5,7 @@ import '../styles/DisplayRecipes.css';
 function SavedRecipesPage() {
     return (
         <div>
-            <h1 className="title">Spremljeni recepti</h1>
+            <h1 className="title">Saved recipes</h1>
             <div className="container">
                 <SavedRecipes />
             </div>

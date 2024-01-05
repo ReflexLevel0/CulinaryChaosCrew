@@ -1,67 +1,37 @@
-.pagination-container {
+.paging {
+  list-style: none;
+  padding: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-.pagination li {
-  cursor: pointer;
-  padding: 10px 16px;
-  margin: 0 4px;
-  border: 2px solid #007bff;
-  border-radius: 8px;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.pagination li.active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-/* Hover effect for non-active buttons */
-.pagination li:not(.active):hover {
-  background-color: #0056b3;
-  color: #fff;
-}
-
-
-/*.paging {
-  list-style: none;
-  padding: 0;
-  display: flex;
+  align-items: center;
 }
 
 .paging button {
   cursor: pointer;
-  padding: 10px 16px;
+  padding: 6px 10px;
   margin: 0 4px;
-  border: 2px solid #007bff;
-  border-radius: 8px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #333;
+  font-size: 12px; /* Reduced font size */
+  font-weight: bold;
   transition: background-color 0.3s, color 0.3s;
 }
 
 .paging button:disabled {
   background-color: #ddd;
-  color: #333;
+  color: #666;
   border-color: #ddd;
+  cursor: not-allowed;
 }
 
 .paging button.active {
   background-color: #007bff;
   color: #fff;
-  border-color: #007bff;
 }
 
+/* Hover effect for non-active buttons */
 .paging button:not(.active):hover {
-  background-color: #0056b3;
-  color: #fff;
+  background-color: #f0f0f0;
 }
-*/
