@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Paging.css';
 
-function Paging({ totalItems, itemsPerPage, currentPage, onPageChange }) {
+function Paging({ totalItems, itemsPerPage, currentPage, onPageChange}) {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     const handleFirstClick = () => {

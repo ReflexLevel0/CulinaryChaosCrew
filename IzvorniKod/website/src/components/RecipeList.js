@@ -4,7 +4,11 @@ import RecipeCard from './RecipeCard';
 import Paging from './Paging';
 import '../styles/Saved-RecepieList.css';
 
-const dummyRecipes = [
+
+const itemsPerPage = 4;
+
+function RecipeList() {
+  const dummyRecipes = [
     {
         name: 'Grah',
         description: 'Varivo od graha',
@@ -121,9 +125,7 @@ const dummyRecipes = [
   imageSrc: 'https://1.bp.blogspot.com/_AWEhM2Nug4g/SV2M1PypdDI/AAAAAAAAC3s/fIKgKOVVgo4/s400/Polenta+4.jpg',
 },
 ];
-const itemsPerPage = 6;
 
-function RecipeList() {
   const navigate = useNavigate();
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
@@ -138,8 +140,7 @@ function RecipeList() {
   const endIndex = startIndex + itemsPerPage;
   const recipesToDisplay = dummyRecipes.slice(startIndex, endIndex);
 
-
-const handlePageChange = (page) => {
+  const handlePageChange = (page) => {
     setCurrentPage(page);
     navigate(`?page=${page}`);
 };
