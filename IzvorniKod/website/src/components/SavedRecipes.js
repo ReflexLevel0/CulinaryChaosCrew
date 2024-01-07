@@ -96,12 +96,12 @@ function SavedRecipes() {
     };
 
     return (
-        <> 
-                <div className="recipe-cards-container">
-                    {recipesToDisplay.map(r => (
-                        <RecipeCard key={r.name} recipeName={r.name} description={r.description} imageSrc={r.imageSrc} />
-                    ))}
-                </div>
+        <>
+            <div className="recipe-cards-container">
+                {recipesToDisplay.map(r => (
+                    <RecipeCard key={r.name} recipeName={r.name} description={r.description} imageSrc={r.imageSrc}/>
+                ))}
+            </div>
             <div className='paging-container'>
                 <Paging
                     totalItems={savedRecipes.length}
