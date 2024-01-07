@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Gallery.css';
 
 const ImageGallery = () => {
-  const images = ['https://media.istockphoto.com/id/1391598401/photo/students-in-cookery-class-mixing-ingredients-for-recipe-in-kitchen-group-of-young-people.jpg?s=612x612&w=0&k=20&c=ooqwYaeGusn3c-9ISRYge6lTqoRtimXQgiwm2SeURVQ=', 'https://plus.unsplash.com/premium_photo-1683707120106-a32a3c9942ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGN1bGluYXJ5fGVufDB8fDB8fHww'];
+  const images = [
+  'https://ic.recreationid.com/outdoor-recreation/pages/camp-kitchen/camp-kitchen_big_0.jpg',
+  'https://www.electroluxprofessional.com/us/wp-content/uploads/2023/07/ESL-Blog1-Featured-Image-Banner.jpg',
+  'https://house.ergonfoods.com/wp-content/uploads/2019/07/cookingbg02.jpg',
+  'https://en.bishulon.co.il/images/galleries/95f5f4d36814cdc2176a58/8.webp'];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
