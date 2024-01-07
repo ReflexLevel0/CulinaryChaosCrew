@@ -10,7 +10,7 @@ function Home() {
       <Gallery></Gallery>
     </div>
   <div className="welcome-container">
-    <h1>Welcome to CulinaryChaosCrew</h1>
+    <h1>Welcome to CookBooked</h1>
     <p>
       Here you will find diverse recipes for delicious dishes. Whether you are
       a beginner in the kitchen or an experienced chef, get inspired and create
