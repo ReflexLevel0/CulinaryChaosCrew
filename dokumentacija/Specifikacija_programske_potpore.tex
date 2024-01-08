@@ -1,0 +1,643 @@
+\chapter{Specifikacija programske potpore}
+		
+	\section{Funkcionalni zahtjevi}
+
+			\noindent \textbf{Dionici:}
+			
+			\begin{packed_enum}
+				
+				\item Korisnik
+				\item Administrator				
+				\item Razvojni tim
+				\item Vanjski sustav za komunikaciju
+				
+			\end{packed_enum}
+			
+			\noindent \textbf{Aktori i njihovi funkcionalni zahtjevi:}
+			
+			
+			\begin{packed_enum}
+				\item  \underbar{Neregistrirani korisnik (inicijator) može: }
+				\begin{packed_enum}
+					\item vidjeti listu recepata svih korisnika
+					\item pretražiti recepte po naslovu i korisniku
+					\begin{packed_enum}
+						\item filtrirati listu prema kategoriji, vrsti kuhinje i sastojcima
+					\end{packed_enum}
+					\item pregledati detalje zasebnih recepata
+					\item stvoriti novi korisnički račun
+				\end{packed_enum}
+			
+				\item  \underbar{Registrirani korisnik (inicijator) može:}
+				\begin{packed_enum}
+					\item ulogirati se pomoću vlastitog korisničkog računa
+					\item objaviti nove recepte
+					\begin{packed_enum}
+						\item odrediti kategoriju recepta
+						\item dodati posebne značajke i tagove na recept
+						\item priložiti slike ili videozapise receptu
+					\end{packed_enum}
+					\item pregledati listu vlastitih recepata
+					\item obrisati vlastiti recept
+					\item komunicirati s drugim registriranim korisnicima
+					\begin{packed_enum}
+						\item razmjenjivati poruke i pozive
+						\item postaviti termine otvorene za komunikaciju
+					\end{packed_enum}
+					\item označiti, komentirati i spremiti recepte
+					\item pratiti omiljene autore i primati obavijesti o njihovim novim objavama
+					\item promijeniti detalje korisničkog računa:
+					\begin{packed_enum}
+						\item korisničko ime
+						\item lozinku
+					\end{packed_enum}
+					\item deaktivirati vlastiti korisnički račun
+				\end{packed_enum}
+			
+				\item\underbar{Administrator (inicijator) može:}
+				\begin{packed_enum}
+					\item pregledati objavljene recepte
+					\item promijeniti korisničke podatke registriranih korisnika
+					\item promijeniti podatke o receptu
+					\item izbrisati korisnički račun
+					\item izbrisati recept
+				\end{packed_enum}
+
+				\item\underbar{Online-chat platforma (sudionik) može:}
+				\begin{packed_enum}
+					\item slati i primati poruke između registriranih korisnika
+					\item pohranjivati poruke
+					\item pratiti i prikazivati dostupnost registriranih korisnika
+					\item uspostaviti videopoziv među registriranim korisnicima
+				\end{packed_enum}
+			
+			\end{packed_enum}
+			
+			\eject 
+			
+			
+				
+			\subsection{Obrasci uporabe}
+
+					\noindent \underbar{\textbf{UC1 - stvaranje korisničkog računa}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik}
+						\item  \textbf{Cilj: stvaranje novog korisničkog računa}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za prijavu
+							\item Korisnik upiše  željeno korisničko ime i lozinku
+							\item Korisnik klikne na gumb za registraciju
+							\item Šalje se zahtjev sustavu
+							\item Sustav zapisuje novog korisnika u bazu podataka
+							\item Ako je registracija uspješna web stranica se preusmjeri na homepage, ali sa korisnikom prijavljenim u sustav
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[5.a] Korisničko ime je zauzeto (već postoji)
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Korisničko ime zauzeto!"
+							\end{packed_enum}
+							\item[5.b] Lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
+							\end{packed_enum}
+							\item[5.c] Unesena adresa e-pošte nije važeća
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Adresa e-pošte ne postoji ili nije važeća!"
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC2 - prijava u korisnički račun}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: prijava korisnika u vlastiti račun}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za prijavu
+							\item Korisnik unosi korisničko ime i lozinku
+							\item Korisnik klikne na gumb za prijavu
+							\item Šalje se zahtjev sa korisničkim podacima sustavu
+							\item Sustav provjerava točnost podataka u bazi podataka
+							\item U slučaju da je korisnik unio točne podatke, web stranica se preusmjeri na homepage sa korisnikom koji je sada prijavljen
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[5.a] Korisničko ime ne postoji u bazi podataka
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Korisničko ime ne postoji!"
+							\end{packed_enum}
+							\item[5.b] Pogrešna lozinka
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Kriva lozinka!"
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC3 - promjena korisničkih podataka}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
+						\item  \textbf{Cilj: promjena korisničkog imena i/ili lozinke}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik kliknom na gumb pristupi postavkama
+							\item Korisnik promijeni korisničko ime ili lozinku upisivanjem novog imena ili lozinke
+							\item Korisnik klikne na gumb za spremanje promjena
+							\item Sustavu se šalje zahtjev za promjenom podataka 
+							\item U bazu podataka se upisuju promjene
+							\item Korisnik se automatski odjavi za stranice
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[5.a] Novo korisničko ime je već zauzeto
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Korisničko ime zauzeto!"
+							\end{packed_enum}
+							\item[5.b] Lozinka je slaba (sadrži manje od 6 znakova i/ili sadrži samo slova)
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Lozinka mora imati najmanje 6 znakova te barem jedan broj ili specijalan znak!"
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC4 - brisanje korisničkog računa}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
+						\item  \textbf{Cilj: brisanje korisničkog računa i svih podataka vezanih uz račun}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za pristup postavkama
+							\item Korisnik klikne na gumb za brisanje računa
+							\item Pojavljuje se upozorenje i prozor sa zahtjevom za potvrdom
+							\item Klikom na gumb "Da" šalje se zahtjev za brisanje računa sustavu
+							\item Sustav briše račun iz baze podataka
+							\item Korisnik se preusmjerava na homepage, te više nije prijavljen u sustav
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[4.a] Korisnik klikne na gumb "Ne"
+							\begin{packed_enum}
+								\item Prozor sa zahtjevom se zatvara te korisnik ostaje u postavkama
+							\end{packed_enum}
+							\item[6.a] Brisanje korisničkog računa je obavio administrator
+							\begin{packed_enum}
+								\item Nakon brisanja korisničkog računa administrator ostaje u postavkama
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC5 - pregled liste recepata}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik, registrirani korisnik administrator}
+						\item  \textbf{Cilj: prikazati recepte na web stranici}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik odabere filtere i način sortiranja recepata
+							\item Korisnik u polje za pretraživanje upiše tekst
+							\item Šalje se zahtjev za dohvaćanje recepata sustavu
+							\item Sustav dohvaća recepte iz baze podataka
+							\item Korisniku se prikaže lista recepata
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[1.a] Odabran je pregled vlastitih recepata
+							\begin{packed_enum}
+								\item Korak 2 se preskače i zahtjev se šalje za receptima koje je korisnik objavio
+							\end{packed_enum}
+							\item[1.b] Odabran je pregled omiljenih recepata
+							\begin{packed_enum}
+								\item Korak 2 se preskače i zahtjev se šalje za receptima koje je korisnik označio omiljenima
+							\end{packed_enum}
+							\item [2.a] Nije upisan tekst po kojem se pretražuje
+							\begin{packed_enum}
+								\item Prikazuju se svi recepti
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+
+
+				
+					\noindent \underbar{\textbf{UC6 - stvaranje novog recepta}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: kreiranje novog recepta}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za početak stvaranja novog recepta
+							\item Korisnik upisuje podatke o receptu kao što su postupak, slike, videi, kategorije itd.
+							\item Klikom na gumb za objavu recepta šalje se zahtjev sustavu
+							\item Sustav sprema recept u bazu podataka
+							\item Recept postaje vidljiv drugim korisnicima
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[3.a] Recept nema naslov
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Potrebno je upisati ime recepta"
+							\end{packed_enum}
+							\item[3.b] Nije upisana lista sastojaka
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Potrebno je upisati listu sastojaka"
+							\end{packed_enum}
+							\item[3.c] Ne postoji ni jedan korak pripreme
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Potrebno je upisati barem jedan korak pripreme"
+							\end{packed_enum}
+							\item[3.d] Nije uneseno vrijeme pripreme
+							\begin{packed_enum}
+								\item Prikazuje se poruka "Potrebno je upisati vrijeme pripreme"
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC7 - promjena podataka o receptu}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik, administrator}
+						\item  \textbf{Cilj: promjena bilo kojeg podatka o receptu kojeg je korisnik napravio}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je on autor recepta kojeg želi promijeniti ili je administrator}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na recept
+							\item Korisnik klikne na gumb za uređivanje recepta
+							\item Preusmjerava se na poveznicu za promjenu recepta
+							\item Korisnik promijeni podatke o receptu i klikne na gumb za spremanje
+							\item Sustavu se šalje zahtjev sa novim podacima o receptu
+							\item U bazu podataka se spremaju promjene
+							\item Korisnika se preusmjerava na poveznicu na kojoj se može pregledati recept
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[4.a] Korisnik klikne na gumb za brisanje recepta
+							\begin{packed_enum}
+								\item Pojavljuje se upozorenje i prozor sa zahtjevom za potvrdom
+								\item Korak 5 se preskače
+							\end{packed_enum}
+							\item[5.a] Problem u novim podacima (referencirati se na odstupanja u UC6) 
+						\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC8 - prijava na recepte korisnika}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: prijava korisnika na recepte autora kako bi primio obavijesti kada taj korisnik napravi novi recept}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Prijavljeni korisnik otvara recept nekog autora
+							\item Klikom na gumb za praćenje se sustavu šalje zahtjev
+							\item U bazu podataka se zapisuje da je korisnik prijavljen na recepte odabranog autora
+							\item Recepti odabranog autora prikazuju se u listi obavijesti
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}							
+							\item[3.a] Korisnik je već prijavljen na recepte autora
+							\begin{packed_enum}
+								\item Klikom na gumb za praćenje autora se korisnik odjavljuje sa recepata tog autora
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC9 - pregled obavijesti}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: pregled recepata autora koje korisnik prati}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za pregled obavijesti
+							\item Sustavu se šalje zahtjev
+							\item Iz baze podataka čitaju se obavijesti korisnika
+							\item Prikazuju se recepti svih autora koje korisnik prati
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja: -}
+						\item[] \begin{packed_item}							
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC10 - spremanje/bookmarkanje recepta}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: spremanje recepata kako bi se kasnije mogli pregledati omiljeni recepti}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik prijavljen u sustav}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item korisnik klikne na gumb za spremanje recepta
+							\item Šalje se zahtjev sustavu
+							\item U bazu podataka se upisuje recept kao omiljen korisniku
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[3.a] Recept je već spremljen kao omiljen
+							\begin{packed_enum}
+								\item Recept se miče is liste omiljenih recepata
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+				
+				
+				
+					\noindent \underbar{\textbf{UC11 - pregled specifičnog recepta}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: neregistrirani korisnik, registrirani korisnik}
+						\item  \textbf{Cilj: prikaz svih podataka vezanih uz recept}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: -}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na recept
+							\item Sustavu se šalje zahtjev za dohvaćanje podataka o receptu
+							\item Iz baze podataka se čitaju podaci o receptu
+							\item Korisniku se prikazuju dohvaćeni podaci
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja: -}
+						\item[] \begin{packed_item}							
+						\end{packed_item}
+					\end{packed_item}
+					
+					
+					
+					\noindent \underbar{\textbf{UC12 - komentiranje na recept}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: ostavljanje komentara na nekom receptu}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav te je otvorio stranicu recepta}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Scrollanjem do kraja recepta se dolazi do dijela sa komentarima
+							\item Upisuje se tekst u polje za komentar
+							\item Klikom na gumb za objavu komentara šalje se zahtjev sustavu
+							\item U bazu podataka se upisuje komentar
+							\item Web stranica se osvježava i komentar je sad vidljiv
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+						\item[] \begin{packed_item}
+							\item[3.a] Tekst komentara je prazan
+							\begin{packed_enum}
+								\item Gumb za objavljivanje komentara je blokiran te nije moguće kliknuti na njega
+							\end{packed_enum}
+						\end{packed_item}
+					\end{packed_item}
+				
+
+					\noindent \underbar{\textbf{UC13 - razmjena poruka među registriranim korisnicima}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik, online-chat platforma}
+						\item  \textbf{Cilj: razmjena poruka među korisnicima}
+						\item  \textbf{Sudionici: -}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i omogućio je platformi pristup za komunikaciju}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik na javnom profilu drugog korisnika klikne da gumb za uspostavu kontakta
+							\item Sustav preusmjerava zahtjev online-chat platformi koja obrađuje daljnje zahtjeve
+							\item Online-chat platforma prikazuje njihove dosadašnje poruke (ako ih ima)
+							\item Korisnik upisuje novu poruku i stisne gumb za slanje
+							\item Online-chat platforma poruku sprema i šalje drugom korisniku
+							\item Korisniku se poruka prikazuje među dosad izmijenjenim porukama kao poslana
+							\item Korisnik izlazi iz prozora za razmjenu poruka i poziva
+							\item Online-chat platforma šalje sustavu obavijest o završetku radnje
+							\item Sustav preuzima daljnju obradu zahtjeva
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+							\begin{packed_item}
+								\item[1.a] Korisnik kojeg se želi kontaktirati nije omogućio opciju komunikacije online-chat platformi
+								\begin{packed_enum}
+									\item Gumb za uspostavu kontakta je blokiran te nije moguće kliknuti na njega
+									\item Svi daljnji koraci se ne izvode
+								\end{packed_enum}
+								\item[7.a] Korisnik želi poslati još poruka
+								\begin{packed_enum}
+									\item Ponavljaju se koraci 4, 5, i 6
+								\end{packed_enum}
+							\end{packed_item}
+					\end{packed_item}
+				
+
+
+					\noindent \underbar{\textbf{UC14 - razmjena poziva među registriranim korisnicima}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnici}
+						\item  \textbf{Cilj: razmjena poziva među korisnicima}
+						\item  \textbf{Sudionici: online-chat platforma}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i odobrio je platformi pristup mikrofonu i kameri}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik na javnom profilu drugog korisnika klikne da gumb za uspostavu kontakta
+							\item Sustav preusmjerava zahtjev online-chat platformi koja obrađuje daljnje zahtjeve
+							\item Online-chat platforma prikazuje stare poruke i gumb za opciju pozivanja
+							\item Korisnik klikne na gumb za opciju pozivanja
+							\item Online-chat platforma dohvaća podatke o dostupnosti korisnika i prikazuje ih korisniku koji inicira komunikaciju
+							\item Korisnik klikne gumb za uspostavljanje poziva
+							\item Online-chat platforma upućuje poziv korisniku
+							\item Korisnik kojeg se zove prihvaća poziv
+							\item Klikom na gumb za prekid poziva šalje se zahtjev online-chat platformi koja gasi poziv
+							\item Korisnik izlazi iz prozora za razmjenu poruka i poziva
+							\item Online-chat platforma šalje sustavu obavijest o završetku radnje
+							\item Sustav preuzima daljnju obradu zahtjeva
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+							\begin{packed_item}
+								\item[1.a] Korisnik kojeg se želi kontaktirati nije omogućio opciju komunikacije online-chat platformi
+								\begin{packed_enum}
+									\item Gumb za uspostavu kontakta je blokiran te nije moguće kliknuti na njega
+									\item Svi daljnji koraci se ne izvode
+								\end{packed_enum}
+								\item[6.a] Korisnik kojeg se pokušava nazvati nije dostupan u tom vremenu
+								\begin{packed_enum}
+									\item Gumb za uspostavu poziva je blokiran te nije moguće kliknuti na njega
+									\item Prikazuje se kalendar u kojem su označeni termini u kojima je traženi korisnik dostupan
+									\item Korisnik inicijator može označiti termin u kojem želi razgovarati
+									\item Online-chat platforma zapisuje taj podatak i prenosi ga traženom korisniku
+									\item Koraci 7, 8 i 9 se ne izvode
+								\end{packed_enum}
+								\item[8.a] Korisnik kojeg se zove odbija poziv
+								\begin{packed_enum}
+									\item Poziv se prekida
+								\end{packed_enum}
+							\end{packed_item}
+					\end{packed_item}
+
+
+
+					\noindent \underbar{\textbf{UC15 - označavanje dostupnosti za pozive}}
+					\begin{packed_item}
+						\item \textbf{Glavni sudionik: registrirani korisnik}
+						\item  \textbf{Cilj: spremanje termina slobodnih za pozive i njihov prikaz drugim korisnicima}
+						\item  \textbf{Sudionici: online-chat platforma}
+						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i omogućio je platformi pristup za komunikaciju}
+						
+						\item  \textbf{Opis osnovnog tijeka:}
+						\item[] \begin{packed_enum}
+							\item Korisnik klikne na gumb za postavke
+							\item Korisnik klikne na gumb za uređivanje kalendara
+							\item Šalje se zahtjev sustavu za dohvaćanje dosad unesenih podataka u kalendaru
+							\item Šalje se zahtjev online-chat platformi za podatke o zatraženim pozivima
+							\item Korisniku se prikazuje kalendar s njegovim označenim terminima i zahtjevima za poziv
+							\item Korisnik klikom na određeni dan upisuje vrijeme kad je slobodan i stisne gumb za spremanje
+							\item Sustav pohranjuje promjene kalendara u bazu podataka
+							\item Sustav šalje platformi novouneseni podatak
+							\item Korisnik izlazi iz postavki
+						\end{packed_enum}
+						
+						\item  \textbf{Opis mogućih odstupanja:}
+							\begin{packed_item}
+								\item[6.a] Korisnik klikne na termin zatraženog poziva
+								\begin{packed_enum}
+									\item Pojavljuje se prozor za prihvaćanje odnosno odbijanje zahtjeva
+									\item Korisnik bira klikom na gumb za prihvaćanje odnosno odbijanje
+								\end{packed_enum}
+							\end{packed_item}
+					\end{packed_item}
+
+						% \noindent \underbar{\textbf{UC}}
+					% \begin{packed_item}
+					% 	\item \textbf{Glavni sudionik: }
+					% 	\item  \textbf{Cilj:}
+					% 	\item  \textbf{Sudionici:}
+					% 	\item  \textbf{Preduvjet:}
+						
+					% 	\item  \textbf{Opis osnovnog tijeka:}
+					% 	\item[] \begin{packed_enum}
+					% 	\end{packed_enum}
+						
+					% 	\item  \textbf{Opis mogućih odstupanja:}
+					% 	\item[] \begin{packed_item}							
+					% 	\end{packed_item}
+					% \end{packed_item}	
+					
+					\eject
+					\noindent \textbf{Dijagrami obrazaca uporabe}
+					
+					\begin{figure}[H]
+						\centering
+						\includegraphics[width=1.1\linewidth]{"slike/dijagrami/UML cijeli"}
+						\caption{Cijeli UML dijagram}
+						\label{fig:uml-cijeli}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[width=1.1\linewidth]{"slike/dijagrami/UML 1-4"}
+						\caption{UML dijagram za UC1-UC4}
+						\label{fig:uml-1-4}
+					\end{figure}
+				
+					\begin{figure}[H]
+						\centering
+						\includegraphics[width=1.1\linewidth]{"slike/dijagrami/UML 13-14"}
+						\caption{UML dijagram za UC13-UC15}
+						\label{fig:uml-13-15}
+					\end{figure}
+		
+				
+				\eject		
+				
+			\subsection{Sekvencijski dijagrami}
+				
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.9\linewidth]{"slike/dijagrami/Seq 1-4"}
+					\caption{Sekvencijski dijagram za UC1-4}
+					\label{fig:seq-1-4}
+				\end{figure}
+				
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=0.9\linewidth]{"slike/dijagrami/Seq 6-7"}
+					\caption{Sekvencijski dijagram za UC6-7}
+					\label{fig:seq-6-7}
+				\end{figure}
+				
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=1.1\linewidth]{"slike/dijagrami/Seq 8-10,12"}
+					\caption{Sekvencijski dijagram za UC8-10;12}
+					\label{fig:seq-8-10;12}
+				\end{figure}
+				
+				\begin{figure}[H]
+					\centering
+					\includegraphics[width=1.1\linewidth]{"slike/dijagrami/Seq 13-14"}
+					\caption{Sekvencijski dijagram za UC13-14}
+					\label{fig:seq-13-14}
+				\end{figure}
+				
+				\eject
+	
+		\section{Ostali zahtjevi}
+		
+			%\textbf{\textit{dio 1. revizije}}\\
+		 
+			 %\textit{Nefunkcionalni zahtjevi i zahtjevi domene primjene dopunjuju funkcionalne zahtjeve. Oni opisuju \textbf{kako se sustav treba ponašati} i koja \textbf{ograničenja} treba poštivati (performanse, korisničko iskustvo, pouzdanost, standardi kvalitete, sigurnost...). Primjeri takvih zahtjeva u Vašem projektu mogu biti: podržani jezici korisničkog sučelja, vrijeme odziva, najveći mogući podržani broj korisnika, podržane web/mobilne platforme, razina zaštite (protokoli komunikacije, kriptiranje...)... Svaki takav zahtjev potrebno je navesti u jednoj ili dvije rečenice.}
+			 \begin{itemize}
+				\item CookBooked će podržavati višejezičnost s odabirom između najmanje 5 različitih jezika. Korisnici će moći prilikom prijave na aplikaciju birati jezik, a bit će moguće zamijeniti ga u bilokojem željenom trenutku.
+				\item Maksimalno vrijeme odziva sustava na zahtjeve korisnika neće prelaziti 5 sekundi. To će korisnicima pružiti ugodno i brzo kretanje kroz funkcionalnosti aplikacije i interakciju sa sustavom s kratkim vremenom učitavanja.
+				\item Aplikacija će biti prilagođena za pristup putem web preglednika kao i mobilnih uređaja. Uz to ostvarit ćemo podršku za najmanje 3 glavne mobilne platforme (npr. iOS, Android).
+				\item Platforma će biti zaštićena SSL i TLS protokolima osiguravajući kriptiranu komunikaciju između korisnika i poslužitelja. Lozinke će se čuvati u kriptiranom obliku, a sustav će implementirati mehanizme zaštite od neovlaštenog pristupa.
+				\item Sustav će podržavati formate visoke kvalitete za slike (npr. JPEG, PNG) i videozapise (npr. MP4) kako bi se osigurala visoka razina vizualnog doživljaja korisnika. Korisničko sučelje biti će intuitivno i jednostavno za razumjeti korisnicima s različitim razinama educiranosti.
+				\item Svi objavljeni recepti bit će moderirani kako bi se osigurala točnost, autentičnost i odgovarajući sadržaj prema pravilima platforme prije nego što postanu javno dostupni. Sadržaj će se arhivirati u bazu kako ne bi došlo do gubitaka podataka.
+			\end{itemize}
+			 
+			 
+	

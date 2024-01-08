@@ -22,14 +22,8 @@ export default class Login extends React.Component{
         if(username.length === 0){
             alert("Please enter username!")
         }
-        else if(login === false && username.length < 6){
-            alert("Username should be at least 6 characters long!")
-        }
         else if(password.length === 0){
             alert("Please enter password!")
-        }
-        else if(login === false && password.length < 6){
-            alert("Password should be at least 6 characters long!")
         }
         else if(login === false && password !== passwordRepeat) {
             alert("Passwords don't match!")

@@ -1,12 +1,12 @@
 import Recipe from "./models/Recipe";
 
 export default class ApiHelper {
-    static apiUrl = "http://localhost:8080"
+    static apiUrl = "http://localhost:3000/api"
 
     //Returns the list of all recipes
     static GetRecipes() {
         try {
-            const url = this.apiUrl + '/recipes/allRecipes'
+            const url = this.apiUrl + '/recipe/allRecipes'
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []

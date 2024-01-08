@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Repository("fakeDao")
+@Repository("fakeRecipeDao")
 public class FakeRecipeDataAccessService implements RecipeDao{
 
     private static List<Recipe> DB = new ArrayList<>();
@@ -22,7 +22,9 @@ public class FakeRecipeDataAccessService implements RecipeDao{
                 recipe.getInstructions(),
                 recipe.getOrigin(),
                 recipe.getTags(),
-                recipe.getVideoURL())
+                recipe.getVideoURL(),
+                recipe.getImageURL(),
+                recipe.getPreparationTime())
         );
         return 1;
     }
@@ -63,7 +65,9 @@ public class FakeRecipeDataAccessService implements RecipeDao{
                                                         recipe.getInstructions(),
                                                         recipe.getOrigin(),
                                                         recipe.getTags(),
-                                                        recipe.getVideoURL()));
+                                                        recipe.getVideoURL(),
+                                                        recipe.getImageURL(),
+                                                        recipe.getPreparationTime()));
                         return 1;
                     }
                     return 0;

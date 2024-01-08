@@ -15,7 +15,8 @@ public class RecipeService {
     private final RecipeDao recipeDao;
 
     @Autowired
-    public RecipeService(@Qualifier("fakeDao") RecipeDao recipeDao) {
+//    fakeRecipeDao za fake bazu, postgresRecipe za real bazu (valjda)
+    public RecipeService(@Qualifier("fakeRecipeDao") RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
     }
 
@@ -35,8 +36,8 @@ public class RecipeService {
         return recipeDao.deleteRecipeById(id);
     }
 
-    public int updateRecipe(UUID id, Recipe newRecipe) {
-        return recipeDao.updateRecipeById(id, newRecipe);
+    public int updateRecipe(UUID id, Recipe recipe) {
+        return recipeDao.updateRecipeById(id, recipe);
     }
 
 }
