@@ -1,8 +1,8 @@
 app:
   datasource:
-    jdbcUrl: jdbc:postgresql://dpg-cmbtg2md3nmc73emjkq0-a.frankfurt-postgres.render.com/prod_db_4d0i
-    username: ccc_usr
-    password: WmolMZgawwtWZbqWjU0C779pUZmUzJ1u
+    jdbcUrl: jdbc:postgresql://dpg-cme3iila73kc7390pte0-a/demodb_93go
+    username: postgre
+    password: I7J0U3PrbY0jr9nQWoWCiLsK1c7JtSqA
     driver-class-name: org.postgresql.Driver
     sslmode: require
 
