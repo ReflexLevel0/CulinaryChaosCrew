@@ -5,7 +5,9 @@ function Header({username, loggedIn, signedOut}) {
     console.log(loggedIn)
     return (<>
         <div className="headerWrapper">
-            <button className="btn" onClick={() => window.location.href = '/'}>LOGO IMAGE</button>
+            <button className="btn" onClick={() => window.location.href = '/'}>
+                <img src="../../images/CookBooked_logo.png" alt="Logo" id="logo_img"/>
+            </button>
             <div className="rightButtonWrapper">
                 {loggedIn ?
                     (<>
