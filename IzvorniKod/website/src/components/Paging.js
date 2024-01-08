@@ -24,27 +24,27 @@ function Paging({ totalItems, itemsPerPage, currentPage, onPageChange}) {
 
     return (
         <div className="paging">
-            {currentPage >= 2 && (
+            {currentPage > 2 && (
                 <button onClick={handleFirstClick}>
-                    1
+                    &lt;&lt;
                 </button>
             )}
-            {currentPage > 2 && (
+            {currentPage >= 2 && (
                 <button onClick={handlePrevClick}>
-                    &lt;
+                    {currentPage - 1}
                 </button>
             )}
             <button disabled>
                 {currentPage}
             </button>
-            {currentPage < totalPages - 1 && (
+            {currentPage < totalPages && (
                 <button onClick={handleNextClick}>
-                    &gt;
+                    {currentPage + 1}
                 </button>
             )}
-            {currentPage < totalPages && (
+            {currentPage < totalPages - 1 && (
                 <button onClick={handleLastClick}>
-                    {totalPages}
+                    &gt;&gt;
                 </button>
             )}
         </div>
