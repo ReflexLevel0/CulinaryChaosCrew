@@ -21,13 +21,14 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path = "register")
     public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalAccessException {
         if (!profileService.goodEmailFormat(profile.getEmail())) {
             throw new IllegalArgumentException("Email is in the wrong format");
         }
         if (!profileService.strongPassword(profile.getPassword())) {
-            throw new IllegalArgumentException("Password must have at least one number at least 6 characters (including numbers)");
+            throw new IllegalArgumentException("Password must have at least one number, at least 6 characters (including numbers)");
         }
         if (profileService.usernameTaken(profile.getUsername())) {
             throw new IllegalArgumentException("Username is taken");
@@ -38,15 +39,16 @@ public class ProfileController {
         profileService.addProfile(profile);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path = "login")
     public String getProfileByUsernameAndPassword(@RequestBody LoginRequest loginRequest) throws IllegalAccessException {
         Profile profile1 = profileService.getProfileByUsername(loginRequest.getUsername()).orElse(null);
-        Profile profile2 = profileService.getProfileByPassword(loginRequest.getPassword()).orElse(null);
+        Profile profile2 = profileService.getProfileByCredentials(loginRequest.getUsername(), loginRequest.getPassword()).orElse(null);
         if (profile1 == null) {
             throw new IllegalArgumentException("Username doesn't exist");
         }
-        if (profile2 == null || !profile1.equals(profile2)) {
-            throw new IllegalArgumentException("Wrong username or password");
+        if (!profile1.equals(profile2)) {
+            throw new IllegalArgumentException("Wrong password");
         }
         return loginRequest.getUsername();
     }
@@ -72,5 +74,8 @@ public class ProfileController {
         profileService.updateProfile(id, profile);
     }
 
-
+    @DeleteMapping(path = "deleteAllProfiles")
+    public void deleteAllProfiles(){
+        profileService.deleteAllProfiles();
+    }
 }

@@ -27,7 +27,7 @@ public class ProfileService {
     }
 
     public List<Profile> getAllProfiles() {
-        return profileDao.selectAllProfiles();
+        return profileDao.getAllProfiles();
     }
 
     public Optional<Profile> getProfileById(UUID id) {
@@ -38,18 +38,19 @@ public class ProfileService {
         return profileDao.selectProfileByUsername(username);
     }
 
-    public Optional<Profile> getProfileByPassword(String password) {
-        return profileDao.selectProfileByPassword(password);
+    public Optional<Profile> getProfileByCredentials(String username, String password){
+        return profileDao.selectProfileByCredentials(username, password);
     }
 
     public int deleteProfile(UUID id) {
         return profileDao.deleteProfileById(id);
     }
 
-    public int updateProfile(UUID id, Profile newProfile) {
-        return profileDao.updateProfileById(id, newProfile);
+    public int updateProfile(UUID id, Profile profile) {
+        return profileDao.updateProfileById(id, profile);
     }
 
+    public void deleteAllProfiles(){ profileDao.deleteAllProfiles();}
     public boolean usernameTaken(String username) {
         List<Profile> allProfiles = getAllProfiles();
         for (Profile profile : allProfiles) {

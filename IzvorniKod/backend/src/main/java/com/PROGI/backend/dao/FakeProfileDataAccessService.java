@@ -27,7 +27,7 @@ public class FakeProfileDataAccessService implements ProfileDao {
     }
 
     @Override
-    public List<Profile> selectAllProfiles() {
+    public List<Profile> getAllProfiles() {
         return DB;
     }
 
@@ -42,13 +42,6 @@ public class FakeProfileDataAccessService implements ProfileDao {
     public Optional<Profile> selectProfileByUsername(String username) {
         return DB.stream()
                 .filter(profile -> profile.getUsername().equals(username))
-                .findFirst();
-    }
-
-    @Override
-    public Optional<Profile> selectProfileByPassword(String password) {
-        return DB.stream()
-                .filter(profile -> profile.getPassword().equals(password))
                 .findFirst();
     }
 
@@ -79,5 +72,17 @@ public class FakeProfileDataAccessService implements ProfileDao {
                     }
                     return 0;
                 }).orElse(0);
+    }
+
+    @Override
+    public void deleteAllProfiles() {
+        DB.clear();
+    }
+
+    @Override
+    public Optional<Profile> selectProfileByCredentials(String username, String password) {
+        return DB.stream()
+                .filter(profile -> profile.getUsername().equals(username) && profile.getPassword().equals(password))
+                .findFirst();
     }
 }

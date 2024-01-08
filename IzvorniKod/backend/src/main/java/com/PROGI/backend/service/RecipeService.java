@@ -36,8 +36,8 @@ public class RecipeService {
         return recipeDao.deleteRecipeById(id);
     }
 
-    public int updateRecipe(UUID id, Recipe newRecipe) {
-        return recipeDao.updateRecipeById(id, newRecipe);
+    public int updateRecipe(UUID id, Recipe recipe) {
+        return recipeDao.updateRecipeById(id, recipe);
     }
 
 }

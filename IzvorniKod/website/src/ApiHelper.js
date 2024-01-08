@@ -1,12 +1,12 @@
 import Recipe from "./models/Recipe";
 
 export default class ApiHelper {
-    static apiUrl = "http://localhost:8080"
+    static apiUrl = "http://localhost:3000/api"
 
     //Returns the list of all recipes
     static GetRecipes() {
         try {
-            const url = this.apiUrl + '/recipes/allRecipes'
+            const url = this.apiUrl + '/recipe/allRecipes'
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
@@ -17,6 +17,49 @@ export default class ApiHelper {
                     recipes.push(recipe)
                 }
                 return recipes
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //Logs the user into the account
+    static Login(username, password) {
+        try {
+            const url = this.apiUrl + '/profile/login'
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //Creates a new account with the specified information
+    static Register(username, password, email){
+        let body = JSON.stringify({
+            username: username,
+            password: password,
+            email: email
+        })
+        console.log(body)
+        try {
+            const url = this.apiUrl + '/profile/register'
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: body
             })
         } catch (e) {
             console.log(e)
