@@ -1,0 +1,80 @@
+body {
+  background-image: url('https://https://mekhalaliving.com/wp-content/uploads/2023/02/Website-Banner-Indian-Range-Teaser-1920-x-1080.png.blog.br/wp-content/uploads/2018/02/naom_59f84da440e3a.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  margin: 0;
+  text-align: center;
+  color:#333333
+}
+
+h1, h2, h3 {
+  font-size: 36px; 
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px; 
+  margin-bottom: 40px;
+}
+
+.gallery_container {
+  width: 100%;
+}
+
+.welcome-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.explore-link {
+  display: inline-block;
+  margin-top: 20px;
+  margin-right: 10px; 
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.table-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+  border: 2px solid #aaa7cc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+li {
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 15px;
+  list-style-type: none;
+  padding-left: 20px; 
+  background: url('https://static.thenounproject.com/png/4712541-200.png') no-repeat left center; 
+  background-size: auto 25px; 
+  display: flex;
+  align-items: center;
+}
+
+ li::before {
+  content: '';
+  width: 10px; 
+  height: 10px; 
+}
+
+.column:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
