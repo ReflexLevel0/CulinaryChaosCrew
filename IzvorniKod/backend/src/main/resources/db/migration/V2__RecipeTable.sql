@@ -1,6 +1,5 @@
 CREATE TABLE recipe
 (
-    likes INT DEFAULT 0,
     ingredients VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
     instructions VARCHAR NOT NULL,
