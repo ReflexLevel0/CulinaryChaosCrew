@@ -1,8 +1,10 @@
 package com.PROGI.backend.dao;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.PROGI.backend.mappers.ProfileMapper;
 import com.PROGI.backend.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -48,42 +50,21 @@ public class ProfileDataAccessService implements ProfileDao {
             String name = resultSet.getString("name");
             String surname = resultSet.getString("surname");
             int age = Integer.parseInt(resultSet.getString("age"));
-            return new Profile(id, password, username, email, name, surname, age);
+            return new Profile(id, username, password, email, name, surname, age);
         });
     }
 
     @Override
     public Optional<Profile> selectProfileById(UUID id) {
         String sql = "SELECT * FROM profile WHERE userID = ?";
-        Profile profile = jdbcTemplate.queryForObject
-                (sql, new Object[]{id}, (resultSet, i) -> {
-            UUID uid = UUID.fromString(resultSet.getString("userID"));
-            String username = resultSet.getString("username");
-            String password = resultSet.getString("password");
-            String email = resultSet.getString("email");
-            String name = resultSet.getString("name");
-            String surname = resultSet.getString("surname");
-            int age = Integer.parseInt(resultSet.getString("age"));
-            return new Profile(uid, password, username, email, name, surname, age);
-        });
+        Profile profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), id);
         return Optional.ofNullable(profile);
     }
 
     @Override
     public Optional<Profile> selectProfileByUsername(String username) {
         String sql = "SELECT * FROM profile WHERE username = ?";
-        Profile profile = jdbcTemplate.queryForObject(sql,
-                new Object[]{username},
-                (resultSet, i) -> {
-                    UUID id = UUID.fromString(resultSet.getString("userID"));
-                    String password = resultSet.getString("password");
-                    String email = resultSet.getString("email");
-                    String name = resultSet.getString("name");
-                    String surname = resultSet.getString("surname");
-                    int age = resultSet.getInt("age");
-
-                    return new Profile(id, username, password, email, name, surname, age);
-                });
+        Profile profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), username);
         return Optional.ofNullable(profile);
     }
 
@@ -98,10 +79,11 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public int updateProfileById(UUID id, Profile profile) {
         String sql = "UPDATE profile SET username = ?, password = ?, email = ?, name = ?, surname = ?, age = ? WHERE userID = ?";
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, profile.getPassword().toCharArray());
         return jdbcTemplate.update(
                 sql,
                 profile.getUsername(),
-                profile.getPassword(),
+                bcryptHashString,
                 profile.getEmail(),
                 profile.getName(),
                 profile.getSurname(),
@@ -116,20 +98,14 @@ public class ProfileDataAccessService implements ProfileDao {
     }
 
     @Override
-    public Optional<Profile> selectProfileByCredentials(String username, String password) {
+    public Optional<Profile> selectProfileByCredentials(String username, String hashedPassword) {
         String sql = "SELECT * FROM profile WHERE username = ? AND password = ?";
-        String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
-        Profile profile = jdbcTemplate.queryForObject(sql,
-         new Object[]{username, bcryptHashString},
-                (resultSet, i) -> {
-                    UUID id = UUID.fromString(resultSet.getString("userID"));
-                    String email = resultSet.getString("email");
-                    String name = resultSet.getString("name");
-                    String surname = resultSet.getString("surname");
-                    int age = resultSet.getInt("age");
-
-                    return new Profile(id, username, bcryptHashString, email, name, surname, age);
-                });
+        Profile profile;
+        try {
+            profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), username, hashedPassword);
+        } catch (Exception ex) {
+            profile = null;
+        }
         return Optional.ofNullable(profile);
     }
 }

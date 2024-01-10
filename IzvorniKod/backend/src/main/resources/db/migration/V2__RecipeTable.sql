@@ -12,5 +12,5 @@ CREATE TABLE recipe
     preparationTime INT NOT NULL,
     userID VARCHAR NOT NULL,
     PRIMARY KEY (recipeID),
-    FOREIGN KEY (userID) REFERENCES profile(userID)
+    FOREIGN KEY (userID) REFERENCES profile(userID) ON DELETE CASCADE ON UPDATE CASCADE
 );
