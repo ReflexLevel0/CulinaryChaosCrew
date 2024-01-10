@@ -12,8 +12,18 @@ public class Like {
     @NonNull
     private final UUID recipeId;
 
-    public Like(@JsonProperty("userId") UUID userId, @JsonProperty("recipeId") UUID recipeId){
+    public Like(@JsonProperty("uid") UUID userId, @JsonProperty("rid") UUID recipeId){
         this.userId = userId;
         this.recipeId = recipeId;
+    }
+
+    @NonNull
+    public UUID getUserId() {
+        return userId;
+    }
+
+    @NonNull
+    public UUID getRecipeId() {
+        return recipeId;
     }
 }

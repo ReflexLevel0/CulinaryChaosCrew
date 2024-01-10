@@ -2,5 +2,7 @@ CREATE TABLE likes
 (
     userid VARCHAR NOT NULL,
     recipeId VARCHAR NOT NULL,
-    PRIMARY KEY(userId, recipeId)
+    PRIMARY KEY(userId, recipeId),
+    FOREIGN KEY (userid) REFERENCES profile(userid) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (recipeId) REFERENCES recipe(recipeId) ON DELETE CASCADE ON UPDATE CASCADE
 );

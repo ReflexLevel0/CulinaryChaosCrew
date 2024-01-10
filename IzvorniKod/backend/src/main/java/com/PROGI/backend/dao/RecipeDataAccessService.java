@@ -1,5 +1,6 @@
 package com.PROGI.backend.dao;
 
+import com.PROGI.backend.mappers.RecipeMapper;
 import com.PROGI.backend.model.Profile;
 import com.PROGI.backend.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,51 +52,17 @@ public class RecipeDataAccessService implements RecipeDao {
     @Override
     public List<Recipe> selectAllRecipes() {
         String sql = "SELECT * FROM recipe";
-        return selectRecipes(sql);
+        return jdbcTemplate.query(sql, new RecipeMapper());
     }
 
     @Override
     public Optional<Recipe> selectRecipeById(UUID id) {
         String sql = "SELECT * FROM recipe WHERE recipeID = ?";
-        List<Recipe> recipes = selectRecipes(sql);
+        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper());
         for (Recipe r : recipes) {
             return Optional.of(r);
         }
         return Optional.of(null);
-    }
-
-    private List<Recipe> selectRecipes(String sql) {
-        List<Recipe> recipes = jdbcTemplate.query
-                (sql, (resultSet, i) -> {
-                    UUID rid = UUID.fromString(resultSet.getString("recipeID"));
-                    UUID uid = UUID.fromString(resultSet.getString("userID"));
-                    String name = resultSet.getString("name");
-                    String category = resultSet.getString("category");
-                    String ingredients = resultSet.getString("ingredients");
-                    String instructions = resultSet.getString("instructions");
-                    String origin = resultSet.getString("origin");
-                    String tags = resultSet.getString("specialTag");
-
-                    String imageUrlString = resultSet.getString("imageUrl");
-                    URL imageURL = null;
-                    try {
-                        imageURL = imageUrlString == null ? null : new URI(imageUrlString).toURL();
-                    } catch (MalformedURLException | URISyntaxException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    String videoUrlString = resultSet.getString("videoUrl");
-                    URL videoURL = null;
-                    try {
-                        videoURL = videoUrlString == null ? null : new URI(videoUrlString).toURL();
-                    } catch (MalformedURLException | URISyntaxException e) {
-                        throw new RuntimeException(e);
-                    }
-
-                    int preparationTime = Integer.parseInt(resultSet.getString("preparationTime"));
-                    return new Recipe(rid, uid, name, category, ingredients, instructions, origin, tags, imageURL, videoURL, preparationTime);
-                });
-        return recipes;
     }
 
     @Override

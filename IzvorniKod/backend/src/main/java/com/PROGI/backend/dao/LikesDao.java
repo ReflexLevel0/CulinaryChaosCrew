@@ -1,5 +1,6 @@
 package com.PROGI.backend.dao;
 
+import com.PROGI.backend.model.Like;
 import com.PROGI.backend.model.Recipe;
 import org.springframework.stereotype.Component;
 
@@ -8,7 +9,7 @@ import java.util.UUID;
 
 @Component
 public interface LikesDao {
-    void addLike(UUID userId, UUID recipeId);
-    void deleteLike(UUID userId, UUID recipeId);
-    List<Recipe> getLikedRecipes(UUID id);
+    void addLike(Like like);
+    void deleteLike(UUID uid, UUID rid);
+    List<Recipe> getLikedRecipes(UUID uid);
 }
