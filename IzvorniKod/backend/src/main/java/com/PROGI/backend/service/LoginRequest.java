@@ -1,6 +1,6 @@
 package com.PROGI.backend.service;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.PROGI.backend.HashHelper;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.lang.NonNull;
 
@@ -13,7 +13,7 @@ public class LoginRequest {
     public LoginRequest(@JsonProperty("username") String username,
                         @JsonProperty("password") String password) {
         this.username = username;
-        this.password = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+        this.password = HashHelper.HashString(password).get();
     }
 
     @NonNull

@@ -1,14 +1,12 @@
 package com.PROGI.backend.dao;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
+import com.PROGI.backend.HashHelper;
 import com.PROGI.backend.mappers.ProfileMapper;
 import com.PROGI.backend.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.security.CryptoPrimitive;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,12 +25,12 @@ public class ProfileDataAccessService implements ProfileDao {
     public int insertProfile(UUID id, Profile profile) {
         String sql = "INSERT INTO profile (userid, username, email, password, name, surname, age)" +
                 "VALUES (?, ?, ?, ?, ?, ? ,?)";
-        String bcryptHashString = BCrypt.withDefaults().hashToString(12, profile.getPassword().toCharArray());
+        String hashString = HashHelper.HashString(profile.getPassword()).get();
         jdbcTemplate.update(sql,
                 id,
                 profile.getUsername(),
                 profile.getEmail(),
-                bcryptHashString,
+                hashString,
                 profile.getName(),
                 profile.getSurname(),
                 profile.getAge());
@@ -79,11 +77,11 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public int updateProfileById(UUID id, Profile profile) {
         String sql = "UPDATE profile SET username = ?, password = ?, email = ?, name = ?, surname = ?, age = ? WHERE userID = ?";
-        String bcryptHashString = BCrypt.withDefaults().hashToString(12, profile.getPassword().toCharArray());
+        String hashString = HashHelper.HashString(profile.getPassword()).get();
         return jdbcTemplate.update(
                 sql,
                 profile.getUsername(),
-                bcryptHashString,
+                hashString,
                 profile.getEmail(),
                 profile.getName(),
                 profile.getSurname(),
