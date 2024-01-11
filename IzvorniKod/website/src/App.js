@@ -8,7 +8,8 @@ import SingleRecipe from './pages/SingleRecipe';
 import SavedRecipesPage from './pages/SavedRecipesPage';
 import Home from './pages/Home';
 import ErrorPage from './pages/Errorpage';
-
+import ProfilePage from './pages/ProfilePage';
+import CreateRecipePage from './pages/CreateRecipePage';
 
 function App() {
     const [username, setUsername] = useState("");
@@ -38,6 +39,8 @@ function App() {
                 <Route path="/singleRecipe" element={<SingleRecipe />} />
                 <Route path="/saved" element={<SavedRecipesPage/>} />
                 <Route path="/recipe/:recipeName" element={<SingleRecipe />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/create" element={<CreateRecipePage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </>

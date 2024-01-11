@@ -26,3 +26,9 @@
 #logo_img {
     width: 100px;
 }
+
+.centerContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

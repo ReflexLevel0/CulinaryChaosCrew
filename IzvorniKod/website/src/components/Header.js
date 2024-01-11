@@ -1,4 +1,5 @@
 import '../styles/Header.css'
+import Search from './Search';
 
 function Header({username, loggedIn, signedOut}) {
     console.log(username)
@@ -8,6 +9,9 @@ function Header({username, loggedIn, signedOut}) {
             <button className="btn" onClick={() => window.location.href = '/'}>
                 <img src="../../images/CookBooked_logo.png" alt="Logo" id="logo_img"/>
             </button>
+            <div className="centerContent">
+             <Search />
+            </div>
             <div className="rightButtonWrapper">
                 {loggedIn ?
                     (<>
