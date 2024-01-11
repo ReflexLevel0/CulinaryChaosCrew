@@ -1,8 +1,8 @@
 app:
   datasource:
-    jdbcUrl: jdbc:postgresql://localhost:5432/demodb
-    username: postgres
-    password: password
+    jdbcUrl: jdbc:postgresql://dpg-cme3iila73kc7390pte0-a.oregon-postgres.render.com/demodb_93go
+    username: postgre
+    password: I7J0U3PrbY0jr9nQWoWCiLsK1c7JtSqA
     driver-class-name: org.postgresql.Driver
     sslmode: require
 
