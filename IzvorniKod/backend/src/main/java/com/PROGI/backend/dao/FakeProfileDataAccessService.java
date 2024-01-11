@@ -80,9 +80,9 @@ public class FakeProfileDataAccessService implements ProfileDao {
     }
 
     @Override
-    public Optional<Profile> selectProfileByCredentials(String username, String password) {
+    public Optional<Profile> selectProfileByCredentials(String username, String hashedPassword) {
         return DB.stream()
-                .filter(profile -> profile.getUsername().equals(username) && profile.getPassword().equals(password))
+                .filter(profile -> profile.getUsername().equals(username) && profile.getPassword().equals(hashedPassword))
                 .findFirst();
     }
 }

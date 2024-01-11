@@ -29,5 +29,5 @@ public interface ProfileDao {
 
     void deleteAllProfiles();
 
-    Optional<Profile> selectProfileByCredentials(String username, String password);
+    Optional<Profile> selectProfileByCredentials(String username, String hashedPassword);
 }

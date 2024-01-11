@@ -23,7 +23,7 @@ public class ProfileController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "register")
-    public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalAccessException {
+    public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalArgumentException {
         if (!profileService.goodEmailFormat(profile.getEmail())) {
             throw new IllegalArgumentException("Email is in the wrong format");
         }

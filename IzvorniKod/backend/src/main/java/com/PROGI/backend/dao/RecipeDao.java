@@ -19,7 +19,6 @@ public interface RecipeDao {
 
     List<Recipe> selectAllRecipes();
 
-
     Optional<Recipe> selectRecipeById(UUID id);
     int deleteRecipeById(UUID id);
 
