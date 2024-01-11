@@ -37,6 +37,7 @@ function App() {
                 <Route path="/recipes" element={<Recipes />} />
                 <Route path="/singleRecipe" element={<SingleRecipe />} />
                 <Route path="/saved" element={<SavedRecipesPage/>} />
+                <Route path="/recipe/:recipeName" element={<SingleRecipe />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </>
