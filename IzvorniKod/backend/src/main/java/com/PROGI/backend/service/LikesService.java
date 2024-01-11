@@ -27,7 +27,11 @@ public class LikesService {
         likesDao.deleteLike(uid, rid);
     }
 
-    public List<Recipe> getLikedRecipes(UUID uid) {
+    public List<Recipe> getLikedRecipesForUser(UUID uid) {
         return likesDao.getLikedRecipes(uid);
+    }
+
+    public List<Like> getAllLikes(){
+        return likesDao.getAllLikes();
     }
 }

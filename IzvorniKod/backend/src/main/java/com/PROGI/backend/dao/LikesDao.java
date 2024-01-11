@@ -12,4 +12,5 @@ public interface LikesDao {
     void addLike(Like like);
     void deleteLike(UUID uid, UUID rid);
     List<Recipe> getLikedRecipes(UUID uid);
+    List<Like> getAllLikes();
 }

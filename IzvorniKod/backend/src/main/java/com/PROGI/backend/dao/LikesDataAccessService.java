@@ -1,5 +1,6 @@
 package com.PROGI.backend.dao;
 
+import com.PROGI.backend.mappers.LikeMapper;
 import com.PROGI.backend.mappers.RecipeMapper;
 import com.PROGI.backend.model.Like;
 import com.PROGI.backend.model.Recipe;
@@ -30,16 +31,22 @@ public class LikesDataAccessService implements LikesDao {
     }
 
     @Override
+    public List<Like> getAllLikes() {
+        String sql = "SELECT * FROM likes";
+        return jdbcTemplate.query(sql, new LikeMapper());
+    }
+
+    @Override
+    public List<Recipe> getLikedRecipes(UUID uid) {
+        String sql = "SELECT * FROM likes l JOIN recipe r ON l.recipeId = r.recipeId WHERE l.userid = ?";
+        return jdbcTemplate.query(sql, new RecipeMapper(), uid.toString());
+    }
+
+    @Override
     public void deleteLike(UUID uid, UUID rid) {
         String uidString = uid.toString();
         String ridString = rid.toString();
         String sql = "DELETE FROM likes WHERE userId = ? AND recipeId = ?";
         jdbcTemplate.update(sql, uidString, ridString);
-    }
-
-    @Override
-    public List<Recipe> getLikedRecipes(UUID uid) {
-        String sql = "SELECT * FROM likes l JOIN recipe r ON l.recipeId = r.recipeId";
-        return jdbcTemplate.query(sql, new RecipeMapper());
     }
 }

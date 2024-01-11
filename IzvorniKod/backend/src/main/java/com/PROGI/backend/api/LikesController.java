@@ -3,7 +3,6 @@ package com.PROGI.backend.api;
 import com.PROGI.backend.model.Like;
 import com.PROGI.backend.model.Recipe;
 import com.PROGI.backend.service.LikesService;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +33,14 @@ public class LikesController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "getForUser/{uid}")
-    public List<Recipe> getLikedRecipes(@PathVariable("uid") UUID uid) {
-        return likesService.getLikedRecipes(uid);
+    @GetMapping(path = "{uid}")
+    public List<Recipe> getLikedRecipesForUser(@PathVariable("uid") UUID uid) {
+        return likesService.getLikedRecipesForUser(uid);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "")
+    public List<Like> getLikedRecipes() {
+        return likesService.getAllLikes();
     }
 }
