@@ -19,17 +19,16 @@ const Search = ({ allRecipes }) => {
 
   return (
     <div className="searchContainer">
-        <div>
-      <input
+      <div className='upper'>
+        <input
         type="text"
         className="searchInput"
-        placeholder="Search for recipes..."
+        placeholder="Search for recipes or profiles..."
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <button className="searchButton" onClick={handleSearch}>
-        Search
-      </button>
+        onChange={(e) => setSearchTerm(e.target.value)}/>
+        <button className="searchButton" onClick={handleSearch}>
+          Search
+        </button>
       </div>
       <div className="filterButtons">
         <button
