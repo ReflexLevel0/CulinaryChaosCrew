@@ -15,7 +15,7 @@ public class LikesService {
     private final LikesDao likesDao;
 
     @Autowired
-    public LikesService(@Qualifier("likesDao") LikesDao likesDao) {
+    public LikesService(@Qualifier("postgresLike") LikesDao likesDao) {
         this.likesDao = likesDao;
     }
 

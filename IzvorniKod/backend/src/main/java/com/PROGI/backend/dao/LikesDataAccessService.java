@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.UUID;
 
-@Repository("likesDao")
+@Repository("postgresLike")
 public class LikesDataAccessService implements LikesDao {
     private final JdbcTemplate jdbcTemplate;
 

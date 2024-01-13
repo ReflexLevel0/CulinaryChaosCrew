@@ -58,7 +58,7 @@ public class RecipeDataAccessService implements RecipeDao {
     @Override
     public Optional<Recipe> selectRecipeById(UUID id) {
         String sql = "SELECT * FROM recipe WHERE recipeID = ?";
-        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper());
+        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), id.toString());
         for (Recipe r : recipes) {
             return Optional.of(r);
         }
