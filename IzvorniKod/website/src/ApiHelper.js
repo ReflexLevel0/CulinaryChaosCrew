@@ -65,4 +65,32 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
+    //search
+    static async searchRecipes(searchTerm, filterType) {
+        try {
+          const response = await fetch('endpoint', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              term: searchTerm,
+              type: filterType,
+            }),
+          });
+    
+          if (response.ok) {
+            const searchResults = await response.json();
+            return searchResults;
+          } else {
+            console.error('Search request failed:', response.statusText);
+            throw new Error('Search request failed');
+          }
+        } catch (error) {
+          console.error('Error during search request:', error);
+          throw error;
+        }
+      }
+
 }

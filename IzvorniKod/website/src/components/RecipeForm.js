@@ -11,7 +11,7 @@ const RecipeForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    alert(`Recipe ${name} created`);
     const recipeData = {
       name,
       category,

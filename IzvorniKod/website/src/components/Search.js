@@ -1,31 +1,34 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Search.css';
+import ApiHelper from '../ApiHelper';
 
 const Search = ({ allRecipes }) => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('recipes');
 
-  const handleSearch = () => {
-    const matchingRecipes = allRecipes.filter(recipe =>
-      recipe.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    navigate(`/search?term=${searchTerm}&type=${filterType}`, {
-      state: { searchResults: matchingRecipes },
-    });
+  const handleSearch = async () => {
+    try {
+      const searchResults = await ApiHelper.searchRecipes(searchTerm, filterType);
+      navigate(`/search?term=${searchTerm}&type=${filterType}`, {
+        state: { searchResults },
+      });
+    } catch (error) {
+      console.error('Error during search:', error);
+    }
   };
 
   return (
     <div className="searchContainer">
       <div className='upper'>
         <input
-        type="text"
-        className="searchInput"
-        placeholder="Search for recipes or profiles..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}/>
+          type="text"
+          className="searchInput"
+          placeholder="Search for recipes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <button className="searchButton" onClick={handleSearch}>
           Search
         </button>

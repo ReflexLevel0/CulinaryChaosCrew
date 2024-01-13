@@ -35,3 +35,20 @@
     margin: 20px 0;
   }
   
+  .profileLinkButton {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .profileIcon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  .usernameText {
+    font-size: 18px;
+    font-weight: bold;
+  }

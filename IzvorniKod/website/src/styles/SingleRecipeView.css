@@ -1,16 +1,42 @@
 .recipe-details-page {
     text-align: left;
     padding: 20px;
-}
-
-h1{
+  }
+  
+  h1 {
     text-align: center;
     font-size: 40px;
     margin-bottom: 20px;
-    color: #333; 
+    color: #333;
     text-transform: capitalize;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    letter-spacing: 1px; 
-}
-
-
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .like-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .like-button button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  
+  .like-button button.liked {
+    background-color: #28a745; 
+  }
+  
+  .like-button p {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+  }
+  
