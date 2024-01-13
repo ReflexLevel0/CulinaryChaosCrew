@@ -1,8 +1,11 @@
 package com.PROGI.backend.dao;
 
+import com.PROGI.backend.mappers.RecipeLikeWrapperMapper;
 import com.PROGI.backend.mappers.RecipeMapper;
 import com.PROGI.backend.model.Profile;
 import com.PROGI.backend.model.Recipe;
+import com.PROGI.backend.model.RecipeLikeWrapper;
+import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -56,13 +59,19 @@ public class RecipeDataAccessService implements RecipeDao {
     }
 
     @Override
-    public Optional<Recipe> selectRecipeById(UUID id) {
+    public List<RecipeLikeWrapper> selectAllWrappedRecipes(UUID userId) {
+        String sql = "SELECT *, (SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid = ?) > 0 as liked FROM recipe;";
+        return jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), userId.toString());
+    }
+
+    @Override
+    public Optional<Recipe> selectRecipeById(UUID recipeId) {
         String sql = "SELECT * FROM recipe WHERE recipeID = ?";
-        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), id.toString());
+        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), recipeId.toString());
         for (Recipe r : recipes) {
             return Optional.of(r);
         }
-        return Optional.of(null);
+        return Optional.ofNullable(null);
     }
 
     @Override

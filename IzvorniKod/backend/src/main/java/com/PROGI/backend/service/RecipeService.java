@@ -2,6 +2,7 @@ package com.PROGI.backend.service;
 
 import com.PROGI.backend.dao.RecipeDao;
 import com.PROGI.backend.model.Recipe;
+import com.PROGI.backend.model.RecipeLikeWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,10 @@ public class RecipeService {
 
     public List<Recipe> getAllRecipes() {
         return recipeDao.selectAllRecipes();
+    }
+
+    public List<RecipeLikeWrapper> getAllRecipes(UUID loggedInUserId){
+        return recipeDao.selectAllWrappedRecipes(loggedInUserId);
     }
 
     public Optional<Recipe> getRecipeById(UUID id) {
