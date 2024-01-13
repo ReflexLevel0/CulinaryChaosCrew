@@ -1,9 +1,13 @@
 package com.PROGI.backend.api;
 
+import com.PROGI.backend.exceptions.ProfileNotFound;
+import com.PROGI.backend.exceptions.RecipeNotFound;
 import com.PROGI.backend.model.Like;
 import com.PROGI.backend.model.Recipe;
 import com.PROGI.backend.service.LikesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,19 +26,25 @@ public class LikesController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "")
-    public void addLike(@RequestBody @NonNull Like like) {
-        likesService.addLike(like);
+    public ResponseEntity<?> addLike(@RequestBody @NonNull Like like) {
+        try{
+            likesService.addLike(like);
+        }catch(Exception ex){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "")
-    public void deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid) {
+    public void deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid) throws RecipeNotFound, ProfileNotFound {
         likesService.deleteLike(uid, rid);
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "{uid}")
-    public List<Recipe> getLikedRecipesForUser(@PathVariable("uid") UUID uid) {
+    public List<Recipe> getLikedRecipesForUser(@PathVariable("uid") UUID uid) throws ProfileNotFound {
         return likesService.getLikedRecipesForUser(uid);
     }
 

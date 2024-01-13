@@ -55,7 +55,7 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public Optional<Profile> selectProfileById(UUID id) {
         String sql = "SELECT * FROM profile WHERE userID = ?";
-        Profile profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), id);
+        Profile profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), id.toString());
         return Optional.ofNullable(profile);
     }
 
