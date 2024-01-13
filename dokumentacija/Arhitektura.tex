@@ -115,14 +115,14 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 		
 		\section{Dijagram stanja}
 
-		\noindent Dijagram stanja prikazuje stanja prijavljenog i neprijavljenog korisnika. Korisnik inicijalno nije prijavljen. Neprijavljeni korisnik iz home pagea ima opciju stisnuti gumb za pretraživanje novih recepata ili pregledavati recepte (ako ih ima) temeljem kategorija (npr. predjela, deserti), vrsta kuhinje (talijanska, kineska) ili specifičnih sastojaka uz pomoć tražilice. Za pristup svim ostalim mogućnostima platforme, korisnik se mora registrirati ili prijaviti. Prijavljeni korisnik može sve što i neprijavljeni korisnik, a može koristiti i još neke stvari. Može stisnuti za gumb za dodavanje vlastitog recepta ili na gumb za pregled svih recepata koje je spremio. Također je moguće i pregledati te uređivati vlastiti profil na stranici profila. Još jedna pogodnost koju prijavljeni korisnici imaju je ta da mogu komunicirati s autorima putem chata ili videopoziva. Naravno, korisnik u bilo kojem trenutku može stisnuti na gumb s logoim stranice kako bi se vratio na Home page. 
+		\noindent Dijagram stanja prikazuje stanja prijavljenog i neprijavljenog korisnika. Korisnik inicijalno nije prijavljen. Neprijavljeni korisnik iz home pagea ima opciju stisnuti gumb za pretraživanje novih recepata ili pregledavati recepte (ako ih ima) temeljem kategorija (npr. predjela, deserti), vrsta kuhinje (talijanska, kineska) ili specifičnih sastojaka uz pomoć tražilice. Neprijavljeni korisnik također može potražiti autora recepta temeljem korisničkog imena putem tražilice. Za pristup svim ostalim mogućnostima platforme, korisnik se mora registrirati ili prijaviti. Prijavljeni korisnik može sve što i neprijavljeni korisnik, a može koristiti i još neke stvari. Može stisnuti za gumb za dodavanje vlastitog recepta ili na gumb za pregled svih recepata koje je spremio. Također je moguće i pregledati te uređivati vlastiti profil na stranici profila. Još jedna pogodnost koju prijavljeni korisnici imaju je ta da mogu komunicirati s autorima putem chata ili videopoziva. Naravno, korisnik u bilo kojem trenutku može stisnuti na gumb s logoim stranice kako bi se vratio na Home page. 
 
 		\eject
 			
 			\begin{figure}[H]
 				\centering
 				\includegraphics[height=0.95\textheight]{slike/dijagrami/Korisnik_dijagram_stanja.png}
-				\caption{Dijagram stanja}
+				\caption{Dijagram stanja za korisnika}
 				\label{fig:enter-label}
 			\end{figure}
 			
@@ -131,13 +131,28 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 		
 		\section{Dijagram aktivnosti}
 			
-			\textbf{\textit{dio 2. revizije}}\\
+		\noindent Dijagram aktivnosti prikazuje aktivnosti pregledavanja nespremljenih recepata i autora. Korisnik može naći nove recepte uz pomoć gumba "Explore new recipes" ili uz pomoć pretraživanja pojmova u tražilici. Kada korisnik odabere jednu od ovih dviju opcija, web aplikacija šalje upit za dohvat tih recepata bazi podataka koja daje odgovor o tome postoje li podaci i ako da, onda ih vraća. Nakon toga aplikacija prikazuje recepte na koje korisnik može kliknuti kako bi ih pohranio ili kako bi ih detaljnije pregledao. Naravno, u oba slučaja aplikacija mora slati upit bazi podataka kako bi dohvatila / pohranila podatke. Osim toga, korisnik u tražilici može pretraživati i autore pa tada baza dohvaća podatke iz tablice profiles. Nakon dohvaćanja autora, aplikacija prikazuje njegovu stranicu koja sadrži njegove podatke i recepte koje korisnik opet može pregledati i pohraniti.   
+
+		\eject
 			
-			 \textit{Potrebno je priložiti dijagram aktivnosti s pripadajućim opisom. Dijagram aktivnosti treba prikazivati značajan dio sustava.}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/dijagrami/Pregledavanje nespremljenih recepata i autora_dijagram_aktivnosti.png}
+				\caption{Dijagram aktivnosti za pregledavanje nespremljenih recepata i autora}
+				\label{fig:enter-label}
+			\end{figure}
 			
 			\eject
+
 		\section{Dijagram komponenti}
 		
-			\textbf{\textit{dio 2. revizije}}\\
-		
-			 \textit{Potrebno je priložiti dijagram komponenti s pripadajućim opisom. Dijagram komponenti treba prikazivati strukturu cijele aplikacije.}
+		\noindent Dijagram komponenti
+
+		\eject
+			
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/dijagrami/Pregledavanje nespremljenih recepata i autora_dijagram_aktivnosti.png}
+				\caption{Dijagram komponenti}
+				\label{fig:enter-label}
+			\end{figure}
