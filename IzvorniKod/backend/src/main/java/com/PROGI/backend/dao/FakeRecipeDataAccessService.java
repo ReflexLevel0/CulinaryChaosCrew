@@ -1,6 +1,7 @@
 package com.PROGI.backend.dao;
 
 import com.PROGI.backend.model.Recipe;
+import com.PROGI.backend.model.RecipeLikeWrapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -32,6 +33,11 @@ public class FakeRecipeDataAccessService implements RecipeDao{
     @Override
     public List<Recipe> selectAllRecipes() {
         return DB;
+    }
+
+    @Override
+    public List<RecipeLikeWrapper> selectAllWrappedRecipes(UUID userId) {
+        return null;
     }
 
     @Override
