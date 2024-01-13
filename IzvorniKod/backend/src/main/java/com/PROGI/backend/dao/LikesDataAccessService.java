@@ -37,6 +37,12 @@ public class LikesDataAccessService implements LikesDao {
     }
 
     @Override
+    public int likesCount(UUID rid) {
+        String sql = "SELECT * FROM likes where recipeId = ?";
+        return jdbcTemplate.query(sql,new LikeMapper(), rid.toString()).toArray().length;
+    }
+
+    @Override
     public List<Recipe> getLikedRecipes(UUID uid) {
         String sql = "SELECT * FROM likes l JOIN recipe r ON l.recipeId = r.recipeId WHERE l.userid = ?";
         return jdbcTemplate.query(sql, new RecipeMapper(), uid.toString());
@@ -49,4 +55,6 @@ public class LikesDataAccessService implements LikesDao {
         String sql = "DELETE FROM likes WHERE userId = ? AND recipeId = ?";
         jdbcTemplate.update(sql, uidString, ridString);
     }
+
+
 }

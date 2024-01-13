@@ -34,4 +34,6 @@ public class LikesService {
     public List<Like> getAllLikes(){
         return likesDao.getAllLikes();
     }
+
+    public int likesCount(UUID rid){ return likesDao.likesCount(rid); }
 }
