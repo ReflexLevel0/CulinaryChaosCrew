@@ -59,17 +59,17 @@ public class ProfileController {
         return profileService.getAllProfiles();
     }
 
-    @GetMapping(path = "get/{uid}")
+    @GetMapping(path = "{uid}")
     public Profile getProfileById(@PathVariable("uid") UUID id) {
         return profileService.getProfileById(id).orElse(null);
     }
 
-    @DeleteMapping(path = "delete/{uid}")
+    @DeleteMapping(path = "{uid}")
     public void deleteProfileById(@PathVariable("uid") UUID id){
         profileService.deleteProfile(id);
     }
 
-    @PutMapping(path = "update/{uid}")
+    @PutMapping(path = "{uid}")
     public void updateProfileById(@PathVariable("uid") UUID id, @NonNull @RequestBody Profile profile) {
         profileService.updateProfile(id, profile);
     }

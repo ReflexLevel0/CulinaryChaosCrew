@@ -23,7 +23,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping(path = "add")
+    @PostMapping(path = "")
     public void addRecipe(@NonNull @RequestBody Recipe recipe) {
         recipeService.addRecipe(recipe);
     }
