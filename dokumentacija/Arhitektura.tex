@@ -1,12 +1,28 @@
 \chapter{Arhitektura i dizajn sustava}
 
-\noindent Arhitekturu sustava dijelimo na tri različita dijela: \textbf{frontend}, \textbf{backend} i \textbf{bazu podataka}. Jedino koordinirana implementacija ovih podsustava zajedno dovodi do finalnog proizvoda u obliku web platforme koju ostvarujemo. 
+\noindent Arhitekturu sustava dijelimo na tri različita dijela: \textbf{frontend}, \textbf{backend} i \textbf{bazu podataka}. Jedino koordinirana implementacija ovih podsustava zajedno dovodi do kvalitetnog finalnog proizvoda u obliku web platforme koju ostvarujemo. 
 \newline \newline
-\noindent \textbf{\textit{Frontend}} predstavlja sučelje između korisnika i same platforme. Konkretno, on pruža korisniku pregled sadržaja web stranice i omogućava mu komunikaciju s aplikacijom putem \textit{HTTP} (\textit{HyperText Transfer Protocol}) zahtjeva.
-\newline\newline\noindent \textbf{\textit{Backend}} je taj koji te zahtjeve obrađuje i upravlja podatcima u bazi podataka. Neke od funkcionalnosti koje omogućuje backend su primjerice registracija novog korisnika ili brisanje korisnika od strane sistemskog administratora. 
-\newline\newline\noindent \textbf{\textit{Baza podataka}} spremište je entiteta koji su prikazani u obliku tablica s atributima. Iz nje se često čitaju podatci i po potrebi ažuriraju. Kritičan je dio arhitekture sustava. 
- \textbf{\newline\newline\noindent Controller - Service - Repository} troslojna arhitektura temelj je backend implementacije aplikacije. \textit{Controller} sloj povezuje frontend i backend, pozivajući \textit{Service} sloj da obradi zahtjeve korisnika. Ako je za obradu tih zahtjeva potreban pristup bazi podataka, Service sloj poziva funkcije \textit{Repository} sloja koji to omogućuje. 
- \newline\newline\noindent Frontend je implementiran uz pomoć \textit{JavaScripta} (radnog okvira \textit{React.js}), \textit{HTML-a} i \textit{CSS-}a. Za backend je korišten programski jezik \textit{Java} (radni okvir \textit{Spring Boot}), a odabrana je razvojna okolina \textit{Intellij IDEA}. Ispitivanje backend funkcionalnosti omogućeno je korištenjem \textit{Postman} platforme. Baza podataka izgrađena je korištenjem \textit{PostgreSQL} sustava za upravljanje bazom podataka. Aplikacija je stavljena u pogon na \textit{Render} servisu. 
+\noindent \textbf{\textit{Frontend}} predstavlja sučelje između korisnika i same platforme. Konkretno, on pruža korisniku pregled sadržaja web stranice i omogućava mu komunikaciju s aplikacijom putem \textit{HTTP} (\textit{HyperText Transfer Protocol}) zahtjeva. Frontend je implementiran uz pomoć \textit{JavaScripta} (radnog okvira \textit{React.js}), \textit{HTML-a} i \textit{CSS-}a.
+\newline\newline\noindent \textbf{\textit{Backend}} je taj koji te \textit{HTTP} zahtjeve obrađuje i upravlja podatcima u bazi podataka. Neke od funkcionalnosti koje omogućuje backend su primjerice registracija novog korisnika ili brisanje korisnika od strane sistemskog administratora. \textbf{Controller - Service - Repository} troslojna arhitektura temelj je backend implementacije aplikacije. \textit{Controller} sloj povezuje frontend i backend, pozivajući \textit{Service} sloj da obradi zahtjeve korisnika. Ako je za obradu tih zahtjeva potreban pristup bazi podataka, \textit{Service} sloj poziva funkcije \textit{Repository} sloja koji to omogućuje. Za ostvaranje backenda korišten je programski jezik \textit{Java} (radni okvir \textit{Spring Boot}), a odabrana je razvojna okolina \textit{Intellij IDEA}. Ispitivanje backend funkcionalnosti omogućeno je korištenjem \textit{Postman} platforme.
+\newline\newline\noindent \textbf{\textit{Baza podataka}} spremište je entiteta koji su prikazani u obliku tablica s atributima. Iz nje se često čitaju, u nju dodaju i po potrebi u njoj ažuriraju podatci. Kritičan je dio arhitekture sustava. Baza podataka izgrađena je korištenjem \textit{PostgreSQL} sustava za upravljanje bazom podataka.
+
+			\begin{figure}[H]
+			    \centering
+			    \includegraphics[width=1\linewidth]{slike/skica_arhitekture.png}
+			    \caption{Skica arhitekture sustava}
+			    \label{fig:enter-label}
+			\end{figure}
+   
+\bigskip
+   
+   			\begin{figure}[H]
+			    \centering
+			    \includegraphics[width=1\linewidth]{slike/csr_arh.png}
+			    \caption{Skica \textbf{Controller - Service - Repository} troslojne arhitekture backenda}
+			    \label{fig:enter-label}
+			\end{figure}
+
+   \eject
 
 		\section{Baza podataka}
 			
