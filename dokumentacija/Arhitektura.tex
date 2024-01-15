@@ -162,11 +162,11 @@ Ovaj entitet opisuje recept postavljen na platformu od strane registriranog kori
 
 		\section{Dijagram komponenti}
 		
-		\noindent Dijagram komponenti
+		\noindent Dijagram komponenti prikazuje organizaciju i odnose komponenti koje čine programsku potporu za našu aplikaciju. Naša aplikacija koristi dva sučelja, jedno za dohvat JS i CSS datoteka, a druga za dohvat JSON datoteka. Preko sučelja za dohvat JS i CSS datoteka poslužuju se datoteke za frontend. Komponenta App.js poslužuje jednu od JS datoteka na sučelje. Te datoteke su logičke cjeline nazvane po svojoj funkciji (npr. home page, login, header). Sve te datoteke ovisne su o biblioteci \textit{react}. Preko sučelja za dohvat JSON datoteka dobivamo pristup REST API komponenti. REST API koristi HTTP zahtjeve kako bi pristupio podacima na backendu. JPA repozitorij dohvaća podatke iz baze podataka koristeći SQL upite. Komponenta React view ovisno o korisnikovim unosima prikazuje stvari s frontenda i dohvaća podatke s backenda.
 			
 			\begin{figure}[H]
 				\centering
-				\includegraphics[width=1\textwidth]{slike/dijagrami/Dijagram komponenti.png}
+				\includegraphics[width=0.95\textwidth]{slike/dijagrami/Dijagram komponenti.png}
 				\caption{Dijagram komponenti}
 				\label{fig:enter-label}
 			\end{figure}
