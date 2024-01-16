@@ -19,35 +19,39 @@ const Search = ({ allRecipes }) => {
     }
   };
 
+  const getPlaceholderText = () => {
+    return filterType === 'recipes' ? 'Search for recipes...' : 'Search for profiles...';
+  };
+
   return (
-    <div className="searchContainer">
-      <div className='upper'>
-        <input
-          type="text"
-          className="searchInput"
-          placeholder="Search for recipes..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="searchButton" onClick={handleSearch}>
-          Search
-        </button>
+      <div className="searchContainer">
+        <div className='upper'>
+          <input
+              type="text"
+              className="searchInput"
+              placeholder={getPlaceholderText()}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button className="searchButton" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
+        <div className="filterButtons">
+          <button
+              className={`filterButton ${filterType === 'recipes' && 'active'}`}
+              onClick={() => setFilterType('recipes')}
+          >
+            Recipes
+          </button>
+          <button
+              className={`filterButton ${filterType === 'profiles' && 'active'}`}
+              onClick={() => setFilterType('profiles')}
+          >
+            Profiles
+          </button>
+        </div>
       </div>
-      <div className="filterButtons">
-        <button
-          className={`filterButton ${filterType === 'recipes' && 'active'}`}
-          onClick={() => setFilterType('recipes')}
-        >
-          Recipes
-        </button>
-        <button
-          className={`filterButton ${filterType === 'profiles' && 'active'}`}
-          onClick={() => setFilterType('profiles')}
-        >
-          Profiles
-        </button>
-      </div>
-    </div>
   );
 };
 
