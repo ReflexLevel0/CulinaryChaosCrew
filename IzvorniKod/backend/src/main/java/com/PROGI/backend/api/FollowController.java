@@ -47,25 +47,25 @@ public class FollowController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "{uid}")
+    @GetMapping(path = "followers/{uid}")
     public List<Profile> getFollowers (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.getFollowers(uid);
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "{uid}")
+    @GetMapping(path = "following/{uid}")
     public List<Profile> getFollowing (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.getFollowing(uid);
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "{uid}")
+    @GetMapping(path = "follower/count/{uid}")
     public int followerCount (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.followerCount(uid);
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "{uid}")
+    @GetMapping(path = "following/count/{uid}")
     public int followingCount (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.followingCount(uid);
     }
