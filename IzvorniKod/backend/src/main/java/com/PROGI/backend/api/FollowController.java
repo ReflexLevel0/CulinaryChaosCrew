@@ -26,6 +26,7 @@ public class FollowController {
     @CrossOrigin(origins = "*")
     @PostMapping(path = "")
     public ResponseEntity<?> follow(@RequestBody @NonNull Follow follow) {
+        if(follow.getUserId() == follow.getFollowerId()) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         try{
             followService.follow(follow);
         } catch (ProfileNotFound e) {
@@ -35,7 +36,7 @@ public class FollowController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "")
+    @DeleteMapping(path = "")
     public ResponseEntity<?> unfollow(@RequestBody @NonNull Follow follow) {
         try{
             followService.unfollow(follow);
