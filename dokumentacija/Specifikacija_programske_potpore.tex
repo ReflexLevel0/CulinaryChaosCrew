@@ -439,9 +439,9 @@
 
 					\noindent \underbar{\textbf{UC13 - razmjena poruka među registriranim korisnicima}}
 					\begin{packed_item}
-						\item \textbf{Glavni sudionik: registrirani korisnik, online-chat platforma}
+						\item \textbf{Glavni sudionik: registrirani korisnici}
 						\item  \textbf{Cilj: razmjena poruka među korisnicima}
-						\item  \textbf{Sudionici: -}
+						\item  \textbf{Sudionici: online-chat platforma}
 						\item  \textbf{Preduvjet: korisnik je prijavljen u sustav i omogućio je platformi pristup za komunikaciju}
 						
 						\item  \textbf{Opis osnovnog tijeka:}
@@ -595,27 +595,47 @@
 				
 			\subsection{Sekvencijski dijagrami}
 				
+			\noindent\textbf{Regitracija, prijava i postavke korisničkog računa}
+			\newline\newline
+			\noindent Korisnik unosi podatke u svrhu registracije, prijave u sustav ili promjene vlastitih podataka profila (za što treba već biti prijavljen u sustav). Ako je uspješno unio podatke, korisnik se vraća na početnu stranicu odjavljen (osim u slučaju da se htio prijaviti). U suprotnome, korisniku se prikazuje jedna od grešaka (korisničko ime zauzeto, lozinka slaba, e-mail adresa nije valjana, korisničko ime ne postoji ili pogrešna lozinka).
+			\newline \newline
+			\noindent Nakon što se korisnik uspješno prijavio u sustav, može odabrati opciju brisanja računa. Prilikom toga sustav mu šalje zahtjev za potvrdom gdje može birati DA ili NE. U slučaju da korisnik izabere opciju DA, vraća se na početnu stranicu odjavljen, a njegov se profil briše iz sustava.
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.9\linewidth]{"slike/dijagrami/Seq 1-4"}
 					\caption{Sekvencijski dijagram za UC1-4}
 					\label{fig:seq-1-4}
 				\end{figure}
-				
+			\newpage
+			\noindent\textbf{Unos recepta i promjena podataka recepta}
+			\newline\newline
+			\noindent Registrirani korisnik može unijeti novi recept ili urediti podatke svog već objavljenog recepta. Prilikom spremanja novih podataka sustav može odgovoriti porukama greške (nema naslova, nema liste sastojaka, nema koraka pripreme, nema vremena pripreme) ukoliko neki od uvijeta nije ispunjen. U suprotnom, recept s novim podacima se sprema u sustav i prikazuje korisniku.
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=0.9\linewidth]{"slike/dijagrami/Seq 6-7"}
 					\caption{Sekvencijski dijagram za UC6-7}
 					\label{fig:seq-6-7}
 				\end{figure}
-				
+			\newpage
+			\noindent\textbf{Opcije prilikom pregleda recepata}
+			\newline\newline
+			\noindent Korisnik, kada je prijavljen u sustav i pregledava listu recepata, može zapratiti nekog od korisnika čiji recept mu je na listi prikazan, može pregledati obavijesti o aktivnostima autora koje već prati ili može pregledati odabrani recept s liste.
+			\newline\newline
+			\noindent U slučaju da korisnik odabere pregled zasebnog recepta, prikazuje mu se odabrani recept. Prilikom pregleda nude mu se opcije da recept označi kako bi ga spremio za kasnije ili da ostavi komentar na recept. Ukoliko ostavi komentar, on se sprema u sustav i odmah prikazuje svim korisnicima uz odabrani recept.
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=1.1\linewidth]{"slike/dijagrami/Seq 8-10,12"}
 					\caption{Sekvencijski dijagram za UC8-10;12}
 					\label{fig:seq-8-10;12}
 				\end{figure}
-				
+			\newpage
+			\noindent\textbf{Razmjena poruka i poziva među korisnicima}
+			\newline\newline
+			\noindent Registrirani korisnik ima opciju slanja poruka i upućivanja poziva drugim registriranim korisnicima. Kontakt se izvodi preko vanjske online-chat platforme koja djeluje kao posrednik.
+			\newline\newline
+			\noindent Prilikom slanja poruke vanjska platforma poruku sprema i prosljeđuje drugom korisniku. Ona se zatim prikazuje kod oba korisnika kao dio razgovora.
+			\newline\newline
+			\noindent Prilikom upućivanja poziva vanjska platforma šalje zahtjev za pozivom drugom korisniku koji ima opciju prihvatiti ili odbiti poziv. S obzirom na odabir pozvanog korisnika, platforma otvara liniju između korisnika ili pozivatelju javlja da je poziv odbijen.
 				\begin{figure}[H]
 					\centering
 					\includegraphics[width=1.1\linewidth]{"slike/dijagrami/Seq 13-14"}
