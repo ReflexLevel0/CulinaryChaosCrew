@@ -5,7 +5,7 @@ function Header({username, loggedIn, signedOut}) {
 
 
     console.log(username)
-    console.log(loggedIn)
+    console.log('logged in:' + loggedIn)
     return (<>
         <div className="headerWrapper">
             <button className="btn" onClick={() => window.location.href = '/'}>

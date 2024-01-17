@@ -26,10 +26,11 @@ function App() {
         }
     }, []); // The empty dependency array ensures this effect runs only once on mount
 
-    const handleLogin = (uname) => {
+    const handleLogin = async (uname) => {
         localStorage.setItem('username', uname);
-        localStorage.setItem('uid', ApiHelper.GetUIDFromUsername(uname));
-        alert(localStorage.getItem("uid"))
+        const uid = await ApiHelper.GetUIDFromUsername(uname);
+        localStorage.setItem('uid', uid);
+        // alert(localStorage.getItem("uid"))
         setUsername(uname);
         setLoggedIn(true);
         navigate('/');

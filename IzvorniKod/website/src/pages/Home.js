@@ -4,7 +4,7 @@ import '../styles/Home.css';
 import Gallery from "../components/Gallery";
 
 function Home() {
-  let isLoggedIn = localStorage.getItem("username") === "" ? false : true;
+  let isLoggedIn = localStorage.getItem("username") !== "";
   return (
 <div className='main'>
     <div className="gallery-container">

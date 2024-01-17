@@ -1,5 +1,4 @@
 import Recipe from "./models/Recipe";
-import Profile from "./components/Profile";
 
 export default class ApiHelper {
     static apiUrl = "https://culinary-chaos-backend.onrender.com/api"
@@ -75,8 +74,11 @@ export default class ApiHelper {
     }
 
     //Creates a new account with the specified information
-    static Register(username, password, email){
+    static Register(name, surname, age, username, password, email){
         let body = JSON.stringify({
+            name: name,
+            surname: surname,
+            age: age,
             username: username,
             password: password,
             email: email
@@ -146,15 +148,31 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
     //get UID from username
-    static GetUIDFromUsername(username) {
+    static async GetUIDFromUsername(username) {
         try {
-            const url = this.apiUrl + "/profile/username/" + username 
-            return fetch(url).then(r => r.json()).uid
-        } catch (e) {
-            console.log(e)
+            const url = this.apiUrl + "/profile/username/" + username
+            // Make a request to your backend to retrieve user information based on the username
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                // Handle error, throw an exception, or return a default value
+                throw new Error(`Unable to fetch user information for username ${username}`);
+            }
+
+            const userData = await response.json();
+
+            // Assuming your backend returns an object with a 'uid' property
+            const uid = userData.uid;
+            console.log(uid)
+
+            return uid;
+        } catch (error) {
+            console.error('Error in GetUIDFromUsername:', error);
+            // Handle the error, throw an exception, or return a default value
+            return null;
         }
     }
-
 
 }

@@ -4,9 +4,9 @@ import '../styles/ProfilePage.css'
 
 const ProfilePage = () => {
   return (
-    <div>
-      <Profile/>
-    </div>
+      <div>
+          <Profile/>
+      </div>
   );
 };
 
