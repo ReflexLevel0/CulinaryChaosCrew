@@ -4,6 +4,7 @@ import ApiHelper from '../ApiHelper';
 const Profile = () => {
   let username = localStorage.getItem('username')
   let user;
+  
     ApiHelper.ProfileByUsername(username).then(response => {
         if(response.status === 200){
             user = response;
