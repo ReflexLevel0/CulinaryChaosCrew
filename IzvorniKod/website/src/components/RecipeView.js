@@ -1,9 +1,6 @@
 import React from 'react';
 import '../styles/RecipeView.css';
 
-
-
-
 function RecipeView({recipe}) {
     return (
         <div className="recipe-view-container">
@@ -19,23 +16,19 @@ function RecipeView({recipe}) {
                         <div>
                             <p><strong>Origin:</strong> {recipe.origin}</p>
                             <p><strong>Preparation time:</strong> {recipe.preptime}</p>
-                            <p><strong>Tags:</strong> {recipe.tags.join(', ')}</p>
+                            <p><strong>Tags:</strong> {recipe.tags}</p>
                             <p><strong>Likes:</strong> {recipe.likes}</p>
                         </div>
-                        <iframe
-                        title="YouTube Video"
-                        width="560"
-                        height="315"
-                        src={recipe.vurl}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                        />
+                        <div>
+                        </div>
                     </div>
                 </div>
                 <div className="recipe-image">
                     <img src={recipe.iurl} alt=""/>
                 </div>
+            </div>
+            <div className="video-container">
+            <iframe width="1228" height="691" src="https://www.youtube.com/embed/a3EWx-Qoz64" title={recipe.name} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
         </div>
     );

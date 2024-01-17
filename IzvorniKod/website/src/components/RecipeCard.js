@@ -7,7 +7,7 @@ function RecipeCard({rid, recipeName, description, imageSrc}){
         <h3>{recipeName}</h3>
         <Link to={`/recipe/rid=${rid}`}>
           <div className="descriptionContainer">
-            <img src={imageSrc} alt="image" />
+            <img src={imageSrc} alt="recipe" />
             <p>{description}</p>
           </div>
         </Link>
