@@ -13,7 +13,7 @@
 .container {
     display: grid;
     grid-template-columns: 1fr;
-    max-width: 800px;
+    width: 80%;
     margin: auto;
     padding: 20px;
     border: 2px solid #ccc;

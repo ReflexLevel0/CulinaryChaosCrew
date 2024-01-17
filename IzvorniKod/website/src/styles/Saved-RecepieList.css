@@ -1,5 +1,5 @@
 .recipe-cards-container {
-    max-width: 800px;
+    width: 80%;
     margin: auto;
     padding: 20px;
     display: grid;

@@ -1,70 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import RecipeView from '../components/RecipeView';
 import '../styles/SingleRecipeView.css';
+import ApiHelper from '../ApiHelper';
 
-const sampleRecipe = {
-  name: 'Delicious Recipe',
-  category: 'Dessert',
-  ingr: ['Ingredient 1', 'Ingredient 2'],
-  instr: 'Step 1. Do this. Step 2. Do that.',
-  origin: 'Italy',
-  tags: ['Tag1', 'Tag2'],
-  url: 'https://c2.staticflickr.com/4/3374/3572925000_693b458fcb_b.jpg',
-  likes: 5,
-};
 
 function SingleRecipe() {
-    const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(sampleRecipe.likes);
-  
+    const [recipe1, setRecipe] = useState([]);
+
+    const currentPath = window.location.pathname;
+    const pathParts = currentPath.split('/');
+    const rid = pathParts[pathParts.length - 1].split("=")[1];
+
     useEffect(() => {
-      if (liked) {
-        fetch('your_backend_api_url', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({  userId: 0, recipeId: sampleRecipe.id, liked: true }),
-        })
-          .then(response => response.json())
-          .then(data => {
-            alert('Liked!', data);
-          })
-          .catch(error => {
-            console.error('Error:', error);
-          });
-      } else {
-        fetch('your_backend_api_url', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ userId: 0, recipeId: sampleRecipe.id, liked: false}),
-          })
-            .then(response => response.json())
-            .then(data => {
-              alert('Disliked!', data);
-            })
-            .catch(error => {
-              console.error('Error:', error);
-            });
-      }
-    }, [liked]);
+      const fetchRecipe = async () => {
+        try {
+          const recipesData = await ApiHelper.GetRecipebyRid(rid);
+          setRecipe(recipesData);
+        } catch (error) {
+          console.error('Error fetching recipes:', error);
+        }
+      };
   
-    const handleLike = () => {
-      setLiked(!liked);
-      setLikes(liked ? likes - 1 : likes + 1);
-    };
-  
+      fetchRecipe();
+    }, [rid]);
+
+    
     return (
       <div className="recipe-details-page">
         <h1>Recipe information</h1>
-        <RecipeView {...sampleRecipe} />
+        <RecipeView recipe={recipe1} />
         <div className="like-button">
-          <button className={liked ? 'liked' : ''} onClick={handleLike}>
+          <button>
             Like
           </button>
-          <p>{likes} Likes</p>
+          <p> Likes</p>
         </div>
       </div>
     );

@@ -11,8 +11,7 @@ function SavedRecipes() {
     useEffect(() => {
       const fetchRecipes = async () => {
         try {
-          //const recipesData = await ApiHelper.GetLikedRecipes(User user);
-          const recipesData = await ApiHelper.GetRecipes();
+          const recipesData = await ApiHelper.GetLikedRecipes();
           setRecipes(recipesData);
         } catch (error) {
           console.error('Error fetching recipes:', error);

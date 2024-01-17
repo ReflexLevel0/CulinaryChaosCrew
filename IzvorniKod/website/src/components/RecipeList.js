@@ -17,15 +17,14 @@ function RecipeList() {
 
     fetchRecipes();
   }, []);
-
   return (
     <div className="recipe-cards-container">
       {recipes.map((recipe) => (
         <RecipeCard
-          key={recipe.rid}
+          rid={recipe.rid}
           recipeName={recipe.name}
-          description={recipe.instr}
-          imageSrc={recipe.url}
+          description={recipe.instructions}
+          imageSrc={recipe.iurl}
         />
       ))}
     </div>

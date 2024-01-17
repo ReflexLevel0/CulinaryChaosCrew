@@ -17,13 +17,15 @@ function App() {
     const navigate = useNavigate();
 
     const handleLogin = (uname) => {
+        localStorage.setItem('username', uname);
         setUsername(uname);
         setLoggedin(true);
         navigate('/');
     };
 
     const handleSignout = () => {
-        setUsername("")
+        localStorage.removeItem()
+        setUsername('username')
         setLoggedin(false)
         navigate('/')
     }
@@ -39,7 +41,7 @@ function App() {
                 <Route path="/singleRecipe" element={<SingleRecipe />} />
                 <Route path="/saved" element={<SavedRecipesPage/>} />
                 <Route path="/recipe/:id" element={<SingleRecipe />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile" element={<ProfilePage/>} />
                 <Route path="/create" element={<CreateRecipePage />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>

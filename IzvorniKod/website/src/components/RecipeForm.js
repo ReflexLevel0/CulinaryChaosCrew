@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/RecipeForm.css';
+import ApiHelper from '../ApiHelper';
 
-const RecipeForm = ({ onSubmit }) => {
+const RecipeForm = ( ) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [ingredients, setIngredients] = useState('');
@@ -11,7 +12,6 @@ const RecipeForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Recipe ${name} created`);
     const recipeData = {
       name,
       category,
@@ -20,12 +20,22 @@ const RecipeForm = ({ onSubmit }) => {
       tags,
       url,
     };
-
-    onSubmit(recipeData);
+    console.log(recipeData)
+    ApiHelper.CreateRecipe(name, category, ingredients, origin, tags, url).then(response => {
+      //If recipe creation is successful
+      if(response.status === 200){
+        alert(`Recipe ${name} created succesfully`)
+        window.location.href = '/create'
+      }
+      //If recipe creation  failed
+      else{
+          response.json().then(json => alert(json.message))
+      }
+  })
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <label>
         Name:
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
@@ -56,7 +66,7 @@ const RecipeForm = ({ onSubmit }) => {
         <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
       </label>
       <br />
-      <button id='submit' type="submit">Create Recipe</button>
+      <button id='submit' type="submit" onClick={handleSubmit}>Create Recipe</button>
     </form>
   );
 };

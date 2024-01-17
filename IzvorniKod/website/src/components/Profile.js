@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import ApiHelper from '../ApiHelper';
 
-const Profile = ({ match }) => {
-  const [user, setUser] = useState(null);
-  const { username } = match.params;
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await fetch(`https://backend/profile/${username}`);
-        const userData = await response.json();
-        setUser(userData);
-      } catch (error) {
-        console.error('Error fetching user:', error);
-      }
-    };
-
-    fetchUser();
-  }, [username]);
+const Profile = () => {
+  let username = localStorage.getItem('username')
+  let user;
+    ApiHelper.ProfileByUsername(username).then(response => {
+        if(response.status === 200){
+            user = response;
+        }
+        else{
+            response.json().then(json => alert(json.message))
+        }
+  })
 
   return (
     <div>

@@ -1,5 +1,5 @@
 export default class Recipe{
-    constructor(rid, uid, name, category, ingr, instr, origin, tags, url, likes) {
+    constructor(rid, uid, name, category, ingr, instr, origin, tags, iurl, vurl, preptime, likes) {
         this.rid = rid
         this.uid = uid
         this.name = name
@@ -8,7 +8,9 @@ export default class Recipe{
         this.instructions = instr
         this.origin = origin
         this.tags = tags
-        this.url = url
+        this.iurl = iurl
+        this.vurl = vurl
+        this.preptime = preptime
         this.likes = likes
     }
 }

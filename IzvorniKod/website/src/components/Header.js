@@ -2,6 +2,8 @@ import '../styles/Header.css'
 import Search from './Search';
 
 function Header({username, loggedIn, signedOut}) {
+    
+    
     console.log(username)
     console.log(loggedIn)
     return (<>
@@ -15,7 +17,12 @@ function Header({username, loggedIn, signedOut}) {
             <div className="rightButtonWrapper">
                 {loggedIn ?
                     (<>
-                        <div className="usernameText">{username}</div>
+                    <a href="/profile" class="profileLinkButton">
+                    <img src="https://www.pngkey.com/png/full/202-2024691_my-profile-comments-my-profile-icon-png.png" alt="Profile" class="profileIcon" />
+                    <div>
+                        <span class="usernameText">{username}</span>
+                    </div>
+                    </a>
                         <button className="btn" onClick={signedOut}>SIGN OUT</button>
                     </>) :
                     (<>
