@@ -142,7 +142,8 @@ export default class ApiHelper {
     //gets profile information based on its username
     static ProfileByUsername(username) {
         try {
-            const url = this.apiUrl + `/profile/username/` + username
+            const encodedUsername = encodeURIComponent(username)
+            const url = this.apiUrl + `/profile/username/` + encodedUsername
             return fetch(url)
         } catch (e) {
             console.log(e)
