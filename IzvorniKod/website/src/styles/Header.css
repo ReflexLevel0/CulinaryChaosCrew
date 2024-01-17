@@ -1,31 +1,31 @@
-.headerWrapper {
+  .headerWrapper {
     display: flex;
   }
-  
+
   .rightButtonWrapper {
     display: flex;
     flex-direction: row;
   }
-  
+
   .rightButtonWrapper > button {
     margin-left: 10px;
   }
-  
+
   .rightButtonWrapper > div {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  
+
   .usernameText {
     font-size: 18px;
     font-weight: bold;
   }
-  
+
   #logo_img {
     width: 100px;
   }
-  
+
   .centerContent {
     flex-grow: 7;
     width: 60%;
@@ -34,20 +34,20 @@
     align-items: center;
     margin: 20px 0;
   }
-  
+
   .profileLinkButton {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #333;
   }
-  
+
   .profileIcon {
     width: 60px;
     height: 60px;
     margin-right: 5px;
   }
-  
+
   .usernameText {
     font-size: 18px;
     font-weight: bold;
