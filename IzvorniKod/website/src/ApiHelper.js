@@ -37,7 +37,7 @@ export default class ApiHelper {
     //returns all liked recipes from this user
     static GetLikedRecipes(uid) {
         try {
-            const url = this.apiUrl + '/recipe/allRecipes/' + uid
+            const url = this.apiUrl + '/likes/' + uid
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
@@ -99,9 +99,9 @@ export default class ApiHelper {
         }
     }
     // creates a new recipe
-    static CreateRecipe(name, category, ingr, instr, origin, tags, iurl, vurl, preptime){
+    static CreateRecipe(name, category, instr, ingr, origin, tags, iurl, vurl, preptime){
         let body = JSON.stringify({
-            username: localStorage.getItem("username"),
+            uid: localStorage.getItem("uid"),
             name: name,
             category: category,
             ingr: ingr,
@@ -110,11 +110,10 @@ export default class ApiHelper {
             tags: tags,
             iurl: iurl,
             vurl: vurl,
-            preptime: preptime,
-            likes: 0
+            preptime: preptime
         })
         console.log(body)
-        try {
+         try {
             const url = this.apiUrl + '/recipe'
             return fetch(url, {
                 method: 'POST',

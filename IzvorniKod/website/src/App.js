@@ -30,7 +30,7 @@ function App() {
         localStorage.setItem('username', uname);
         const uid = await ApiHelper.GetUIDFromUsername(uname);
         localStorage.setItem('uid', uid);
-        // alert(localStorage.getItem("uid"))
+        //alert(localStorage.getItem("uid"))
         setUsername(uname);
         setLoggedIn(true);
         navigate('/');

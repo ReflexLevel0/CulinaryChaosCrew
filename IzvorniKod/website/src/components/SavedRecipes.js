@@ -11,7 +11,7 @@ function SavedRecipes() {
     useEffect(() => {
       const fetchRecipes = async () => {
         try {
-          const recipesData = await ApiHelper.GetLikedRecipes();
+          const recipesData = await ApiHelper.GetLikedRecipes(localStorage.getItem("uid"));
           setRecipes(recipesData);
         } catch (error) {
           console.error('Error fetching recipes:', error);
@@ -24,8 +24,13 @@ function SavedRecipes() {
     return (
         <>
             <div className="recipe-cards-container">
-                {recipes.map(r => (
-                    <RecipeCard key={r.name} recipeName={r.name} description={r.description} imageSrc={r.imageSrc}/>
+                {recipes.map(recipe => (
+                    <RecipeCard
+                    rid={recipe.rid}
+                    recipeName={recipe.name}
+                    description={recipe.instructions}
+                    imageSrc={recipe.iurl}
+                  />
                 ))}
             </div>
         </>

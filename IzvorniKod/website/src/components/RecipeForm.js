@@ -16,7 +16,7 @@ const RecipeForm = ( ) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const recipeData = {name, category, ingr, instr, origin, tags, iurl, vurl, preptime};
-    console.log(recipeData)
+    console.log(recipeData)  
     ApiHelper.CreateRecipe(name, category, ingr, instr, origin, tags, iurl, vurl, preptime).then(response => {
       if(response.status === 200){
         alert(`Recipe ${name} created succesfully`)
