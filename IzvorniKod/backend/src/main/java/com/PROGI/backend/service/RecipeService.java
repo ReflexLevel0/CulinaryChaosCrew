@@ -44,4 +44,7 @@ public class RecipeService {
         return recipeDao.updateRecipeById(id, recipe);
     }
 
+    public List<Recipe> searchRecipe(String guess) { return recipeDao.searchRecipe(guess); }
+
+    public List<Recipe> getRecipesFromCategory(String category) { return recipeDao.getRecipesFromCategory(category); }
 }
