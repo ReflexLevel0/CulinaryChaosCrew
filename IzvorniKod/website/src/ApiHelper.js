@@ -1,4 +1,5 @@
 import Recipe from "./models/Recipe";
+import Profile from "./components/Profile";
 
 export default class ApiHelper {
     static apiUrl = "https://culinary-chaos-backend.onrender.com/api"
@@ -129,16 +130,16 @@ export default class ApiHelper {
             console.log(e)
         }
     }
-    //gets profile informations based on its username
+
+    //gets profile information based on its username
     static ProfileByUsername(username) {
         try {
-            const url = this.apiUrl + `/profile/username/${username}`
-            return fetch(url).then(r => r.json())
+            const url = this.apiUrl + `/profile/username/` + username
+            return fetch(url)
         } catch (e) {
             console.log(e)
         }
     }
 
-    
 
 }

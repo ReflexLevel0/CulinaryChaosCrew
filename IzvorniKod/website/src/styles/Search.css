@@ -30,6 +30,7 @@
     border: 2px solid #0056b3;
     border-radius: 5px;
     cursor: pointer;
+    margin-left: 10px;
   }
   
   .searchButton:hover {
