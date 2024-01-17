@@ -5,24 +5,19 @@ import ApiHelper from '../ApiHelper';
 const RecipeForm = ( ) => {
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
-  const [ingredients, setIngredients] = useState('');
+  const [ingr, setIngredients] = useState('');
+  const [instr, setInstructions] = useState('');
   const [origin, setOrigin] = useState('');
   const [tags, setTags] = useState('');
-  const [url, setUrl] = useState('');
+  const [iurl, setIUrl] = useState('');
+  const [vurl, setVUrl] = useState('');
+  const [preptime, setPreptime] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const recipeData = {
-      name,
-      category,
-      ingredients,
-      origin,
-      tags,
-      url,
-    };
+    const recipeData = {name, category, ingr, instr, origin, tags, iurl, vurl, preptime};
     console.log(recipeData)
-    ApiHelper.CreateRecipe(name, category, ingredients, origin, tags, url).then(response => {
-      //If recipe creation is successful
+    ApiHelper.CreateRecipe(name, category, ingr, instr, origin, tags, iurl, vurl, preptime).then(response => {
       if(response.status === 200){
         alert(`Recipe ${name} created succesfully`)
         window.location.href = '/create'
@@ -48,7 +43,12 @@ const RecipeForm = ( ) => {
       <br />
       <label>
         Ingredients:
-        <textarea value={ingredients} onChange={(e) => setIngredients(e.target.value)} />
+        <textarea value={ingr} onChange={(e) => setIngredients(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Instructions:
+        <textarea value={instr} onChange={(e) => setInstructions(e.target.value)} />
       </label>
       <br />
       <label>
@@ -62,8 +62,18 @@ const RecipeForm = ( ) => {
       </label>
       <br />
       <label>
-        URL:
-        <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+        Image URL:
+        <input type="text" value={iurl} onChange={(e) => setIUrl(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Video URL:
+        <input type="text" value={vurl} onChange={(e) => setVUrl(e.target.value)} />
+      </label>
+      <br />
+      <label>
+        Preparation time:
+        <input type="text" value={preptime} onChange={(e) => setPreptime(e.target.value)} />
       </label>
       <br />
       <button id='submit' type="submit" onClick={handleSubmit}>Create Recipe</button>

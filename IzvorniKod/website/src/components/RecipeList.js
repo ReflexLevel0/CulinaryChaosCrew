@@ -14,7 +14,6 @@ function RecipeList() {
         console.error('Error fetching recipes:', error);
       }
     };
-
     fetchRecipes();
   }, []);
   return (

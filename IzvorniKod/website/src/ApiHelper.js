@@ -13,7 +13,7 @@ export default class ApiHelper {
 
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.url, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -27,23 +27,23 @@ export default class ApiHelper {
         try {
             const url = this.apiUrl + '/recipe/' + rid
             return fetch(url).then(r => r.json()).then(r => {
-                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.url, r.likes)
+                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                 return recipe
             })
         } catch (e) {
             console.log(e)
         }
     }
-
-    static GetLikedRecipes() {
+    //returns all liked recipes from this user
+    static GetLikedRecipes(uid) {
         try {
-            const url = this.apiUrl + '/likes/{uid}'
+            const url = this.apiUrl + '/recipe/allRecipes/' + uid
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.url, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -96,18 +96,23 @@ export default class ApiHelper {
         }
     }
     // creates a new recipe
-    static CreateRecipe(name, category, ingredients, origin, tags, url){
+    static CreateRecipe(name, category, ingr, instr, origin, tags, iurl, vurl, preptime){
         let body = JSON.stringify({
+            username: localStorage.getItem("username"),
             name: name,
             category: category,
-            ingredients: ingredients,
+            ingr: ingr,
+            instr: instr,
             origin: origin,
             tags: tags,
-            url: url
+            iurl: iurl,
+            vurl: vurl,
+            preptime: preptime,
+            likes: 0
         })
         console.log(body)
         try {
-            const url = this.apiUrl + '/recipe/' //koji je path
+            const url = this.apiUrl + '/recipe'
             return fetch(url, {
                 method: 'POST',
                 headers: {
@@ -120,6 +125,7 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+    
     //gets profile informations based on its UID
     static ProfileByUID(uid) {
         try {
@@ -132,7 +138,7 @@ export default class ApiHelper {
     //gets profile informations based on its username
     static ProfileByUsername(username) {
         try {
-            const url = this.apiUrl + `/profile/username/${username}`
+            const url = this.apiUrl + "/profile/username/" + username 
             return fetch(url).then(r => r.json())
         } catch (e) {
             console.log(e)
