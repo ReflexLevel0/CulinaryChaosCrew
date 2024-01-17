@@ -23,15 +23,18 @@ public class CommentController {
     private final CommentService commentService;
 
     @Autowired
-    public CommentController(CommentService commentService) { this.commentService = commentService; }
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "")
     public ResponseEntity<?> addComment(@RequestBody @NonNull Comment comment) {
-        try{
-            comment.setDate(new Timestamp(comment.getTimestamp().getTime() - comment.getTimestamp().getTime() % 1000));
+        try {
+            Timestamp timestamp = new Timestamp(comment.getTimestamp().getTime() - comment.getTimestamp().getTime() % 1000);
+            comment.setDate(timestamp);
             commentService.addComment(comment);
-        }catch(RecipeNotFound | ProfileNotFound ex){
+        } catch (RecipeNotFound | ProfileNotFound ex) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
@@ -40,11 +43,12 @@ public class CommentController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "")
-    public ResponseEntity<?> deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid, @RequestParam @NonNull long timestamp) {
-        try{
-            Timestamp timestamp1 = new Timestamp(timestamp - timestamp % 1000);
+    public ResponseEntity<?> deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid, @RequestParam @NonNull String timestamp) {
+        try {
+            Timestamp timestamp1 = Timestamp.valueOf(timestamp);
+            timestamp1 = new Timestamp(timestamp1.getTime() - timestamp1.getTime() % 1000);
             commentService.deleteComment(uid, rid, timestamp1);
-        }catch(CommentNotFound ex){
+        } catch (CommentNotFound ex) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 
@@ -55,9 +59,9 @@ public class CommentController {
     @GetMapping(path = "{rid}")
     public ResponseEntity<?> getCommentsByRecipeId(@PathVariable("rid") UUID recipeId) {
         List<Comment> comments;
-        try{
+        try {
             comments = commentService.getComments(recipeId);
-        }catch(RecipeNotFound ex){
+        } catch (RecipeNotFound ex) {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
 

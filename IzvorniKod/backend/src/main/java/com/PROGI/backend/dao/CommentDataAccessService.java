@@ -39,14 +39,14 @@ public class CommentDataAccessService implements CommentDao {
     public void deleteComment(UUID userId, UUID recipeId, Timestamp timestamp) throws CommentNotFound {
         Optional<Comment> comment = getComment(userId, recipeId, timestamp);
         if(comment.isEmpty()) throw new CommentNotFound();
-        jdbcTemplate.update("DELETE FROM comment WHERE userId = ? AND recipeId = ? AND extract(epoch from timestamp) = ?", userId.toString(), recipeId.toString(), timestamp.getTime());
+        jdbcTemplate.update("DELETE FROM comment WHERE userId = ? AND recipeId = ? AND extract(epoch from timestamp) = ?", userId.toString(), recipeId.toString(), timestamp.toString());
     }
 
     @Override
     public Optional<Comment> getComment(UUID userId, UUID recipeId, Timestamp timestamp){
         Comment comment;
         try{
-            comment = jdbcTemplate.queryForObject("SELECT * FROM comment WHERE userId = ? AND recipeId = ? AND extract(epoch from timestamp) = ?", new CommentMapper(), userId.toString(), recipeId.toString(), timestamp.getTime());
+            comment = jdbcTemplate.queryForObject("SELECT * FROM comment WHERE userId = ? AND recipeId = ? AND extract(epoch from timestamp) = ?", new CommentMapper(), userId.toString(), recipeId.toString(), timestamp.toString());
         }catch(DataAccessException ex){
             return Optional.ofNullable(null);
         }
