@@ -4,6 +4,7 @@ import com.PROGI.backend.HashHelper;
 import com.PROGI.backend.mappers.ProfileMapper;
 import com.PROGI.backend.model.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -55,14 +56,24 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public Optional<Profile> selectProfileById(UUID id) {
         String sql = "SELECT * FROM profile WHERE userID = ?";
-        Profile profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), id.toString());
+        Profile profile;
+        try{
+            profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), id.toString());
+        }catch(DataAccessException ex){
+            profile = null;
+        }
         return Optional.ofNullable(profile);
     }
 
     @Override
     public Optional<Profile> selectProfileByUsername(String username) {
         String sql = "SELECT * FROM profile WHERE username = ?";
-        Profile profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), username);
+        Profile profile;
+        try{
+            profile = jdbcTemplate.queryForObject(sql, new ProfileMapper(), username);
+        }catch(DataAccessException ex){
+            profile = null;
+        }
         return Optional.ofNullable(profile);
     }
 
