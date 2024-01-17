@@ -65,5 +65,5 @@ public class RecipeController {
     public List<Recipe> getRecipesFromCategory(@NonNull @PathVariable("cat") String category) {
         return recipeService.getRecipesFromCategory(category);
     }
-    
+
 }

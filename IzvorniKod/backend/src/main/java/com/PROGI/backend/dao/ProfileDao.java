@@ -30,4 +30,6 @@ public interface ProfileDao {
     void deleteAllProfiles();
 
     Optional<Profile> selectProfileByCredentials(String username, String hashedPassword);
+
+    List<Profile> searchProfile(String guess);
 }

@@ -50,6 +50,9 @@ public class ProfileService {
     }
 
     public void deleteAllProfiles(){ profileDao.deleteAllProfiles();}
+
+    public List<Profile> searchProfile(String guess) { return profileDao.searchProfile(guess); }
+
     public boolean usernameTaken(String username) {
         List<Profile> allProfiles = getAllProfiles();
         for (Profile profile : allProfiles) {

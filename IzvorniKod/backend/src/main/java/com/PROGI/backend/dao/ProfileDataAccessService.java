@@ -1,8 +1,12 @@
 package com.PROGI.backend.dao;
 
 import com.PROGI.backend.HashHelper;
+import com.PROGI.backend.exceptions.ProfileSearchEmpty;
+import com.PROGI.backend.exceptions.RecipeSearchEmpty;
 import com.PROGI.backend.mappers.ProfileMapper;
+import com.PROGI.backend.mappers.RecipeMapper;
 import com.PROGI.backend.model.Profile;
+import com.PROGI.backend.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -116,5 +120,17 @@ public class ProfileDataAccessService implements ProfileDao {
             profile = null;
         }
         return Optional.ofNullable(profile);
+    }
+
+    @Override
+    public List<Profile> searchProfile(String guess) {
+        String sql = "SELECT * FROM profile WHERE username LIKE CONCAT('%', ?, '%') OR name LIKE CONCAT('%', ?, '%')";
+        List<Profile> profiles = jdbcTemplate.query(sql, new ProfileMapper(), guess, guess);
+        try{
+            if(profiles.isEmpty()) throw new ProfileSearchEmpty();
+        }catch (ProfileSearchEmpty e) {
+            throw new RuntimeException(e);
+        }
+        return profiles;
     }
 }

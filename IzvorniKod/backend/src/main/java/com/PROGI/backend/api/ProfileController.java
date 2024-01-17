@@ -83,4 +83,9 @@ public class ProfileController {
     public void deleteAllProfiles(){
         profileService.deleteAllProfiles();
     }
+
+    @GetMapping(path="search/{querry}")
+    public List<Profile> searchProfile(@NonNull @PathVariable("querry") String guess){
+        return profileService.searchProfile(guess);
+    }
 }
