@@ -144,6 +144,15 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+    //get UID from username
+    static GetUIDFromUsername(username) {
+        try {
+            const url = this.apiUrl + "/profile/username/" + username 
+            return fetch(url).then(r => r.json()).uid
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     
 

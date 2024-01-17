@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import ErrorPage from './pages/Errorpage';
 import ProfilePage from './pages/ProfilePage';
 import CreateRecipePage from './pages/CreateRecipePage';
+import ApiHelper from './ApiHelper';
 
 function App() {
     const [username, setUsername] = useState("");
@@ -27,6 +28,8 @@ function App() {
 
     const handleLogin = (uname) => {
         localStorage.setItem('username', uname);
+        localStorage.setItem('uid', ApiHelper.GetUIDFromUsername(uname));
+        alert(localStorage.getItem("uid"))
         setUsername(uname);
         setLoggedIn(true);
         navigate('/');
@@ -34,6 +37,7 @@ function App() {
 
     const handleSignout = () => {
         localStorage.removeItem('username');
+        localStorage.removeItem('uid');
         setUsername('');
         setLoggedIn(false);
         navigate('/');
