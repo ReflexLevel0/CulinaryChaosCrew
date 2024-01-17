@@ -25,59 +25,66 @@ export default class Login extends React.Component{
         let name = login ? null : document.getElementById('nameInput').value
         let surname = login ? null : document.getElementById('surnameInput').value
         let age = login ? null : document.getElementById('ageInput').value
+        let error = false
         if(username.length === 0){
             alert("Please enter username!")
+            error = true
         }
         else if(password.length === 0){
             alert("Please enter password!")
+            error = true
         }
         else if(login === false) {
             if (password !== passwordRepeat) {
                 alert("Passwords don't match!")
+                error = true
             } else if (name.length === 0) {
                 alert("Please enter name!")
+                error = true
             } else if (surname.length === 0) {
                 alert("Please enter surname!")
+                error = true
             } else if (age.length === 0) {
                 alert("Please enter age!")
+                error = true
             } else if (email.length === 0) {
                 alert("Please enter email!")
+                error = true
             }
         }
-        else{
-            //Trying to log in with provided data
-            if(login){
-                console.log('dusg')
-                ApiHelper.Login(username, password).then(response => {
-                    //If log in is successful
-                    if(response.status === 200){
-                        this.props.loggedIn(username)
-                    }
 
-                    //If log in failed
-                    else{
-                        response.json().then(json => alert(json.message))
-                    }
-                })
-            }else{
-                console.log(email)
-                ApiHelper.Register(name, surname, age, username, password, email).then(response => {
-                    //If register is successful
-                    if(response.status === 200){
-                        window.location.href = '/login'
-                    }
-
-                    //If register failed
-                    else{
-                        response.json().then(json => alert(json.message))
-                    }
-                })
-            }
-            event.preventDefault()
-            return true
-        }
         event.preventDefault()
-        return false
+        if(error){
+            return false
+        }
+
+        //Trying to log in with provided data
+        if(login){
+            ApiHelper.Login(username, password).then(response => {
+                //If log in is successful
+                if(response.status === 200){
+                    this.props.loggedIn(username)
+                }
+
+                //If log in failed
+                else{
+                    response.json().then(json => alert(json.message))
+                }
+            })
+        }else{
+            ApiHelper.Register(name, surname, age, username, password, email).then(response => {
+                //If register is successful
+                if(response.status === 200){
+                    window.location.href = '/login'
+                }
+
+                //If register failed
+                else{
+                    response.json().then(json => alert(json.message))
+                }
+            })
+        }
+        return true
     }
 
     render(){
