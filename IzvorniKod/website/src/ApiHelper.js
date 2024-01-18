@@ -1,7 +1,7 @@
 import Recipe from "./models/Recipe";
 
 export default class ApiHelper {
-    static apiUrl = "http://localhost:3000/api"
+    static apiUrl = "https://culinary-chaos-backend.onrender.com/api"
 
     //Returns the list of all recipes
     static GetRecipes() {

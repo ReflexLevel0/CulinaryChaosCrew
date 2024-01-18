@@ -59,26 +59,31 @@ public class ProfileController {
         return profileService.getAllProfiles();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "userid/{uid}")
     public Profile getProfileById(@PathVariable("uid") UUID id) {
         return profileService.getProfileById(id).orElse(null);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "username/{username}")
     public Profile getProfileByUsername(@PathVariable("username") String username){
         return profileService.getProfileByUsername(username).orElse(null);
     }
+
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "{uid}")
     public void deleteProfileById(@PathVariable("uid") UUID id){
         profileService.deleteProfile(id);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping(path = "{uid}")
     public void updateProfileById(@PathVariable("uid") UUID id, @NonNull @RequestBody Profile profile) {
         profileService.updateProfile(id, profile);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "deleteAllProfiles")
     public void deleteAllProfiles(){
         profileService.deleteAllProfiles();

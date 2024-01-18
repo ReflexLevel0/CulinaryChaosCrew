@@ -53,4 +53,10 @@ public class LikesController {
     public List<Like> getLikedRecipes() {
         return likesService.getAllLikes();
     }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "count/{uid}")
+    public int likesCount(@PathVariable("uid") UUID rid) {
+        return likesService.likesCount(rid);
+    }
 }
