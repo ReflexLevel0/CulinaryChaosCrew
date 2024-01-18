@@ -9,7 +9,14 @@ public class HashHelper {
         try{
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             messageDigest.update(value.getBytes());
-            return Optional.of(new String(messageDigest.digest()));
+            String hashedString = new String(messageDigest.digest());
+            byte[] var = hashedString.getBytes();
+            StringBuilder finalString = new StringBuilder();
+            for (int i = 0; i < var.length; i++) {
+                int b = var[i];
+                finalString.append(b);
+            }
+            return Optional.of(finalString.toString());
         }catch(NoSuchAlgorithmException ex){
             return Optional.ofNullable(null);
         }
