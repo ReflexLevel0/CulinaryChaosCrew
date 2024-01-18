@@ -22,6 +22,28 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
+    //Returns the list of recipes for this user
+    static GetRecipesForUser(uid) {
+        try {
+            const url = this.apiUrl + '/recipe/allRecipes/' + uid 
+
+            return fetch(url).then(r => r.json()).then(json => {
+                let recipes = []
+
+                //Converting JSON recipes to a recipe model
+                for (const r of json) {
+                    console.log(r)
+                    let recipe = new Recipe(r.recipeId, r.userId, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
+                    recipes.push(recipe)
+                }
+                return recipes
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     //returns recipe with that rid
     static GetRecipebyRid(rid) {
         try {
@@ -199,6 +221,26 @@ export default class ApiHelper {
             console.error('Error in GetUsernameFromUID:', error);
             // Handle the error, throw an exception, or return a default value
             return null;
+        }
+    }
+
+    //search recipes
+    static searchRecipe(recipe) {
+        try {
+            const url = this.apiUrl + '/recipe/search' + recipe
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //search profile
+    static searchProfile(profile) {
+        try {
+            const url = this.apiUrl + '/profile/search/' + profile
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
         }
     }
 }

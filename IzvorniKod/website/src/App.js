@@ -11,6 +11,8 @@ import ErrorPage from './pages/Errorpage';
 import ProfilePage from './pages/ProfilePage';
 import CreateRecipePage from './pages/CreateRecipePage';
 import ApiHelper from './ApiHelper';
+import OtherProfilePage from './pages/OtherProfilepage';
+import SearchResults from './pages/SearchResults';
 
 function App() {
     const [username, setUsername] = useState("");
@@ -52,11 +54,12 @@ function App() {
                 <Route path="/login" element={<Login login={true} loggedIn={handleLogin} />} />
                 <Route path="/signup" element={<Login login={false} />} />
                 <Route path="/recipes" element={<Recipes />} />
-                <Route path="/singleRecipe" element={<SingleRecipe />} />
                 <Route path="/saved" element={<SavedRecipesPage />} />
                 <Route path="/recipe/:id" element={<SingleRecipe />} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/create" element={<CreateRecipePage />} />
+                <Route path="/user/:username" element={<OtherProfilePage />} />
+                <Route path="/search" element={<SearchResults />} />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
         </>

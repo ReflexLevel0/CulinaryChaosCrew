@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../styles/RecipeView.css';
 import ApiHelper from '../ApiHelper';
 
@@ -55,7 +56,9 @@ function RecipeView({recipe}) {
                 <div className="author-container">
                 <img className="author-photo" src={"https://www.pngkey.com/png/full/202-2024691_my-profile-comments-my-profile-icon-png.png"} alt="Author" />
                 <div className="author-info">
+                <Link to={`/user/${username}`} rel="noopener noreferrer">
                 <p>Author: {username}</p>
+                </Link>
                 </div>
             </div>
             ) : (
