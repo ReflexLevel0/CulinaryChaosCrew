@@ -84,6 +84,7 @@ public class ProfileController {
         profileService.deleteAllProfiles();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path="search/{querry}")
     public List<Profile> searchProfile(@NonNull @PathVariable("querry") String guess){
         return profileService.searchProfile(guess);
