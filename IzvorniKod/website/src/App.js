@@ -44,11 +44,30 @@ function App() {
         navigate('/');
     }
 
+    /* const handleDeleteProfile = async () => {
+        const uid = localStorage.getItem('uid'); // Assuming you have stored the UID in localStorage
+        const result = await ApiHelper.deleteProfile(uid);
+
+        if (result) {
+            // Profile deletion successful, you may want to perform additional actions
+            console.log('Profile deleted successfully');
+        } else {
+            // Handle the case where profile deletion fails
+            console.error('Failed to delete profile');
+        }
+
+        localStorage.removeItem('username');
+        localStorage.removeItem('uid');
+        setUsername('');
+        setLoggedIn(false);
+        navigate('/');
+    }; */
+
     return (
         <>
             <Header loggedIn={loggedIn} username={username} signedOut={handleSignout} />
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home loggedIn={loggedIn} />} />
                 <Route path="/login" element={<Login login={true} loggedIn={handleLogin} />} />
                 <Route path="/signup" element={<Login login={false} />} />
                 <Route path="/recipes" element={<Recipes />} />

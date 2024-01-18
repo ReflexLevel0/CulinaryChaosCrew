@@ -27,6 +27,22 @@ const Profile = () => {
         fetchProfile();
     }, []);
 
+    const handleDeleteProfile = async () => {
+        const uid = localStorage.getItem('uid');
+        const result = await ApiHelper.deleteProfile(uid);
+
+        if (result) {
+            console.log('Profile deleted successfully');
+            // Optionally, you can redirect the user or perform other actions after deletion.
+        } else {
+            console.error('Failed to delete profile');
+        }
+
+        localStorage.removeItem('username');
+        localStorage.removeItem('uid');
+        setUser(null);
+    };
+
     // console.log(user)
     return (
         <div>
@@ -97,7 +113,7 @@ const Profile = () => {
                                     </div>
 
                                     <div className="delete_update_profile_btns">
-                                        <button type="button" className="btn btn-danger btn-lg">Delete profile</button>
+                                        <button type="button" className="btn btn-danger btn-lg" onClick={handleDeleteProfile}>Delete profile</button>
                                         <button type="button" className="btn btn-primary btn-lg">Update profile</button>
                                     </div>
                                 </form>

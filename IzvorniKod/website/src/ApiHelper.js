@@ -1,4 +1,5 @@
 import Recipe from "./models/Recipe";
+import Comment1 from "./models/Comment1";
 
 export default class ApiHelper {
     static apiUrl = "https://culinary-chaos-backend.onrender.com/api"
@@ -177,7 +178,7 @@ export default class ApiHelper {
     //get username from UID
     static async GetUsernameFromUID(uid) {
         try {
-            console.log(uid)
+            // console.log(uid)
             const encodedUid = encodeURIComponent(uid)
             const url = this.apiUrl + '/profile/userid/' + encodedUid
             console.log(url)
@@ -199,6 +200,95 @@ export default class ApiHelper {
             console.error('Error in GetUsernameFromUID:', error);
             // Handle the error, throw an exception, or return a default value
             return null;
+        }
+    }
+
+    static async deleteProfile(uid) {
+        try {
+            const url = `${this.apiUrl}/profile/${uid}`;
+            const response = await fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Unable to delete profile for UID ${uid}`);
+            }
+
+            return await response.json();
+        } catch (error) {
+            console.error('Error in deleteProfile:', error);
+            return null;
+        }
+    }
+
+    static async GetComments(rid) {
+        try {
+            const url = `${this.apiUrl}/comment/${rid}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch comments for recipe ID ${rid}`);
+            }
+
+            const json = await response.json();
+            const comments = json.map((commentData) => {
+                return new Comment1(
+                    commentData.userId,
+                    commentData.recipeId,
+                    commentData.timestamp,
+                    commentData.text
+                );
+            });
+            console.log(comments)
+            return comments;
+        } catch (error) {
+            console.error('Error in GetComments:', error);
+        }
+    }
+
+    static AddComment(rid, text){
+        let body = JSON.stringify({
+            userId: localStorage.getItem("uid"),
+            recipeId: rid,
+            text: text
+        })
+        console.log(body)
+        try {
+            const url = this.apiUrl + '/comment'
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: body
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //search recipes
+    static searchRecipe(recipe) {
+        try {
+            const url = this.apiUrl + '/recipe/search' + recipe
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    //search profile
+    static searchProfile(profile) {
+        try {
+            const url = this.apiUrl + '/profile/search/' + profile
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
         }
     }
 }

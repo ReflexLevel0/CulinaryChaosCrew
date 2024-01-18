@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import Gallery from "../components/Gallery";
 
-function Home() {
-  let isLoggedIn = localStorage.getItem("username") !== "";
+function Home({loggedIn}) {
   return (
 <div className='main'>
     <div className="gallery-container">
@@ -17,7 +16,7 @@ function Home() {
       a beginner in the kitchen or an experienced chef, get inspired and create
       amazing flavors.
     </p>
-    {isLoggedIn ? (
+    {loggedIn ? (
         <>
           <Link to="/recipes" className="explore-link">
             Explore Recipes

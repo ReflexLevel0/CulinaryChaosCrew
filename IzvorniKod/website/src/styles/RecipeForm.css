@@ -38,4 +38,9 @@ form {
   #submit:hover {
     background-color: #ddd;
   }
+
+  textarea {
+    resize: none;
+    overflow: auto;
+  }
   
