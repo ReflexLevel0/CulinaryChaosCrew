@@ -25,6 +25,9 @@ function Home() {
           <Link to="/saved" className="explore-link">
             Saved Recipes
           </Link>
+          <Link to="/create" className="explore-link">
+            Create new recipe
+          </Link>
         </>
       ) : (
         <Link to="/recipes" className="explore-link">

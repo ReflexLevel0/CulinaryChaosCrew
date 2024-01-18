@@ -99,7 +99,7 @@ export default class ApiHelper {
         }
     }
     // creates a new recipe
-    static CreateRecipe(name, category, instr, ingr, origin, tags, iurl, vurl, preptime){
+    static CreateRecipe(name, category, ingr, instr, origin, tags, iurl, vurl, preptime){
         let body = JSON.stringify({
             uid: localStorage.getItem("uid"),
             name: name,
@@ -131,7 +131,7 @@ export default class ApiHelper {
     //gets profile informations based on its UID
     static ProfileByUID(uid) {
         try {
-            const url = this.apiUrl + 'profile/userid/{uid}'
+            const url = this.apiUrl + '/profile/userid/' + uid
             return fetch(url).then(r => r.json())
         } catch (e) {
             console.log(e)
@@ -174,5 +174,31 @@ export default class ApiHelper {
             return null;
         }
     }
+    //get username from UID
+    static async GetUsernameFromUID(uid) {
+        try {
+            console.log(uid)
+            const encodedUid = encodeURIComponent(uid)
+            const url = this.apiUrl + '/profile/userid/' + encodedUid
+            console.log(url)
+            // Make a request to your backend to retrieve user information based on the uid
+            const response = await fetch(url);
+            if (!response.ok) {
+                // Handle error, throw an exception, or return a default value
+                throw new Error(`Unable to fetch user information for UID ${uid}`);
+            }
 
+            const userData = await response.json();
+
+            // Assuming your backend returns an object with a 'uid' property
+            const username = userData.username;
+            console.log(uid)
+
+            return username;
+        } catch (error) {
+            console.error('Error in GetUsernameFromUID:', error);
+            // Handle the error, throw an exception, or return a default value
+            return null;
+        }
+    }
 }

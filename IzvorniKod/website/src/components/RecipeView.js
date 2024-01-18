@@ -1,7 +1,20 @@
 import React from 'react';
 import '../styles/RecipeView.css';
+import ApiHelper from '../ApiHelper';
 
 function RecipeView({recipe}) {
+    /*const getUsername = async () => {
+        try {
+          console.log(recipe)
+          const username = await ApiHelper.GetUsernameFromUID(recipe.uid);
+          return username;
+        } catch (error) {
+          // Handle errors if needed
+          console.error("Error fetching username:", error);
+          return null;
+        }
+      };*/
+
     return (
         <div className="recipe-view-container">
             <div className="recipe-content">
@@ -28,8 +41,9 @@ function RecipeView({recipe}) {
                 </div>
             </div>
             <div className="video-container">
-            <iframe width="1228" height="691" src="https://www.youtube.com/embed/a3EWx-Qoz64" title={recipe.name} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <iframe width="1228" height="691" src={recipe.vurl} title={recipe.name} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
+           
         </div>
     );
 }
