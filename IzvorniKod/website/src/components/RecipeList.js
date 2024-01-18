@@ -18,14 +18,23 @@ function RecipeList() {
   }, []);
   return (
     <div className="recipe-cards-container">
-      {recipes.map((recipe) => (
-        <RecipeCard
-          rid={recipe.rid}
-          recipeName={recipe.name}
-          description={recipe.instructions}
-          imageSrc={recipe.iurl}
-        />
-      ))}
+      {recipes.map((recipe) => {
+        const maxDescriptionLength = 100;
+        const truncatedDescription =
+          recipe.instructions.length > maxDescriptionLength
+            ? `${recipe.instructions.slice(0, maxDescriptionLength)}...`
+            : recipe.instructions;
+
+        return (
+          <RecipeCard
+            key={recipe.rid}
+            rid={recipe.rid}
+            recipeName={recipe.name}
+            description={truncatedDescription}
+            imageSrc={recipe.iurl}
+          />
+        );
+      })}
     </div>
   );
 }
