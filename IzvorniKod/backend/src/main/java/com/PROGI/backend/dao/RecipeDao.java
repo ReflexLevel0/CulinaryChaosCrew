@@ -26,4 +26,8 @@ public interface RecipeDao {
     int deleteRecipeById(UUID id);
 
     int updateRecipeById(UUID id, Recipe recipe);
+
+    List<Recipe> searchRecipe(String guess);
+
+    List<Recipe> getRecipesFromCategory(String category);
 }

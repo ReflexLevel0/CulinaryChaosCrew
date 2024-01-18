@@ -1,18 +1,14 @@
 package com.PROGI.backend.dao;
 
+import com.PROGI.backend.exceptions.RecipeSearchEmpty;
 import com.PROGI.backend.mappers.RecipeLikeWrapperMapper;
 import com.PROGI.backend.mappers.RecipeMapper;
-import com.PROGI.backend.model.Profile;
 import com.PROGI.backend.model.Recipe;
 import com.PROGI.backend.model.RecipeLikeWrapper;
-import org.apache.commons.lang3.NotImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
 import java.util.Optional;
@@ -99,5 +95,29 @@ public class RecipeDataAccessService implements RecipeDao {
                 recipe.getPreparationTime(),
                 id.toString()
         );
+    }
+
+    @Override
+    public List<Recipe> searchRecipe(String guess) {
+        String sql = "SELECT * FROM recipe WHERE name LIKE CONCAT('%', ?, '%') OR specialTags LIKE CONCAT('%', ?, '%') OR ingredients LIKE CONCAT('%', ?, '%') OR origin LIKE CONCAT('%', ?, '%')";
+        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), guess, guess, guess, guess);
+        try{
+            if(recipes.isEmpty()) throw new RecipeSearchEmpty();
+        }catch (RecipeSearchEmpty e) {
+            throw new RuntimeException(e);
+        }
+        return recipes;
+    }
+
+    @Override
+    public List<Recipe> getRecipesFromCategory(String category) {
+        String sql = "SELECT * FROM recipe WHERE category = ?";
+        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), category.toLowerCase());
+        try{
+            if(recipes.isEmpty()) throw new RecipeSearchEmpty();
+        }catch (RecipeSearchEmpty e) {
+            throw new RuntimeException(e);
+        }
+        return recipes;
     }
 }

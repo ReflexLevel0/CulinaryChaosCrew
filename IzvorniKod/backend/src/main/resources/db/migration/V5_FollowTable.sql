@@ -1,8 +1,0 @@
-CREATE TABLE follow
-(
-    userid VARCHAR NOT NULL,
-    followerId VARCHAR NOT NULL,
-    PRIMARY KEY(userId, followerId),
-    FOREIGN KEY (userid) REFERENCES profile(userid) ON DELETE CASCADE ON UPDATE CASCADE ,
-    FOREIGN KEY (followerId) REFERENCES profile(userid) ON DELETE CASCADE ON UPDATE CASCADE
-);
