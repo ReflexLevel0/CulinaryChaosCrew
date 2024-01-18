@@ -59,11 +59,13 @@ public class RecipeController {
         recipeService.updateRecipe(id, recipe);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "search/{guess}")
     public List<Recipe> searchRecipe(@NonNull @PathVariable("guess") String guess){
         return recipeService.searchRecipe(guess);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "category/{cat}")
     public List<Recipe> getRecipesFromCategory(@NonNull @PathVariable("cat") String category) {
         return recipeService.getRecipesFromCategory(category);
