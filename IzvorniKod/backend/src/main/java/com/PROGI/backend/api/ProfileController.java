@@ -71,16 +71,19 @@ public class ProfileController {
         return profileService.getProfileByUsername(username).orElse(null);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "{uid}")
     public void deleteProfileById(@PathVariable("uid") UUID id){
         profileService.deleteProfile(id);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping(path = "{uid}")
     public void updateProfileById(@PathVariable("uid") UUID id, @NonNull @RequestBody Profile profile) {
         profileService.updateProfile(id, profile);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "deleteAllProfiles")
     public void deleteAllProfiles(){
         profileService.deleteAllProfiles();
