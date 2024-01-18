@@ -23,6 +23,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path = "")
     public void addRecipe(@NonNull @RequestBody Recipe recipe) {
         recipeService.addRecipe(recipe);
@@ -46,11 +47,13 @@ public class RecipeController {
         return recipeService.getRecipeById(recipeId).orElse(null);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "{rid}")
     public void deleteRecipeById(@PathVariable("rid") UUID id){
         recipeService.deleteRecipe(id);
     }
 
+    @CrossOrigin(origins = "*")
     @PutMapping(path = "{rid}")
     public void updateRecipeById(@PathVariable("rid") UUID id, @NonNull @RequestBody Recipe recipe) {
         recipeService.updateRecipe(id, recipe);
