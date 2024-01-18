@@ -68,7 +68,7 @@ public class ProfileController {
     public Profile getProfileByUsername(@PathVariable("username") String username){
         return profileService.getProfileByUsername(username).orElse(null);
     }
-
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "{uid}")
     public void deleteProfileById(@PathVariable("uid") UUID id){
         profileService.deleteProfile(id);

@@ -58,7 +58,7 @@ public class ProfileDataAccessService implements ProfileDao {
     }
 
     @Override
-    public Optional<Profile> selectProfileById(UUID id) {
+    public Optional<Profile> selectProfileById(UUID id) throws DataAccessException{
         String sql = "SELECT * FROM profile WHERE userID = ?";
         Profile profile;
         try{

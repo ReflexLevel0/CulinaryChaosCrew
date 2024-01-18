@@ -12,8 +12,7 @@ public class HashHelper {
             String hashedString = new String(messageDigest.digest());
             byte[] var = hashedString.getBytes();
             StringBuilder finalString = new StringBuilder();
-            for (int i = 0; i < var.length; i++) {
-                int b = var[i];
+            for (int b : var) {
                 finalString.append(b);
             }
             return Optional.of(finalString.toString());
