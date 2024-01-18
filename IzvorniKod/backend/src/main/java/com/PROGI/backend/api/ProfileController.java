@@ -1,5 +1,6 @@
 package com.PROGI.backend.api;
 
+import com.PROGI.backend.exceptions.ProfileNotFound;
 import com.PROGI.backend.model.Profile;
 import com.PROGI.backend.service.LoginRequest;
 import com.PROGI.backend.service.ProfileService;
@@ -73,7 +74,10 @@ public class ProfileController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "{uid}")
-    public void deleteProfileById(@PathVariable("uid") UUID id){
+    public void deleteProfileById(@PathVariable("uid") UUID id) throws ProfileNotFound {
+        if(profileService.profileExists(id)) {
+            throw new ProfileNotFound(id);
+        }
         profileService.deleteProfile(id);
     }
 
@@ -89,6 +93,7 @@ public class ProfileController {
         profileService.deleteAllProfiles();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path="search/{querry}")
     public List<Profile> searchProfile(@NonNull @PathVariable("querry") String guess){
         return profileService.searchProfile(guess);

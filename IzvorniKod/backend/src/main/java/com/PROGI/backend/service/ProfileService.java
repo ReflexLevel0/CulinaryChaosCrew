@@ -75,10 +75,10 @@ public class ProfileService {
         return false;
     }
 
-    public boolean profileExists(String username, String password) {
+    public boolean profileExists(UUID id) {
         List<Profile> allProfiles = getAllProfiles();
         for (Profile profile : allProfiles) {
-            if (profile.getUsername().equals(username) && profile.getPassword().equals(password)) {
+            if (profile.getUserId().equals(id.toString())) {
                 return true;
             }
         }
