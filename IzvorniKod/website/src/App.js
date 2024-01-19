@@ -74,7 +74,7 @@ function App() {
                 <Route path="/signup" element={<Login login={false} />} />
                 <Route path="/recipes" element={<Recipes />} />
                 <Route path="/saved" element={<SavedRecipesPage />} />
-                <Route path="/recipe/:id" element={<SingleRecipe />} />
+                <Route path="/recipe/:id" element={<SingleRecipe loggedIn={loggedIn}/>} />
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/create" element={<CreateRecipePage />} />
                 <Route path="/user/:username" element={<OtherProfilePage />} />

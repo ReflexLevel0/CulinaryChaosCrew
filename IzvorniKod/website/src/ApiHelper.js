@@ -224,7 +224,7 @@ export default class ApiHelper {
             return null;
         }
     }
-    
+
     static async deleteProfile(uid) {
         try {
             const url = `${this.apiUrl}/profile/${uid}`;

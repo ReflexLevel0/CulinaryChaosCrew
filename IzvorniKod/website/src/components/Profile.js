@@ -63,21 +63,28 @@ const Profile = () => {
                                             <div className="bg-secondary-soft px-4 py-5 rounded">
                                                 <div className="row g-3">
 
+                                                    <div className="col-md-12">
+                                                        <label className="form-label">Username</label>
+                                                        <input type="text" className="form-control" placeholder={user.username}
+                                                               aria-label="Username"/>
+                                                    </div>
+
                                                     <div className="col-md-6">
                                                         <label className="form-label">First Name</label>
-                                                        <input type="text" className="form-control" placeholder=""
-                                                               aria-label="First name" value={user.name}/>
+                                                        <input type="text" className="form-control" placeholder={user.name}
+                                                               aria-label="First name"/>
                                                     </div>
 
                                                     <div className="col-md-6">
                                                         <label className="form-label">Last Name</label>
-                                                        <input type="text" className="form-control" placeholder=""
-                                                               aria-label="Last name" value={user.surname}/>
+                                                        <input type="text" className="form-control" placeholder={user.surname}
+                                                               aria-label="Last name"/>
                                                     </div>
-                                                    <div className="col-md-6">
-                                                        <label htmlFor="inputEmail4" className="form-label">Email</label>
+                                                    <div className="col-md-12">
+                                                        <label htmlFor="inputEmail4"
+                                                               className="form-label">Email</label>
                                                         <input type="email" className="form-control" id="inputEmail4"
-                                                               value={user.email}/>
+                                                               aria-label="Email" placeholder={user.email}/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -87,10 +94,10 @@ const Profile = () => {
                                     <div className="row mb-5 gx-5">
                                         <div className="col-xxl-6">
                                             <div className="bg-secondary-soft px-4 py-5 rounded">
-                                                <div className="row g-3">
+                                            <div className="row g-3">
                                                     <h4 className="my-4">Change Password</h4>
 
-                                                    <div className="col-md-6">
+                                                    <div className="col-md-12">
                                                         <label htmlFor="exampleInputPassword1" className="form-label">Old password</label>
                                                         <input type="password" className="form-control"
                                                                id="exampleInputPassword1"/>
@@ -102,7 +109,7 @@ const Profile = () => {
                                                                id="exampleInputPassword2"/>
                                                     </div>
 
-                                                    <div className="col-md-12">
+                                                    <div className="col-md-6">
                                                         <label htmlFor="exampleInputPassword3" className="form-label">Confirm Password</label>
                                                         <input type="password" className="form-control"
                                                                id="exampleInputPassword3"/>

@@ -6,7 +6,7 @@ import CommentList from "../components/CommentList";
 
 
 
-function SingleRecipe() {
+function SingleRecipe({loggedIn}) {
     const [recipe1, setRecipe] = useState([]);
 
     const currentPath = window.location.pathname;
@@ -38,7 +38,7 @@ function SingleRecipe() {
           </button>
           <p> Likes</p>
         </div>
-          <CommentList rid={rid}/>
+          <CommentList rid={rid} loggedIn={loggedIn}/>
       </div>
     );
   }

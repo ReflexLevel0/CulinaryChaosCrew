@@ -5,7 +5,7 @@ import '../styles/CommentList.css'
 import CommentBox from "./CommentBox";
 
 
-function CommentList({rid}) {
+function CommentList({rid, loggedIn}) {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
@@ -26,8 +26,9 @@ function CommentList({rid}) {
             {comments.slice().reverse().map((comment) => (
                 <CommentCard comment={comment}/>
             ))}
+
             <div className={"c-box"}>
-            <CommentBox rid={rid}/>
+            <CommentBox rid={rid} loggedIn={loggedIn}/>
             </div>
         </div>
     );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ApiHelper from "../ApiHelper";
 import '../styles/CommentBox.css'
 
-function CommentBox({rid}) {
+function CommentBox({rid, loggedIn}) {
     const [text, setText] = useState("");
     // event.preventDefault()
     const handleCommentSubmit = async () => {
@@ -18,16 +18,16 @@ function CommentBox({rid}) {
     }; 
 
     return (
-        <div className="box">
-        <form>
-          <textarea className={"box"}
-              placeholder="Leave a comment..."
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-          />
-            <button id='submit' type="submit" onClick={handleCommentSubmit}>Add comment</button>
-        </form>
-        </div>
+        loggedIn ? (
+            <form>
+                <textarea className={"box"}
+                          placeholder="Leave a comment..."
+                          value={text}
+                          onChange={(e) => setText(e.target.value)}
+                />
+                <button id='submit' type="submit" onClick={handleCommentSubmit}>Add comment</button>
+            </form>
+        ) : null
     );
 }
 
