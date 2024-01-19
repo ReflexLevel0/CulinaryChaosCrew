@@ -18,8 +18,9 @@ function RecipeList() {
   }, []);
   return (
     <div className="recipe-cards-container">
-      {recipes.map((recipe) => {
+      {recipes.slice().reverse().map((recipe) => {
         const maxDescriptionLength = 100;
+        console.log(recipe.instructions)
         const truncatedDescription =
           recipe.instructions.length > maxDescriptionLength
             ? `${recipe.instructions.slice(0, maxDescriptionLength)}...`

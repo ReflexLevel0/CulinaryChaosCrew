@@ -1,12 +1,17 @@
 h3 {
+    display: flex;
+    align-items: center;
     font-size: 24px;
-    color: #004771; 
-    margin-bottom: 15px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    font-weight: bold;    
+    color: #004771;
+    margin-bottom: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
 }
 
-
+.recipe-details {
+    display: flex;
+    flex-direction: column;
+}
 
 .descriptionContainer {
     display: flex;
@@ -16,7 +21,8 @@ h3 {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease-in-out;
-    text-decoration: none; 
+    text-decoration: none;
+    margin-top: 10px;
 }
 
 .descriptionContainer:hover {
@@ -38,8 +44,28 @@ h3 {
     color: #555;
 }
 
-.like-icon {
-    font-size: 0.9em;
-    border: none;
+.like-button button {
     background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.like-button button:hover {
+    color: blue; /* Change color on hover if needed */
+}
+
+.like-button button:focus {
+    outline: none;
+}
+
+.like-button button svg {
+    font-size: 24px; /* Adjust the icon size as needed */
+    margin-right: 5px; /* Adjust the margin between icon and text if needed */
+}
+
+.icon {
+
 }

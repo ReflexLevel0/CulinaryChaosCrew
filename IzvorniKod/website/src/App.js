@@ -47,7 +47,7 @@ function App() {
     }
 
     /* const handleDeleteProfile = async () => {
-        const uid = localStorage.getItem('uid'); // Assuming you have stored the UID in localStorage
+        const uid = localStorage.getItem('uid');
         const result = await ApiHelper.deleteProfile(uid);
 
         if (result) {

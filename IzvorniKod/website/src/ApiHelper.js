@@ -206,7 +206,7 @@ export default class ApiHelper {
             // console.log(uid)
             const encodedUid = encodeURIComponent(uid)
             const url = this.apiUrl + '/profile/userid/' + encodedUid
-            console.log(url)
+            // console.log(url)
             // Make a request to your backend to retrieve user information based on the uid
             const response = await fetch(url);
             if (!response.ok) {
@@ -216,14 +216,12 @@ export default class ApiHelper {
 
             const userData = await response.json();
 
-            // Assuming your backend returns an object with a 'uid' property
             const username = userData.username;
-            console.log(uid)
+            // console.log(uid)
 
             return username;
         } catch (error) {
             console.error('Error in GetUsernameFromUID:', error);
-            // Handle the error, throw an exception, or return a default value
             return null;
         }
     }
@@ -319,7 +317,12 @@ export default class ApiHelper {
         }
     }
 
-    static likeRecipe(rid, uid) {
+    static LikeRecipe(rid, uid) {
+        let body = JSON.stringify({
+            rid: rid,
+            uid: uid
+        })
+        console.log(body)
         try {
             const url = this.apiUrl + '/likes'
             return fetch(url, {
@@ -328,64 +331,89 @@ export default class ApiHelper {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
-                    rid: rid,
-                    uid: uid
-                })
+                body: body
             })
         } catch (e) {
             console.log(e)
         }
     }
 
-    static unlikeRecipe(rid, uid) {
+    static UnlikeRecipe(rid, uid) {
+        let body = JSON.stringify({
+            rid: rid,
+            uid: uid
+        })
+        console.log(body)
         try {
-            const url = this.apiUrl + '/likes'
+            const url = this.apiUrl + '/likes?uid=' + uid + '&rid=' + rid
             return fetch(url, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: JSON.stringify({
-                    rid: rid,
-                    uid: uid
-                })
+                body: body
             })
         } catch (e) {
             console.log(e)
         }
     }
 
-    static async isRecipeLikedByUser(rid, uid) {
+    static async isRecipeLikedByUser(uid, recipeId) {
         try {
-            const url = this.apiUrl + `/likes/${uid}`;
-            const response = await fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body : JSON.stringify({
-                    uid: uid
-            })
-            });
+            const url = `${this.apiUrl}/recipe/allRecipes/${uid}`;
+            console.log(url)
+            const response = await fetch(url);
 
             if (!response.ok) {
-                throw new Error(`Failed to fetch likes for user ${uid}`);
+                throw new Error(`Failed to fetch likes for user ID ${uid}`);
             }
 
             const likedRecipes = await response.json();
-            return likedRecipes.includes(rid);
-        } catch (e) {
-            console.log(e);
+
+            // Find the recipe with the given recipeId
+            const recipe = likedRecipes.find(recipe => recipe.recipeId === recipeId);
+
+            if (recipe) {
+                // console.log(recipe.likedByLoggedInUser)
+                return recipe.likedByLoggedInUser;
+            } else {
+                // Recipe not found, you may want to handle this case accordingly
+                console.warn(`Recipe with ID ${recipeId} not found.`);
+                return false;
+            }
+
+        } catch (error) {
+            console.error('Error in isRecipeLikedByUser:', error);
             return false; // Return false in case of an error
         }
     }
 
+    /* static async isRecipeLikedByUser(rid, uid) {
+        try {
+            const url = `${this.apiUrl}/likes/${uid}`;
+            console.log(url)
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`Failed to fetch likes for user ID ${uid}`);
+            }
+
+            const likedRecipes = await response.json();
+            console.log(likedRecipes)
+            const isLiked = likedRecipes.some((like) => like.rid === rid);
+            console.log(isLiked)
+            return isLiked;
+        } catch (error) {
+            console.error('Error in isRecipeLikedByUser:', error);
+            return false; // Return false in case of an error
+        }
+    } */
+
     static async getLikesForRecipe(rid) {
         try {
             const recipe = await this.GetRecipebyRid(rid);
+            console.log(recipe.likes)
             return recipe.likes;
         } catch (e) {
             console.log(e);

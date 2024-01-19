@@ -75,7 +75,7 @@ const OtherProfile = () => {
           </div>
           <h1>{paramUsername}'s recipes:</h1>
           <div className="recipe-cards-container">
-            {userRecipes.map((recipe) => (
+            {userRecipes.slice().reverse().map((recipe) => (
               <RecipeCard
 
                 rid={recipe.rid}
