@@ -16,7 +16,7 @@ export default class ApiHelper {
 
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preparationTime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -37,7 +37,7 @@ export default class ApiHelper {
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
                     console.log(r)
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -52,7 +52,7 @@ export default class ApiHelper {
         try {
             const url = this.apiUrl + '/recipe/' + rid
             return fetch(url).then(r => r.json()).then(r => {
-                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preparationTime, r.likes)
+                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                 return recipe
             })
         } catch (e) {
@@ -69,7 +69,7 @@ export default class ApiHelper {
                 let recipes = []
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preparationTime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -131,13 +131,13 @@ export default class ApiHelper {
             uid: localStorage.getItem("uid"),
             name: name,
             category: category,
-            ingredients: ingr,
-            instructions: instr,
+            ingr: ingr,
+            instr: instr,
             origin: origin,
             tags: tags,
-            imageURL: iurl,
-            videoURL: vurl,
-            preparationTime: preptime
+            iurl: iurl,
+            vurl: vurl,
+            preptime: preptime
         })
         console.log(body)
          try {
