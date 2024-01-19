@@ -1,5 +1,6 @@
 package com.PROGI.backend;
 
+import org.springframework.boot.test.context.SpringBootTest;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
