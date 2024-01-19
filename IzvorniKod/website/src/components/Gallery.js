@@ -3,8 +3,8 @@ import '../styles/Gallery.css';
 
 const ImageGallery = () => {
   const images = useMemo(() => [
-    'https://ic.recreationid.com/outdoor-recreation/pages/camp-kitchen/camp-kitchen_big_0.jpg',
-    'https://www.electroluxprofessional.com/us/wp-content/uploads/2023/07/ESL-Blog1-Featured-Image-Banner.jpg',
+    'https://www.sterlingvineyards.com/dw/image/v2/BDBC_PRD/on/demandware.static/-/Sites-Sterling-Library/default/dwcb2903a9/images/@Banner_Images/1920x550_(Half_Height)/1920%20X%20550%20STV%20Brunch%20Banner.png',
+    'https://www.thebigchefuddingston.co.uk/image/cache/data/homeslider01-1920x550.jpg',
     'https://house.ergonfoods.com/wp-content/uploads/2019/07/cookingbg02.jpg',
     'https://www.brc.com.au/Images/UserUploadedImages/2746/0922_BRC_Food-0669-resized-canva-1920x550-oysters.png'
   ], []);
