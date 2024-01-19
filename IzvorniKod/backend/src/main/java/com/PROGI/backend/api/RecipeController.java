@@ -29,6 +29,7 @@ public class RecipeController {
         recipeService.addRecipe(recipe);
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "allRecipes")
     public List<RecipeLikeWrapper> getAllRecipes(@RequestParam("loggedInUserId") Optional<UUID> loggedInUserId, @RequestParam("authorId") Optional<UUID> authorId){
         return recipeService.getAllRecipes(loggedInUserId, authorId);
