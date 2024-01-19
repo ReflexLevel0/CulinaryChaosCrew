@@ -17,6 +17,6 @@ public class RecipeLikeWrapperMapper implements RowMapper<RecipeLikeWrapper> {
         }catch(Exception ex){
             liked = false;
         }
-        return new RecipeLikeWrapper(r.getRecipeId(), r.getUserId(), r.getName(), r.getCategory(), r.getIngredients(), r.getInstructions(), r.getOrigin(), r.getTags(), r.getImageURL(), r.getVideoURL(), r.getPreparationTime(), liked);
+        return new RecipeLikeWrapper(r.getRid(), r.getUid(), r.getName(), r.getCategory(), r.getIngredients(), r.getInstructions(), r.getOrigin(), r.getTags(), r.getImageURL(), r.getVideoURL(), r.getPreparationTime(), liked);
     }
 }

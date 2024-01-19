@@ -22,6 +22,7 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path = "register")
     public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalArgumentException {
         if (!profileService.goodEmailFormat(profile.getEmail())) {
@@ -39,6 +40,7 @@ public class ProfileController {
         profileService.addProfile(profile);
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping(path = "login")
     public String getProfileByUsernameAndPassword(@RequestBody LoginRequest loginRequest) throws IllegalAccessException {
         Profile profile1 = profileService.getProfileByUsername(loginRequest.getUsername()).orElse(null);
@@ -52,6 +54,7 @@ public class ProfileController {
         return loginRequest.getUsername();
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping(path = "allProfiles")
     public List<Profile> getAllProfiles() {
         return profileService.getAllProfiles();
