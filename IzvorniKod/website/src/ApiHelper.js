@@ -236,13 +236,14 @@ export default class ApiHelper {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                },
+                }
             });
 
             if (!response.ok) {
                 throw new Error(`Unable to delete profile for UID ${uid}`);
             }
 
+            window.location.href = '/';
             return await response.json();
         } catch (error) {
             console.error('Error in deleteProfile:', error);
