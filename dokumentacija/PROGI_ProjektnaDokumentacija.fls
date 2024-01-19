@@ -440,6 +440,15 @@ INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
 INPUT .\slike\DBdiagram.png
 INPUT .\slike\DBdiagram.png
 INPUT .\slike\DBdiagram.png
@@ -447,13 +456,27 @@ INPUT .\slike\DBdiagram.png
 INPUT .\slike\DBdiagram.png
 INPUT .\slike\DBdiagram.png
 INPUT .\slike\DBdiagram.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
-INPUT .\slike\dijagrami\Dijagram razreda.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\\dijagrami\Controller.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Service.png
+INPUT .\slike\dijagrami\Dao.png
+INPUT .\slike\dijagrami\Dao.png
+INPUT .\slike\dijagrami\Dao.png
+INPUT .\slike\dijagrami\Dao.png
+INPUT .\slike\dijagrami\Dao.png
+INPUT .\slike\dijagrami\Dao.png
+INPUT .\slike\dijagrami\Dao.png
 INPUT .\slike\dijagrami\Korisnik_dijagram_stanja.png
 INPUT .\slike\dijagrami\Korisnik_dijagram_stanja.png
 INPUT .\slike\dijagrami\Korisnik_dijagram_stanja.png
