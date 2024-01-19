@@ -9,7 +9,7 @@ export default class ApiHelper {
         try {
             let uid = localStorage.getItem("uid")
             let url = this.apiUrl + '/recipe/allRecipes'
-            if(uid !== '') url += `?loggedInUserId=${uid}`
+            if(uid !== null) url += `?loggedInUserId=${uid}`
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
@@ -363,8 +363,8 @@ export default class ApiHelper {
 
     static async isRecipeLikedByUser(uid, recipeId) {
         try {
-            const url = `${this.apiUrl}/recipe/allRecipes?loggedInUserId=${uid}`;
-            console.log(url)
+            let url = `${this.apiUrl}/recipe/allRecipes`;
+            if(uid !== null) url += `?loggedInUserId=${uid}`
             const response = await fetch(url);
 
             if (!response.ok) {
