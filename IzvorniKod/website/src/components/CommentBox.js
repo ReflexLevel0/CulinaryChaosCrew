@@ -11,7 +11,7 @@ function CommentBox({rid, loggedIn}) {
         }
         try {
             await ApiHelper.AddComment(rid, text);
-            setText(""); // Clear the comment text after submission
+            window.location.reload()
         } catch (error) {
             console.error("Error adding comment:", error);
         }

@@ -281,7 +281,6 @@ export default class ApiHelper {
             recipeId: rid,
             text: text
         })
-        alert(body)
         try {
             const url = this.apiUrl + '/comment'
             await fetch(url, {
@@ -324,7 +323,6 @@ export default class ApiHelper {
             rid: rid,
             uid: uid
         })
-        console.log(body)
         try {
             const url = this.apiUrl + '/likes/like'
             return fetch(url, {
