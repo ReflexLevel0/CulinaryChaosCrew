@@ -2,6 +2,8 @@ package com.PROGI.backend.service;
 
 import com.PROGI.backend.dao.ProfileDao;
 import com.PROGI.backend.model.Profile;
+import com.PROGI.backend.validEmail;
+import com.PROGI.backend.validPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -16,7 +18,6 @@ import java.util.regex.Pattern;
 public class ProfileService {
     private final ProfileDao profileDao;
 
-    //    fakeProfileDao za fake bazu, postgresProfile za real bazu (valjda)
     @Autowired
     public ProfileService(@Qualifier("postgresProfile") ProfileDao profileDao) {
         this.profileDao = profileDao;
@@ -27,7 +28,7 @@ public class ProfileService {
     }
 
     public List<Profile> getAllProfiles() {
-        return profileDao.selectAllProfiles();
+        return profileDao.getAllProfiles();
     }
 
     public Optional<Profile> getProfileById(UUID id) {
@@ -51,6 +52,9 @@ public class ProfileService {
     }
 
     public void deleteAllProfiles(){ profileDao.deleteAllProfiles();}
+
+    public List<Profile> searchProfile(String guess) { return profileDao.searchProfile(guess); }
+
     public boolean usernameTaken(String username) {
         List<Profile> allProfiles = getAllProfiles();
         for (Profile profile : allProfiles) {
@@ -71,10 +75,10 @@ public class ProfileService {
         return false;
     }
 
-    public boolean profileExists(String username, String password) {
+    public boolean profileExists(UUID id) {
         List<Profile> allProfiles = getAllProfiles();
         for (Profile profile : allProfiles) {
-            if (profile.getUsername().equals(username) && profile.getPassword().equals(password)) {
+            if (profile.getUserId().equals(id.toString())) {
                 return true;
             }
         }
@@ -82,14 +86,13 @@ public class ProfileService {
     }
 
     public boolean goodEmailFormat(String email) {
-        String emailRegex = "^(.+)@([^.]+)\\.(.+)$";
-        if (email.endsWith(".")) return false;
-        return email.matches(emailRegex);
+        validEmail validEmail = new validEmail();
+        return validEmail.test(email);
     }
 
     public boolean strongPassword(String password) {
-        String passwordRegex = "^(?=.*[0-9])(.{6,})$";
-        return password.matches(passwordRegex);
+        validPassword validPassword = new validPassword();
+        return validPassword.test(password);
     }
 
 }

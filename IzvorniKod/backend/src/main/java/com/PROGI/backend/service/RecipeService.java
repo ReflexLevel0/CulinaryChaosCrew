@@ -2,6 +2,7 @@ package com.PROGI.backend.service;
 
 import com.PROGI.backend.dao.RecipeDao;
 import com.PROGI.backend.model.Recipe;
+import com.PROGI.backend.model.RecipeLikeWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,6 @@ public class RecipeService {
     private final RecipeDao recipeDao;
 
     @Autowired
-//    fakeRecipeDao za fake bazu, postgresRecipe za real bazu (valjda)
     public RecipeService(@Qualifier("postgresRecipe") RecipeDao recipeDao) {
         this.recipeDao = recipeDao;
     }
@@ -26,6 +26,10 @@ public class RecipeService {
 
     public List<Recipe> getAllRecipes() {
         return recipeDao.selectAllRecipes();
+    }
+
+    public List<RecipeLikeWrapper> getAllRecipes(UUID loggedInUserId){
+        return recipeDao.selectAllWrappedRecipes(loggedInUserId);
     }
 
     public Optional<Recipe> getRecipeById(UUID id) {
@@ -40,4 +44,7 @@ public class RecipeService {
         return recipeDao.updateRecipeById(id, recipe);
     }
 
+    public List<Recipe> searchRecipe(String guess) { return recipeDao.searchRecipe(guess); }
+
+    public List<Recipe> getRecipesFromCategory(String category) { return recipeDao.getRecipesFromCategory(category); }
 }

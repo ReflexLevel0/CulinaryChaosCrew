@@ -1,0 +1,22 @@
+.title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #333; 
+    text-transform: capitalize; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    letter-spacing: 1px; 
+}
+
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+

@@ -17,7 +17,7 @@ public interface ProfileDao {
         return insertProfile(id, profile);
     }
 
-    List<Profile> selectAllProfiles();
+    List<Profile> getAllProfiles();
 
     Optional<Profile> selectProfileById(UUID id);
 
@@ -29,5 +29,7 @@ public interface ProfileDao {
 
     void deleteAllProfiles();
 
-    Optional<Profile> selectProfileByCredentials(String username, String password);
+    Optional<Profile> selectProfileByCredentials(String username, String hashedPassword);
+
+    List<Profile> searchProfile(String guess);
 }

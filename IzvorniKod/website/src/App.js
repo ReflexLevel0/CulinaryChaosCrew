@@ -4,6 +4,11 @@ import Login from "./pages/Login"
 import Header from "./components/Header"
 import {Routes, Route, useNavigate} from "react-router-dom";
 import {useState} from "react";
+import SingleRecipe from './pages/SingleRecipe';
+import SavedRecipesPage from './pages/SavedRecipesPage';
+import Home from './pages/Home';
+import ErrorPage from './pages/Errorpage';
+
 
 function App() {
     const [username, setUsername] = useState("");
@@ -26,9 +31,14 @@ function App() {
         <>
             <Header loggedIn={loggedIn} username={username} signedOut={handleSignout} />
             <Routes>
-                <Route path="/" element={<Recipes />} />
+                <Route path="/" element={<Home/>} />   
                 <Route path="/login" element={<Login login={true} loggedIn={handleLogin} />} />
                 <Route path="/signup" element={<Login login={false} />} />
+                <Route path="/recipes" element={<Recipes />} />
+                <Route path="/singleRecipe" element={<SingleRecipe />} />
+                <Route path="/saved" element={<SavedRecipesPage/>} />
+                <Route path="/recipe/:recipeName" element={<SingleRecipe />} />
+                <Route path="*" element={<ErrorPage />} />
             </Routes>
         </>
     );
