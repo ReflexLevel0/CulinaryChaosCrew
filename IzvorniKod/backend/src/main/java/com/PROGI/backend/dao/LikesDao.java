@@ -15,5 +15,5 @@ public interface LikesDao {
     void deleteLike(UUID uid, UUID rid) throws RecipeNotFound, ProfileNotFound;
     List<Recipe> getLikedRecipes(UUID uid) throws ProfileNotFound;
     List<Like> getAllLikes();
-    int likesCount(UUID rid);
+    int likesCount(UUID rid) throws RecipeNotFound;
 }

@@ -33,8 +33,10 @@ public class CommentController {
             Timestamp timestamp = new Timestamp(comment.getTimestamp().getTime() - comment.getTimestamp().getTime() % 1000);
             comment.setDate(timestamp);
             commentService.addComment(comment);
-        } catch (RecipeNotFound | ProfileNotFound ex) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } catch (RecipeNotFound ex) {
+            return new ResponseEntity<>("Recipe not found!", HttpStatus.NOT_FOUND);
+        } catch (ProfileNotFound ex) {
+            return new ResponseEntity<>("Profile not found!", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(null, HttpStatus.OK);
@@ -47,7 +49,7 @@ public class CommentController {
             timestamp1 = new Timestamp(timestamp1.getTime() - timestamp1.getTime() % 1000);
             commentService.deleteComment(uid, rid, timestamp1);
         } catch (CommentNotFound ex) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Comment not found!", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(null, HttpStatus.OK);
@@ -59,7 +61,7 @@ public class CommentController {
         try {
             comments = commentService.getComments(recipeId);
         } catch (RecipeNotFound ex) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Recipe not found!", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(comments, HttpStatus.OK);

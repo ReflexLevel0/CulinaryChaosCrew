@@ -37,5 +37,7 @@ public class LikesService {
         return likesDao.getAllLikes();
     }
 
-    public int likesCount(UUID rid){ return likesDao.likesCount(rid); }
+    public int likesCount(UUID rid) throws RecipeNotFound{
+        return likesDao.likesCount(rid);
+    }
 }
