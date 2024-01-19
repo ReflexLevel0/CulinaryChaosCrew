@@ -37,6 +37,51 @@
 			
 			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir Selenium\footnote{\url{https://www.seleniumhq.org/}}. Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
 			 
+			 Napravili smo testove komponenti koje se nalaze u direktoriju \texttt{src/test/java/com/PROGI/backend/BackendApplicationTests.java}.
+
+			\text{Izvorni kod izgleda ovako:}
+
+			\begin{verbatim}
+			@SpringBootTest
+			class BackendApplicationTests {
+
+				private final validEmail underTest = new validEmail();
+				private final validPassword underTest1 = new validPassword();
+
+				@Test
+				public void correctMail() {
+					assertThat(underTest.test("hello@gmail.com")).isTrue();
+				}
+
+				@Test
+				public void mailWithNoAt() {
+					assertThat(underTest.test("hellogmail.com")).isFalse();
+				}
+
+				@Test
+				public void mailWithNoDot() {
+					assertThat(underTest.test("hello@gmail")).isFalse();
+				}
+
+				@Test
+				public void correctPass() {
+					assertThat(underTest1.test("baba1223!")).isTrue();
+				}
+
+				@Test
+				public void passUnder8Char() {
+					assertThat(underTest1.test("adsa12")).isFalse();
+				}
+
+				@Test
+				public void passWithInvalidChars() {
+					assertThat(underTest1.test("pass@{}123;")).isFalse();
+				}
+			}
+			\end{verbatim}
+
+			Nakon testova, u terminalu dobijemo:
+
 			 \textit{Izradu ispitnih slučajeva pomoću radnog okvira Selenium moguće je provesti pomoću jednog od sljedeća dva alata:}
 			 \begin{itemize}
 			 	\item \textit{dodatak za preglednik \textbf{Selenium IDE} - snimanje korisnikovih akcija radi automatskog ponavljanja ispita	}
