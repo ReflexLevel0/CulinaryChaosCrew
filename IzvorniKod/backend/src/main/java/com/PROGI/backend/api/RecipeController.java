@@ -31,20 +31,14 @@ public class RecipeController {
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "allRecipes")
-    public List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
-    }
-
-    @CrossOrigin(origins = "*")
-    @GetMapping(path = "allRecipes/{uid}")
-    public List<RecipeLikeWrapper> getAllRecipes(@PathVariable("uid") UUID userId){
-        return recipeService.getAllRecipes(userId);
+    public List<RecipeLikeWrapper> getAllRecipes(@RequestParam("loggedInUserId") Optional<UUID> loggedInUserId, @RequestParam("authorId") Optional<UUID> authorId){
+        return recipeService.getAllRecipes(loggedInUserId, authorId);
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "{rid}")
-    public Recipe getRecipeById(@PathVariable("rid") UUID recipeId) {
-        return recipeService.getRecipeById(recipeId).orElse(null);
+    public RecipeLikeWrapper getRecipeById(@PathVariable("rid") UUID recipeId, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId) {
+        return recipeService.getRecipeById(recipeId, loggedInUserId).orElse(null);
     }
 
     @CrossOrigin(origins = "*")
@@ -60,13 +54,13 @@ public class RecipeController {
     }
 
     @GetMapping(path = "search/{guess}")
-    public List<Recipe> searchRecipe(@NonNull @PathVariable("guess") String guess){
-        return recipeService.searchRecipe(guess);
+    public List<RecipeLikeWrapper> searchRecipe(@NonNull @PathVariable("guess") String guess, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId){
+        return recipeService.searchRecipe(guess, loggedInUserId);
     }
 
     @GetMapping(path = "category/{cat}")
-    public List<Recipe> getRecipesFromCategory(@NonNull @PathVariable("cat") String category) {
-        return recipeService.getRecipesFromCategory(category);
+    public List<RecipeLikeWrapper> getRecipesFromCategory(@NonNull @PathVariable("cat") String category, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId) {
+        return recipeService.getRecipesFromCategory(category, loggedInUserId);
     }
 
 }

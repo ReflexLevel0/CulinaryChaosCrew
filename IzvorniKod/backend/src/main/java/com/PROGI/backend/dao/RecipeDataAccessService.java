@@ -49,22 +49,19 @@ public class RecipeDataAccessService implements RecipeDao {
     }
 
     @Override
-    public List<Recipe> selectAllRecipes() {
-        String sql = "SELECT * FROM recipe";
-        return jdbcTemplate.query(sql, new RecipeMapper());
+    public List<RecipeLikeWrapper> selectAllWrappedRecipes(Optional<UUID> userId, Optional<UUID> authorId) {
+        String sql = "SELECT *, " + (userId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " as liked FROM recipe";
+        if(authorId.isPresent()){
+            sql += " WHERE userid LIKE '%" + authorId.get() + "%'";
+        }
+        return jdbcTemplate.query(sql, new RecipeLikeWrapperMapper());
     }
 
     @Override
-    public List<RecipeLikeWrapper> selectAllWrappedRecipes(UUID userId) {
-        String sql = "SELECT *, (SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid = ?) > 0 as liked FROM recipe;";
-        return jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), userId.toString());
-    }
-
-    @Override
-    public Optional<Recipe> selectRecipeById(UUID recipeId) {
-        String sql = "SELECT * FROM recipe WHERE recipeID = ?";
-        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), recipeId.toString());
-        for (Recipe r : recipes) {
+    public Optional<RecipeLikeWrapper> selectRecipeById(UUID recipeId, Optional<UUID> loggedInUserId) {
+        String sql = "SELECT *, " +  (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " as liked FROM recipe WHERE recipeID = ?";
+        List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), recipeId.toString());
+        for (RecipeLikeWrapper r : recipes) {
             return Optional.of(r);
         }
         return Optional.ofNullable(null);
@@ -98,9 +95,9 @@ public class RecipeDataAccessService implements RecipeDao {
     }
 
     @Override
-    public List<Recipe> searchRecipe(String guess) {
-        String sql = "SELECT * FROM recipe WHERE name LIKE CONCAT('%', ?, '%') OR specialTags LIKE CONCAT('%', ?, '%') OR ingredients LIKE CONCAT('%', ?, '%') OR origin LIKE CONCAT('%', ?, '%')";
-        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), guess, guess, guess, guess);
+    public List<RecipeLikeWrapper> searchRecipe(String guess, Optional<UUID> loggedInUserId) {
+        String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE name LIKE CONCAT('%', ?, '%') OR specialTags LIKE CONCAT('%', ?, '%') OR ingredients LIKE CONCAT('%', ?, '%') OR origin LIKE CONCAT('%', ?, '%')";
+        List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), guess, guess, guess, guess);
         try{
             if(recipes.isEmpty()) throw new RecipeSearchEmpty();
         }catch (RecipeSearchEmpty e) {
@@ -110,9 +107,9 @@ public class RecipeDataAccessService implements RecipeDao {
     }
 
     @Override
-    public List<Recipe> getRecipesFromCategory(String category) {
-        String sql = "SELECT * FROM recipe WHERE category = ?";
-        List<Recipe> recipes = jdbcTemplate.query(sql, new RecipeMapper(), category.toLowerCase());
+    public List<RecipeLikeWrapper> getRecipesFromCategory(String category, Optional<UUID> loggedInUserId) {
+        String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE category = ?";
+        List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), category.toLowerCase());
         try{
             if(recipes.isEmpty()) throw new RecipeSearchEmpty();
         }catch (RecipeSearchEmpty e) {

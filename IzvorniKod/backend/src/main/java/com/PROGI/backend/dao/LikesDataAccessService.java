@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository("postgresLike")
@@ -29,7 +30,7 @@ public class LikesDataAccessService implements LikesDao {
 
     @Override
     public void addLike(Like like) throws RecipeNotFound, ProfileNotFound {
-        if(recipeDao.selectRecipeById(like.getRecipeId()).isEmpty()) throw new RecipeNotFound(like.getRecipeId());
+        if(recipeDao.selectRecipeById(like.getRecipeId(), Optional.empty()).isEmpty()) throw new RecipeNotFound(like.getRecipeId());
         if(profileDao.selectProfileById(like.getUserId()).isEmpty()) throw new ProfileNotFound(like.getUserId());
         String sql = "INSERT INTO likes(userId, recipeId) VALUES(?, ?)";
         jdbcTemplate.update(sql, like.getUserId(), like.getRecipeId());
@@ -55,7 +56,7 @@ public class LikesDataAccessService implements LikesDao {
 
     @Override
     public void deleteLike(UUID uid, UUID rid) throws RecipeNotFound, ProfileNotFound {
-        if(recipeDao.selectRecipeById(rid).isEmpty()) throw new RecipeNotFound(rid);
+        if(recipeDao.selectRecipeById(rid, Optional.empty()).isEmpty()) throw new RecipeNotFound(rid);
         if(profileDao.selectProfileById(uid).isEmpty()) throw new ProfileNotFound(uid);
         String uidString = uid.toString();
         String ridString = rid.toString();

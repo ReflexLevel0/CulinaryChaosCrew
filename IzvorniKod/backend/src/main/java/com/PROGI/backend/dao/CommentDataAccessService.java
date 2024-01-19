@@ -30,7 +30,7 @@ public class CommentDataAccessService implements CommentDao {
     @Override
     public void addComment(Comment comment) throws ProfileNotFound, RecipeNotFound {
         if(profileDao.selectProfileById(comment.getUserId()).isEmpty()) throw new ProfileNotFound(comment.getUserId());
-        if(recipeDao.selectRecipeById(comment.getRecipeId()).isEmpty()) throw new RecipeNotFound(comment.getRecipeId());
+        if(recipeDao.selectRecipeById(comment.getRecipeId(), Optional.empty()).isEmpty()) throw new RecipeNotFound(comment.getRecipeId());
         String sql = "INSERT INTO comment(userId, recipeId, timestamp, text) VALUES(?, ?, ?, ?)";
         jdbcTemplate.update(sql, comment.getUserId(), comment.getRecipeId(), comment.getTimestamp(), comment.getText());
     }
@@ -56,7 +56,7 @@ public class CommentDataAccessService implements CommentDao {
 
     @Override
     public List<Comment> getComments(UUID recipeId) throws RecipeNotFound {
-        if(recipeDao.selectRecipeById(recipeId).isEmpty()) throw new RecipeNotFound(recipeId);
+        if(recipeDao.selectRecipeById(recipeId, Optional.empty()).isEmpty()) throw new RecipeNotFound(recipeId);
         String sql = "SELECT * FROM comment WHERE recipeId = ?";
         return jdbcTemplate.query(sql, new CommentMapper(), recipeId.toString());
     }
