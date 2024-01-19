@@ -105,11 +105,6 @@ public class RecipeDataAccessService implements RecipeDao {
     public List<RecipeLikeWrapper> getRecipesFromCategory(String category, Optional<UUID> loggedInUserId) {
         String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE category = ?";
         List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), category.toLowerCase());
-        try{
-            if(recipes.isEmpty()) throw new RecipeSearchEmpty();
-        }catch (RecipeSearchEmpty e) {
-            throw new RuntimeException(e);
-        }
         return recipes;
     }
 }
