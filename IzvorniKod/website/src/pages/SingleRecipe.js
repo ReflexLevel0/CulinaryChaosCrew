@@ -50,8 +50,8 @@ function SingleRecipe({loggedIn}) {
       const fetchRecipe = async () => {
         try {
           const recipesData = await ApiHelper.GetRecipebyRid(rid);
-          console.log(recipesData)
           setRecipe(recipesData);
+          setIsLiked(await ApiHelper.isRecipeLikedByUser(uid, rid));
         } catch (error) {
           console.error('Error fetching recipes:', error);
         }

@@ -347,7 +347,7 @@ export default class ApiHelper {
         })
         console.log(body)
         try {
-            const url = this.apiUrl + '/likes?uid=' + uid + '&rid=' + rid
+            const url = this.apiUrl + '/likes/unlike?uid=' + uid + '&rid=' + rid
             return fetch(url, {
                 method: 'DELETE',
                 headers: {
@@ -374,10 +374,9 @@ export default class ApiHelper {
             const likedRecipes = await response.json();
 
             // Find the recipe with the given recipeId
-            const recipe = likedRecipes.find(recipe => recipe.recipeId === recipeId);
+            const recipe = likedRecipes.find(recipe => recipe.rid === recipeId);
 
             if (recipe) {
-                // console.log(recipe.likedByLoggedInUser)
                 return recipe.likedByLoggedInUser;
             } else {
                 // Recipe not found, you may want to handle this case accordingly
