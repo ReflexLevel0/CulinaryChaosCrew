@@ -1,0 +1,66 @@
+.user-profile-container {
+    max-width: 80%;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .author-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  
+  .user-info-item {
+    font-size: 18px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .info-label {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+
+.followButton {
+  margin: 20px;
+  background-color: #4caf50; 
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.unfollowButton {
+  margin: 20px;
+  background-color: #f44336; 
+  color: white;
+  padding: 12px 24px; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px; 
+}
+
+
+.followButton:hover, .unfollowButton:hover {
+  opacity: 0.8;
+}

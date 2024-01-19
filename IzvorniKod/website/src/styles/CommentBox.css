@@ -1,0 +1,15 @@
+.box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    resize: none;
+    overflow: auto;
+}
+
+form {
+    width: 100%;
+}

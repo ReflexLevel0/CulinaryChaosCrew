@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import Gallery from "../components/Gallery";
 
-function Home() {
+function Home({loggedIn}) {
   return (
 <div className='main'>
     <div className="gallery-container">
@@ -16,12 +16,23 @@ function Home() {
       a beginner in the kitchen or an experienced chef, get inspired and create
       amazing flavors.
     </p>
-    <Link to="/recipes" className="explore-link">
-      Explore Recipes
-    </Link>
-    <Link to="/saved" className="explore-link">
-      Saved Recipes
-    </Link>
+    {loggedIn ? (
+        <>
+          <Link to="/recipes" className="explore-link">
+            Explore Recipes
+          </Link>
+          <Link to="/saved" className="explore-link">
+            Saved Recipes
+          </Link>
+          <Link to="/create" className="explore-link">
+            Create new recipe
+          </Link>
+        </>
+      ) : (
+        <Link to="/recipes" className="explore-link">
+            Explore Recipes
+          </Link>
+      )}
     </div>
     <div className='table-container'>
     <section className="column">
