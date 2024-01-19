@@ -1,6 +1,6 @@
 // SearchResultsPage.js
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import ApiHelper from '../ApiHelper';
 import RecipeCard from '../components/RecipeCard';
 
@@ -81,7 +81,9 @@ const SearchResultsPage = () => {
               {searchResults.map((profile, index) => (
                 <div key={index}>
                   {/* Display profile information as needed */}
-                  <p>{profile.username}</p>
+                  <Link to={`/user/${profile.username}`}>
+                    <p>{profile.username}</p>
+                  </Link>
                 </div>
               ))}
             </div>
