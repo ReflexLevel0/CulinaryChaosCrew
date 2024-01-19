@@ -8,11 +8,6 @@ const Search = ({ onSearchRecipe, onSearchProfile }) => {
   const [filterType, setFilterType] = useState('recipes');
 
   const handleSearch = () => {
-    if (filterType === 'recipes') {
-      onSearchRecipe(searchTerm);
-    } else if (filterType === 'profiles') {
-      onSearchProfile(searchTerm);
-    }
     navigate(`/search?term=${searchTerm}&type=${filterType}`);
   };
 

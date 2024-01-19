@@ -297,7 +297,8 @@ export default class ApiHelper {
     //search recipes
     static searchRecipe(recipe) {
         try {
-            const url = this.apiUrl + '/recipe/search' + recipe
+            const url = this.apiUrl + '/recipe/search/' + recipe
+            console.log(url)
             return fetch(url)
         } catch (e) {
             console.log(e)
@@ -308,6 +309,7 @@ export default class ApiHelper {
     static searchProfile(profile) {
         try {
             const url = this.apiUrl + '/profile/search/' + profile
+            console.log(url)
             return fetch(url)
         } catch (e) {
             console.log(e)

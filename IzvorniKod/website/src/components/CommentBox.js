@@ -15,9 +15,10 @@ function CommentBox({rid}) {
         } catch (error) {
             console.error("Error adding comment:", error);
         }
-    };
+    }; 
 
     return (
+        <div className="box">
         <form>
           <textarea className={"box"}
               placeholder="Leave a comment..."
@@ -26,6 +27,7 @@ function CommentBox({rid}) {
           />
             <button id='submit' type="submit" onClick={handleCommentSubmit}>Add comment</button>
         </form>
+        </div>
     );
 }
 

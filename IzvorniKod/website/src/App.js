@@ -12,7 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import CreateRecipePage from './pages/CreateRecipePage';
 import ApiHelper from './ApiHelper';
 import OtherProfilePage from './pages/OtherProfilepage';
-import SearchResults from './pages/SearchResults';
+import SearchResults from './pages/SearchResult';
 
 function App() {
     const [username, setUsername] = useState("");
