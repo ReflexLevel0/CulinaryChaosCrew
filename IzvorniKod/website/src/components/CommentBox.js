@@ -19,14 +19,14 @@ function CommentBox({rid, loggedIn}) {
 
     return (
         loggedIn ? (
-            <form>
+            <div>
                 <textarea className={"box"}
                           placeholder="Leave a comment..."
                           value={text}
                           onChange={(e) => setText(e.target.value)}
                 />
-                <button id='submit' type="submit" onClick={handleCommentSubmit}>Add comment</button>
-            </form>
+                <button id='submit' onClick={handleCommentSubmit}>Add comment</button>
+            </div>
         ) : null
     );
 }

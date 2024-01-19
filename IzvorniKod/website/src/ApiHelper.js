@@ -275,16 +275,16 @@ export default class ApiHelper {
         }
     }
 
-    static AddComment(rid, text){
+    static async AddComment(rid, text){
         let body = JSON.stringify({
             userId: localStorage.getItem("uid"),
             recipeId: rid,
             text: text
         })
-        console.log(body)
+        alert(body)
         try {
             const url = this.apiUrl + '/comment'
-            return fetch(url, {
+            await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
