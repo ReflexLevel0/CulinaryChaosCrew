@@ -36,3 +36,31 @@
     font-weight: bold;
     margin-right: 5px;
   }
+
+
+.followButton {
+  margin: 20px;
+  background-color: #4caf50; 
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.unfollowButton {
+  margin: 20px;
+  background-color: #f44336; 
+  color: white;
+  padding: 12px 24px; 
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px; 
+}
+
+
+.followButton:hover, .unfollowButton:hover {
+  opacity: 0.8;
+}

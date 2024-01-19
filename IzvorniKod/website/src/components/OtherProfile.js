@@ -8,16 +8,17 @@ const OtherProfile = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userRecipes, setUserRecipes] = useState([]);
+  const [numberOfFollowers, setFollowers] = useState([]);
   const { username: paramUsername } = useParams();
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const response = await ApiHelper.ProfileByUsername(paramUsername);
-
         if (response.ok) {
           const userData = await response.json();
           setUser(userData);
+          setFollowers(await ApiHelper.getFollowersCount(user.uid));
         } else {
           const errorData = await response.json();
           console.error(errorData.message);
@@ -30,7 +31,7 @@ const OtherProfile = () => {
     };
 
     fetchProfile();
-  }, [paramUsername]); // Use paramUsername in the dependency array
+  }, [paramUsername]); 
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -38,15 +39,32 @@ const OtherProfile = () => {
         const uid = await ApiHelper.GetUIDFromUsername(paramUsername);
         const recipesData = await ApiHelper.GetRecipesForUser(uid);
         setUserRecipes(recipesData);
-        console.log(uid);
+        console.log(recipesData);
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
     };
 
     fetchRecipes();
-  }, [paramUsername]); // Add paramUsername to the dependency array
+  }, [paramUsername]);
 
+  const [isFollowing, setIsFollowing] = useState(false);
+
+  const handleFollow = async () => {
+    try {
+      const currentuser = localStorage.getItem('uid');
+      const targetUserId = user.uid; 
+  
+      if (isFollowing) {
+        await ApiHelper.UnFollow(currentuser, targetUserId);
+      } else {
+        await ApiHelper.Follow(currentuser, targetUserId);
+      }
+      setIsFollowing(!isFollowing);
+    } catch (error) {
+      console.error('Error during follow/unfollow:', error);
+    }
+  };
   
 
   return (
@@ -72,12 +90,17 @@ const OtherProfile = () => {
             <p className="user-info-item">
               <span className="info-label">Age:</span> {user.age}
             </p>
+            <p className="user-info-item">
+              <span className="info-label">Followers:</span> {numberOfFollowers}
+            </p>
+            <button className={isFollowing ? 'unfollowButton' : 'followButton'} onClick={handleFollow}>
+              {isFollowing ? 'Unfollow' : 'Follow'}
+            </button>
           </div>
           <h1>{paramUsername}'s recipes:</h1>
           <div className="recipe-cards-container">
             {userRecipes.slice().reverse().map((recipe) => (
               <RecipeCard
-
                 rid={recipe.rid}
                 recipeName={recipe.name}
                 description={recipe.instructions}
