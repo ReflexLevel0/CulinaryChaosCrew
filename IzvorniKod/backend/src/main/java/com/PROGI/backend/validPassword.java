@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class validPassword implements Predicate<String> {
     private static final Predicate<String> IS_PASSWORD_VALID = Pattern.compile(
-            "^(?=.*[a-zA-Z0-9])(?=.*[!_?.]).{8,}$").asPredicate();
+            "^([a-z]|[A-Z]|[0-9]|[!_?.]){8,}$").asPredicate();
 
     @Override
     public boolean test(String password) {
