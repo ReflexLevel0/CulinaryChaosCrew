@@ -26,23 +26,37 @@ public class LikesController {
 
     @PostMapping(path = "like")
     public ResponseEntity<?> addLike(@RequestBody @NonNull Like like) {
-        try{
+        try {
             likesService.addLike(like);
-        }catch(Exception ex){
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        } catch (ProfileNotFound ex) {
+            return new ResponseEntity<>("Profile not found!", HttpStatus.NOT_FOUND);
+        } catch (RecipeNotFound ex) {
+            return new ResponseEntity<>("Recipe not found!", HttpStatus.NOT_FOUND);
         }
-
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @DeleteMapping(path = "unlike")
-    public void deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid) throws RecipeNotFound, ProfileNotFound {
-        likesService.deleteLike(uid, rid);
+    public ResponseEntity<?> deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid) {
+        try {
+            likesService.deleteLike(uid, rid);
+        } catch (RecipeNotFound ex) {
+            return new ResponseEntity<>("Recipe not found!", HttpStatus.NOT_FOUND);
+        } catch (ProfileNotFound ex) {
+            return new ResponseEntity<>("Profile not found!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @GetMapping(path = "{uid}")
-    public List<Recipe> getLikedRecipesForUser(@PathVariable("uid") UUID uid) throws ProfileNotFound {
-        return likesService.getLikedRecipesForUser(uid);
+    public ResponseEntity<?> getLikedRecipesForUser(@PathVariable("uid") UUID uid) {
+        List<Recipe> list;
+        try {
+            list = likesService.getLikedRecipesForUser(uid);
+        } catch (ProfileNotFound ex) {
+            return new ResponseEntity<>("Profile not found!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
     @GetMapping(path = "/allLikedRecipes")
@@ -51,7 +65,13 @@ public class LikesController {
     }
 
     @GetMapping(path = "count/{uid}")
-    public int likesCount(@PathVariable("uid") UUID rid) {
-        return likesService.likesCount(rid);
+    public ResponseEntity<?> likesCount(@PathVariable("uid") UUID rid) {
+        int likesCount;
+        try{
+            likesCount = likesService.likesCount(rid);
+        } catch (RecipeNotFound ex) {
+            return new ResponseEntity<>("Recipe not found!", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(likesCount, HttpStatus.OK);
     }
 }
