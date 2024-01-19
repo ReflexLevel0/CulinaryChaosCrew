@@ -2,7 +2,6 @@ package com.PROGI.backend.dao;
 
 import com.PROGI.backend.exceptions.RecipeSearchEmpty;
 import com.PROGI.backend.mappers.RecipeLikeWrapperMapper;
-import com.PROGI.backend.mappers.RecipeMapper;
 import com.PROGI.backend.model.Recipe;
 import com.PROGI.backend.model.RecipeLikeWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class RecipeDataAccessService implements RecipeDao {
         String videoUrlString = videoUrl == null ? null : videoUrl.toString();
         jdbcTemplate.update(sql,
                 id,
-                recipe.getUserId(),
+                recipe.getUid(),
                 recipe.getName(),
                 recipe.getCategory(),
                 recipe.getIngredients(),
@@ -79,7 +78,7 @@ public class RecipeDataAccessService implements RecipeDao {
         String sql = "UPDATE recipe SET userId = ?, name = ?, category = ?, ingredients = ?, instructions = ?, origin = ?, specialtag = ?, imageURL = ?, videoURL = ?, likes = ?, preparationTime = ? WHERE recipeID = ?";
         return jdbcTemplate.update(
                 sql,
-                recipe.getUserId(),
+                recipe.getUid(),
                 recipe.getName(),
                 recipe.getCategory(),
                 recipe.getIngredients(),
