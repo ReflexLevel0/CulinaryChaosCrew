@@ -60,7 +60,7 @@ public class RecipeController {
     }
 
     @CrossOrigin(origins = "*")
-    @PostMapping(path = "search/{guess}")
+    @GetMapping(path = "search/{guess}")
     public List<Recipe> searchRecipe(@NonNull @PathVariable("guess") String guess){
         return recipeService.searchRecipe(guess);
     }
