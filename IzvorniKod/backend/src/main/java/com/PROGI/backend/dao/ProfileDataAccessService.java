@@ -85,7 +85,7 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public int deleteProfileById(UUID id) {
         String sql = "DELETE FROM profile WHERE userId = ?";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, id.toString());
         return 0;
     }
 
@@ -124,8 +124,9 @@ public class ProfileDataAccessService implements ProfileDao {
 
     @Override
     public List<Profile> searchProfile(String guess) {
-        String sql = "SELECT * FROM profile WHERE username LIKE CONCAT('%', ?, '%') OR name LIKE CONCAT('%', ?, '%')";
-        List<Profile> profiles = jdbcTemplate.query(sql, new ProfileMapper(), guess, guess);
+        String search = "%"+guess+"%";
+        String sql = "SELECT * FROM profile WHERE username LIKE "+search+" OR name LIKE "+search;
+        List<Profile> profiles = jdbcTemplate.query(sql, new ProfileMapper());
         try{
             if(profiles.isEmpty()) throw new ProfileSearchEmpty();
         }catch (ProfileSearchEmpty e) {
