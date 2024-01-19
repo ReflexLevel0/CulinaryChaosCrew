@@ -23,23 +23,23 @@
 	
 		\section{Ispitivanje programskog rješenja}
 			
-			\textbf{\textit{dio 2. revizije}}\\
+			% \textbf{\textit{dio 2. revizije}}\\
 			
-			 \textit{U ovom poglavlju je potrebno opisati provedbu ispitivanja implementiranih funkcionalnosti na razini komponenti i na razini cijelog sustava s prikazom odabranih ispitnih slučajeva. Studenti trebaju ispitati temeljnu funkcionalnost i rubne uvjete.}
+			%  \textit{U ovom poglavlju je potrebno opisati provedbu ispitivanja implementiranih funkcionalnosti na razini komponenti i na razini cijelog sustava s prikazom odabranih ispitnih slučajeva. Studenti trebaju ispitati temeljnu funkcionalnost i rubne uvjete.}
 	
 			
 			\subsection{Ispitivanje komponenti}
-			\textit{Potrebno je provesti ispitivanje jedinica (engl. unit testing) nad razredima koji implementiraju temeljne funkcionalnosti. Razraditi \textbf{minimalno 6 ispitnih slučajeva} u kojima će se ispitati redovni slučajevi, rubni uvjeti te izazivanje pogreške (engl. exception throwing). Poželjno je stvoriti i ispitni slučaj koji koristi funkcionalnosti koje nisu implementirane. Potrebno je priložiti izvorni kôd svih ispitnih slučajeva te prikaz rezultata izvođenja ispita u razvojnom okruženju (prolaz/pad ispita). }
+			% \textit{Potrebno je provesti ispitivanje jedinica (engl. unit testing) nad razredima koji implementiraju temeljne funkcionalnosti. Razraditi \textbf{minimalno 6 ispitnih slučajeva} u kojima će se ispitati redovni slučajevi, rubni uvjeti te izazivanje pogreške (engl. exception throwing). Poželjno je stvoriti i ispitni slučaj koji koristi funkcionalnosti koje nisu implementirane. Potrebno je priložiti izvorni kôd svih ispitnih slučajeva te prikaz rezultata izvođenja ispita u razvojnom okruženju (prolaz/pad ispita). }
 			
 			
 			
-			\subsection{Ispitivanje sustava}
+			% \subsection{Ispitivanje sustava}
 			
-			 \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir Selenium\footnote{\url{https://www.seleniumhq.org/}}. Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
+			%  \textit{Potrebno je provesti i opisati ispitivanje sustava koristeći radni okvir Selenium\footnote{\url{https://www.seleniumhq.org/}}. Razraditi \textbf{minimalno 4 ispitna slučaja} u kojima će se ispitati redovni slučajevi, rubni uvjeti te poziv funkcionalnosti koja nije implementirana/izaziva pogrešku kako bi se vidjelo na koji način sustav reagira kada nešto nije u potpunosti ostvareno. Ispitni slučaj se treba sastojati od ulaza (npr. korisničko ime i lozinka), očekivanog izlaza ili rezultata, koraka ispitivanja i dobivenog izlaza ili rezultata.\\ }
 			 
-			 Napravili smo testove komponenti koje se nalaze u direktoriju \texttt{src/test/java/com/PROGI/backend/BackendApplicationTests.java}.
+			 \noindent Napravili smo testove komponenti koje se nalaze u direktoriju \texttt{src/test/java/com/PROGI/backend/BackendApplicationTests.java}.
 
-			\text{Izvorni kod izgleda ovako:}
+			\noindent\text{Izvorni kod izgleda ovako:}
 
 			\begin{verbatim}
 			@SpringBootTest
@@ -80,14 +80,20 @@
 			}
 			\end{verbatim}
 
-			Nakon testova, u terminalu dobijemo:
+			\noindent Nakon testova, u terminalu dobijemo:
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/testResults.png}
+				\caption{Rezulati API testova}
+				\label{fig:enter-label}
+			\end{figure}
 
-			 \textit{Izradu ispitnih slučajeva pomoću radnog okvira Selenium moguće je provesti pomoću jednog od sljedeća dva alata:}
-			 \begin{itemize}
-			 	\item \textit{dodatak za preglednik \textbf{Selenium IDE} - snimanje korisnikovih akcija radi automatskog ponavljanja ispita	}
-			 	\item \textit{\textbf{Selenium WebDriver} - podrška za pisanje ispita u jezicima Java, C\#, PHP koristeći posebno programsko sučelje.}
-			 \end{itemize}
-		 	\textit{Detalji o korištenju alata Selenium bit će prikazani na posebnom predavanju tijekom semestra.}
+			%  \textit{Izradu ispitnih slučajeva pomoću radnog okvira Selenium moguće je provesti pomoću jednog od sljedeća dva alata:}
+			%  \begin{itemize}
+			%  	\item \textit{dodatak za preglednik \textbf{Selenium IDE} - snimanje korisnikovih akcija radi automatskog ponavljanja ispita	}
+			%  	\item \textit{\textbf{Selenium WebDriver} - podrška za pisanje ispita u jezicima Java, C\#, PHP koristeći posebno programsko sučelje.}
+			%  \end{itemize}
+		 	% \textit{Detalji o korištenju alata Selenium bit će prikazani na posebnom predavanju tijekom semestra.}
 			
 			\eject 
 		
@@ -113,6 +119,61 @@
 			
 			
 			%  \textit{Dovršenu aplikaciju potrebno je pokrenuti na javno dostupnom poslužitelju. Studentima se preporuča korištenje neke od sljedećih besplatnih usluga: \href{https://aws.amazon.com/}{Amazon AWS}, \href{https://azure.microsoft.com/en-us/}{Microsoft Azure} ili \href{https://www.heroku.com/}{Heroku}. Mobilne aplikacije trebaju biti objavljene na F-Droid, Google Play ili Amazon App trgovini.}
+			
+			\noindent Aplikacija je dostupna online na linku:
+			\begin{verbatim}
+				\url{https://culinary-chaos-website.onrender.com/}.
+			\end{verbatim}
+			\noindent Za postavljanje aplikacije na mrežu koristili smo Render. Na master grani dostupna je konfiguracija potrebna za puštanje u pogon preko Rendera. U ovom dijelu ćemo opisati kako se aplikacija pokreće na dev grani.
+
+			\subsection*{Baza podataka}
+			Prilikom pokretanja backenda, baza podataka se (ako već nije stvorena ranijim pokretanjem) stvara kroz migracije.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/databaseImpl.png}
+				\caption{Migracije baze podataka}
+				\label{fig:database-migrations}
+			\end{figure}
+			Baza se nalazi online i koristi PostgreSQL verziju 15. Sljedeći parametri su potrebni za spajanje na bazu (specifično external database URL i password):
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/demodb.png}
+				\caption{Parametri potrebni za spajanje na bazu}
+				\label{fig:database-parameters}
+			\end{figure}
+			
+			\subsection*{Backend}
+			Backend web aplikacija je Java Spring Boot projekt. Za pokretanje servera potrebno je na računalu imati instalirano Java Development Kit 19 koji sadrži virtualni stroj koji pokreće aplikaciju i prevoditelja koji prevodi kod za taj virtualni stroj. Projekt u izgradnji i pokretanju koristi alat Maven. Za spajanje na bazu potrebno je u terminalu upisati:
+			\begin{verbatim}
+			PGPASSWORD=I7J0U3PrbY0jr9nQWoWCiLsK1c7JtSqA psql -h dpg-cme3iila73kc7390pte0-a.oregon-postgres.render.com -U postgre demodb_93go
+			\end{verbatim}
+			Za pokretanje aplikacije, potrebno je pokrenuti razred:
+			\begin{verbatim}
+			src/main/java/com/PROGI/backend/BackendApplication.java.
+			\end{verbatim}
+			Za puštanje aplikacije na Render potrebno je napraviti Docker file iz kojeg se može složiti sustav kontejner koji će pokretati aplikaciju. Nakon što se neka promjena stavi na master granu, backend se automatski restarta i pokreće se novi kod na toj grani.
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/backend.png}
+				\caption{Deployment backenda}
+				\label{fig:backend-deployment}
+			\end{figure}
+			
+			\subsection*{Frontend}
+			Front-end web aplikacija je React projekt. Za pokretanje servera potrebno je na računalu imati instaliran Node.js i npm (Node Package Manager). Kada su instalirani moduli, možemo pokrenuti server tako da upišemo u terminal:
+			\begin{verbatim}
+			npm run start.
+			\end{verbatim}
+			Svi HTTP zahtjevi za back-end šalju se na:
+			\begin{verbatim}
+			https://culinary-chaos-backend.onrender.com/api
+			\end{verbatim}
+			\begin{figure}[H]
+				\centering
+				\includegraphics[width=1\textwidth]{slike/web.png}
+				\caption{Deployment frontenda}
+				\label{fig:enter-label}
+			\end{figure}
 			
 			
 			\eject 

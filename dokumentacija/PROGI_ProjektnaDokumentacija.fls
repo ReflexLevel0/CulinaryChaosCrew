@@ -550,6 +550,13 @@ INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpt
 INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\vf\public\kpfonts\jkpttmn7t.vf
 INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpttmne.tfm
 INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpttmn8r.tfm
+INPUT .\slike\testResults.png
+INPUT .\slike\testResults.png
+INPUT .\slike\testResults.png
+INPUT .\slike\testResults.png
+INPUT .\slike\testResults.png
+INPUT .\slike\testResults.png
+INPUT .\slike\testResults.png
 INPUT .\slike\dijagrami\Dijagram razmjestaja.png
 INPUT .\slike\dijagrami\Dijagram razmjestaja.png
 INPUT .\slike\dijagrami\Dijagram razmjestaja.png
@@ -557,6 +564,34 @@ INPUT .\slike\dijagrami\Dijagram razmjestaja.png
 INPUT .\slike\dijagrami\Dijagram razmjestaja.png
 INPUT .\slike\dijagrami\Dijagram razmjestaja.png
 INPUT .\slike\dijagrami\Dijagram razmjestaja.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\databaseImpl.png
+INPUT .\slike\demodb.png
+INPUT .\slike\demodb.png
+INPUT .\slike\demodb.png
+INPUT .\slike\demodb.png
+INPUT .\slike\demodb.png
+INPUT .\slike\demodb.png
+INPUT .\slike\demodb.png
+INPUT .\slike\backend.png
+INPUT .\slike\backend.png
+INPUT .\slike\backend.png
+INPUT .\slike\backend.png
+INPUT .\slike\backend.png
+INPUT .\slike\backend.png
+INPUT .\slike\backend.png
+INPUT .\slike\web.png
+INPUT .\slike\web.png
+INPUT .\slike\web.png
+INPUT .\slike\web.png
+INPUT .\slike\web.png
+INPUT .\slike\web.png
+INPUT .\slike\web.png
 INPUT .\Zakljucak.tex
 INPUT .\Zakljucak.tex
 OUTPUT Zakljucak.aux
@@ -569,10 +604,6 @@ OUTPUT Literatura.aux
 INPUT .\Literatura.tex
 INPUT .\Literatura.tex
 INPUT Literatura.tex
-INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpttmn7t.tfm
-INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\vf\public\kpfonts\jkpttmn7t.vf
-INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpttmne.tfm
-INPUT C:\Users\ljubi\AppData\Local\Programs\MiKTeX\fonts\tfm\public\kpfonts\jkpttmn8r.tfm
 INPUT .\PROGI_ProjektnaDokumentacija.lof
 INPUT .\PROGI_ProjektnaDokumentacija.lof
 INPUT PROGI_ProjektnaDokumentacija.lof
