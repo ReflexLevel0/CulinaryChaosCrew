@@ -69,8 +69,8 @@ public class LikesController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "count/{uid}")
-    public ResponseEntity<?> likesCount(@PathVariable("uid") UUID rid) {
+    @GetMapping(path = "count/{rid}")
+    public ResponseEntity<?> likesCount(@PathVariable("rid") UUID rid) {
         int likesCount;
         try{
             likesCount = likesService.likesCount(rid);
