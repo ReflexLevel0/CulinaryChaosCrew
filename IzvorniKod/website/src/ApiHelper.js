@@ -7,14 +7,16 @@ export default class ApiHelper {
     //Returns the list of all recipes
     static GetRecipes() {
         try {
-            const url = this.apiUrl + '/recipe/allRecipes'
+            let uid = localStorage.getItem("uid")
+            let url = this.apiUrl + '/recipe/allRecipes'
+            if(uid !== '') url += `?loggedInUserId=${uid}`
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
 
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preparationTime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -50,7 +52,7 @@ export default class ApiHelper {
         try {
             const url = this.apiUrl + '/recipe/' + rid
             return fetch(url).then(r => r.json()).then(r => {
-                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
+                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preparationTime, r.likes)
                 return recipe
             })
         } catch (e) {
@@ -67,7 +69,7 @@ export default class ApiHelper {
                 let recipes = []
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preparationTime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -324,7 +326,7 @@ export default class ApiHelper {
         })
         console.log(body)
         try {
-            const url = this.apiUrl + '/likes'
+            const url = this.apiUrl + '/likes/like'
             return fetch(url, {
                 method: 'POST',
                 headers: {
@@ -361,7 +363,7 @@ export default class ApiHelper {
 
     static async isRecipeLikedByUser(uid, recipeId) {
         try {
-            const url = `${this.apiUrl}/recipe/allRecipes/${uid}`;
+            const url = `${this.apiUrl}/recipe/allRecipes?loggedInUserId=${uid}`;
             console.log(url)
             const response = await fetch(url);
 
