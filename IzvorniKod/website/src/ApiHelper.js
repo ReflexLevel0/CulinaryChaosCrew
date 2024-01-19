@@ -14,7 +14,7 @@ export default class ApiHelper {
 
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -27,7 +27,7 @@ export default class ApiHelper {
     //Returns the list of recipes for this user
     static GetRecipesForUser(uid) {
         try {
-            const url = this.apiUrl + '/recipe/allRecipes/' + uid 
+            const url = this.apiUrl + '/recipe/allRecipes?authorid=' + uid 
 
             return fetch(url).then(r => r.json()).then(json => {
                 let recipes = []
@@ -35,7 +35,7 @@ export default class ApiHelper {
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
                     console.log(r)
-                    let recipe = new Recipe(r.recipeId, r.userId, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -50,7 +50,7 @@ export default class ApiHelper {
         try {
             const url = this.apiUrl + '/recipe/' + rid
             return fetch(url).then(r => r.json()).then(r => {
-                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
+                let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
                 return recipe
             })
         } catch (e) {
@@ -66,7 +66,7 @@ export default class ApiHelper {
                 let recipes = []
                 //Converting JSON recipes to a recipe model
                 for (const r of json) {
-                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingr, r.instr, r.origin, r.tags, r.iurl, r.vurl, r.preptime, r.likes)
+                    let recipe = new Recipe(r.rid, r.uid, r.name, r.category, r.ingredients, r.instructions, r.origin, r.tags, r.imageURL, r.videoURL, r.preparationTime, r.likes)
                     recipes.push(recipe)
                 }
                 return recipes
@@ -127,13 +127,13 @@ export default class ApiHelper {
             uid: localStorage.getItem("uid"),
             name: name,
             category: category,
-            ingr: ingr,
-            instr: instr,
+            instructions: ingr,
+            instructions: instr,
             origin: origin,
             tags: tags,
-            iurl: iurl,
-            vurl: vurl,
-            preptime: preptime
+            imageURL: iurl,
+            videoURL: vurl,
+            preparationTime: preptime
         })
         console.log(body)
          try {
@@ -315,4 +315,84 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
+    static getFollowers(userId) {
+        try {
+            const url = this.apiUrl + '/follow?userId=' + userId
+            console.log(url)
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
+    static getFollowing(userId) {
+        try {
+            const url = this.apiUrl + '/follow?followerId=' + userId
+            console.log(url)
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static getFollowersCount(userId) {
+        try {
+            const url = this.apiUrl + 'following/count/' + userId
+            console.log(url)
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static getFollowingCount(userId) {
+        try {
+            const url = this.apiUrl + '/follow?followerId=' + userId
+            console.log(url)
+            return fetch(url)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static Follow(userId, followerId){
+        let body = JSON.stringify({
+            userId: userId,
+            followerId: followerId
+        })
+        console.log(body)
+        try {
+            const url = this.apiUrl + '/follow'
+            return fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: body
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    static UnFollow(userId, followerId){
+        console.log(userId, followerId)
+        try {
+            const url = this.apiUrl + '/follow?userId='+ userId + '&followerId=' + followerId
+            return fetch(url, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            })
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+
 }

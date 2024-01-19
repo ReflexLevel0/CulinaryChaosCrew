@@ -10,6 +10,7 @@ function RecipeList() {
       try {
         const recipesData = await ApiHelper.GetRecipes();
         setRecipes(recipesData);
+        console.log(recipesData)
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
