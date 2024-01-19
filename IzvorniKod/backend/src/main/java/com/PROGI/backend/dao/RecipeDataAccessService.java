@@ -95,8 +95,8 @@ public class RecipeDataAccessService implements RecipeDao {
 
     @Override
     public List<RecipeLikeWrapper> searchRecipe(String guess, Optional<UUID> loggedInUserId) {
-        String search = "'%"+guess+"%'";
-        String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE name LIKE "+search+" OR specialTags LIKE "+search+" OR ingredients LIKE "+search+" OR origin LIKE "+search;
+        String search = "'%"+guess.toLowerCase()+"%'";
+        String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE LOWER(name) LIKE "+search+" OR LOWER(specialTags) LIKE "+search+" OR LOWER(ingredients) LIKE "+search+" OR LOWER(origin) LIKE "+search;
         List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper());
         try{
             if(recipes.isEmpty()) throw new RecipeSearchEmpty();
