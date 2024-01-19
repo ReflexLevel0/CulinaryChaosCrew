@@ -12,7 +12,9 @@ function CommentList({rid, loggedIn}) {
         const fetchComments = async () => {
             try {
                 const commentsData = await ApiHelper.GetComments(rid);
-                setComments(commentsData);
+                const sortedComments = commentsData.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+                setComments(sortedComments);
+                // setComments(commentsData);
             } catch (error) {
                 console.error('Error fetching comments:', error);
             }
@@ -23,7 +25,7 @@ function CommentList({rid, loggedIn}) {
 
     return (
         <div className="comment-cards-container">
-            {comments.slice().reverse().map((comment) => (
+            {comments.map((comment) => (
                 <CommentCard comment={comment}/>
             ))}
 
