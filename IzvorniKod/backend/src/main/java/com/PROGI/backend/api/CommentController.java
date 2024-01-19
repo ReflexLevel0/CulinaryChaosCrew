@@ -43,7 +43,7 @@ public class CommentController {
 
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "")
-    public ResponseEntity<?> deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid, @RequestParam @NonNull String timestamp) {
+    public ResponseEntity<?> deleteComment(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid, @RequestParam @NonNull String timestamp) {
         try {
             Timestamp timestamp1 = Timestamp.valueOf(timestamp);
             timestamp1 = new Timestamp(timestamp1.getTime() - timestamp1.getTime() % 1000);
