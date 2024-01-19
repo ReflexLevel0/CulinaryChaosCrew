@@ -94,8 +94,8 @@ public class ProfileController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path="search/{querry}")
-    public List<Profile> searchProfile(@NonNull @PathVariable("querry") String guess){
+    @GetMapping(path="search/{query}")
+    public List<Profile> searchProfile(@NonNull @PathVariable("query") String guess){
         return profileService.searchProfile(guess);
     }
 }
