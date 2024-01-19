@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("/follow")
+@RequestMapping("/profile")
 @RestController
 public class FollowController {
     private final FollowService followService;
@@ -24,7 +24,7 @@ public class FollowController {
         this.followService = followService;
     }
 
-    @PostMapping(path = "")
+    @PostMapping(path = "follow")
     public ResponseEntity<?> follow(@RequestBody @NonNull Follow follow) {
         if(follow.getUserId() == follow.getFollowerId()) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         try{
@@ -35,8 +35,9 @@ public class FollowController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "")
-    public ResponseEntity<?> unfollow(@RequestBody @NonNull Follow follow) {
+    @DeleteMapping(path = "unfollow")
+    public ResponseEntity<?> unfollow(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID uid2) {
+        Follow follow = new Follow(uid, uid2);
         try{
             followService.unfollow(follow);
         } catch (ProfileNotFound e) {
@@ -68,18 +69,17 @@ public class FollowController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @GetMapping(path = "follower/count/{uid}")
+    @GetMapping(path = "followers/count/{uid}")
     public ResponseEntity<?> followerCount (@PathVariable("uid") UUID uid) {
         int followerCount;
         try {
             followerCount = followService.followerCount(uid);
-        } catch (ProfileNotFound ex){
+        } catch (ProfileNotFound ex) {
             return new ResponseEntity<>("Profile not found!", HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<>(followerCount, HttpStatus.OK);
     }
-
     @GetMapping(path = "following/count/{uid}")
     public ResponseEntity<?> followingCount (@PathVariable("uid") UUID uid) {
         int followingCount;
