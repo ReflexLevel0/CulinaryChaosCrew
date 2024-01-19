@@ -75,9 +75,6 @@ public class ProfileController {
     @CrossOrigin(origins = "*")
     @DeleteMapping(path = "{uid}")
     public void deleteProfileById(@PathVariable("uid") UUID id) throws ProfileNotFound {
-        if(profileService.profileExists(id)) {
-            throw new ProfileNotFound(id);
-        }
         profileService.deleteProfile(id);
     }
 

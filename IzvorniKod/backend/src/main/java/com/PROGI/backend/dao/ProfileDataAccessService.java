@@ -85,7 +85,7 @@ public class ProfileDataAccessService implements ProfileDao {
     @Override
     public int deleteProfileById(UUID id) {
         String sql = "DELETE FROM profile WHERE userId = ?";
-        jdbcTemplate.update(sql, id);
+        jdbcTemplate.update(sql, id.toString());
         return 0;
     }
 
