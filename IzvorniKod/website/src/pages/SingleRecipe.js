@@ -60,8 +60,6 @@ function SingleRecipe({loggedIn}) {
       fetchRecipe();
     }, [rid]);
 
-
-    console.log(recipe1)
     return (
         <div className="recipe-details-page">
             <h1>Recipe information</h1>

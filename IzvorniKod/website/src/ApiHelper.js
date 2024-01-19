@@ -411,9 +411,8 @@ export default class ApiHelper {
 
     static async getLikesForRecipe(rid) {
         try {
-            const recipe = await this.GetRecipebyRid(rid);
-            console.log(recipe.likes)
-            return recipe.likes;
+            const recipe = await fetch(this.apiUrl + '/likes/count/' + rid);
+            return await recipe.json();
         } catch (e) {
             console.log(e);
         }

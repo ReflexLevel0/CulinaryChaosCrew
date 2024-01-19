@@ -9,28 +9,32 @@ function RecipeView({recipe}) {
 
 
     useEffect(() => {
-      const fetchUsername = async () => {
-        try {
-          const fetchedUsername = await ApiHelper.GetUsernameFromUID(recipe.uid);
-          setUsername(fetchedUsername);
-        } catch (error) {
-          // Handle errors if needed
-          console.error("Error fetching username:", error);
-        }
-      };
+        const fetchUsername = async () => {
+            try {
+                if(recipe.uid !== undefined){
+                    const fetchedUsername = await ApiHelper.GetUsernameFromUID(recipe.uid);
+                    setUsername(fetchedUsername);
+                }
+            } catch (error) {
+                // Handle errors if needed
+                console.error("Error fetching username:", error);
+            }
+        };
 
-      const fetchLikes = async () => {
-          try {
-              const fetchedLikes = await ApiHelper.getLikesForRecipe(recipe.rid);
-              setLikes(fetchedLikes);
-          } catch (error) {
-              // Handle errors if needed
-              console.error("Error fetching likes:", error);
-          }
-      };
-  
-      fetchUsername();
-      fetchLikes();
+        const fetchLikes = async () => {
+            try {
+                if(recipe.rid !== undefined){
+                    const fetchedLikes = await ApiHelper.getLikesForRecipe(recipe.rid);
+                    setLikes(fetchedLikes);
+                }
+            } catch (error) {
+                // Handle errors if needed
+                console.error("Error fetching likes:", error);
+            }
+        };
+
+        fetchUsername();
+        fetchLikes();
     }, [recipe.uid]);
 
 

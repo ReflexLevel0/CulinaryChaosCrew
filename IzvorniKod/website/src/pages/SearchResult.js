@@ -22,7 +22,6 @@ const SearchResultsPage = () => {
 
         if (type === 'recipes') {
           const response = await ApiHelper.searchRecipe(term);
-          console.log(response)
           if (response.ok) {
             results = await response.json();
           } else {

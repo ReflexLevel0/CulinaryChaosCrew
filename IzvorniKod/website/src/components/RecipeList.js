@@ -10,7 +10,6 @@ function RecipeList() {
       try {
         const recipesData = await ApiHelper.GetRecipes();
         setRecipes(recipesData);
-        console.log(recipesData)
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
@@ -21,7 +20,6 @@ function RecipeList() {
     <div className="recipe-cards-container">
       {recipes.slice().reverse().map((recipe) => {
         const maxDescriptionLength = 100;
-        console.log(recipe.instructions)
         const truncatedDescription =
           recipe.instructions.length > maxDescriptionLength
             ? `${recipe.instructions.slice(0, maxDescriptionLength)}...`

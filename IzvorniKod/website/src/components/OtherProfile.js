@@ -39,7 +39,6 @@ const OtherProfile = () => {
         const uid = await ApiHelper.GetUIDFromUsername(paramUsername);
         const recipesData = await ApiHelper.GetRecipesForUser(uid);
         setUserRecipes(recipesData);
-        console.log(recipesData);
       } catch (error) {
         console.error('Error fetching recipes:', error);
       }
