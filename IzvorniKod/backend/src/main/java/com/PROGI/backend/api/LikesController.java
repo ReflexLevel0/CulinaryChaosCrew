@@ -24,7 +24,6 @@ public class LikesController {
         this.likesService = likesService;
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path = "like")
     public ResponseEntity<?> addLike(@RequestBody @NonNull Like like) {
         try{
@@ -36,25 +35,21 @@ public class LikesController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "unlike")
     public void deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid) throws RecipeNotFound, ProfileNotFound {
         likesService.deleteLike(uid, rid);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "{uid}")
     public List<Recipe> getLikedRecipesForUser(@PathVariable("uid") UUID uid) throws ProfileNotFound {
         return likesService.getLikedRecipesForUser(uid);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "/allLikedRecipes")
     public List<Like> getLikedRecipes() {
         return likesService.getAllLikes();
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "count/{uid}")
     public int likesCount(@PathVariable("uid") UUID rid) {
         return likesService.likesCount(rid);
