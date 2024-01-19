@@ -18,16 +18,15 @@ public interface RecipeDao {
         return insertRecipe(id, recipe);
     }
 
-    List<Recipe> selectAllRecipes();
-    List<RecipeLikeWrapper> selectAllWrappedRecipes(UUID userId);
+    List<RecipeLikeWrapper> selectAllWrappedRecipes(Optional<UUID> userId, Optional<UUID> authorId);
 
-    Optional<Recipe> selectRecipeById(UUID recipeId);
+    Optional<RecipeLikeWrapper> selectRecipeById(UUID recipeId, Optional<UUID> loggedInUserId);
 
     int deleteRecipeById(UUID id);
 
     int updateRecipeById(UUID id, Recipe recipe);
 
-    List<Recipe> searchRecipe(String guess);
+    List<RecipeLikeWrapper> searchRecipe(String guess, Optional<UUID> loggedInUserId);
 
-    List<Recipe> getRecipesFromCategory(String category);
+    List<RecipeLikeWrapper> getRecipesFromCategory(String category, Optional<UUID> loggedInUserId);
 }

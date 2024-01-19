@@ -24,16 +24,12 @@ public class RecipeService {
         return recipeDao.insertRecipe(recipe);
     }
 
-    public List<Recipe> getAllRecipes() {
-        return recipeDao.selectAllRecipes();
+    public List<RecipeLikeWrapper> getAllRecipes(Optional<UUID> loggedInUserId, Optional<UUID> authorId){
+        return recipeDao.selectAllWrappedRecipes(loggedInUserId, authorId);
     }
 
-    public List<RecipeLikeWrapper> getAllRecipes(UUID loggedInUserId){
-        return recipeDao.selectAllWrappedRecipes(loggedInUserId);
-    }
-
-    public Optional<Recipe> getRecipeById(UUID id) {
-        return recipeDao.selectRecipeById(id);
+    public Optional<RecipeLikeWrapper> getRecipeById(UUID recipeId, Optional<UUID> loggedInUserId) {
+        return recipeDao.selectRecipeById(recipeId, loggedInUserId);
     }
 
     public int deleteRecipe(UUID id) {
@@ -44,7 +40,7 @@ public class RecipeService {
         return recipeDao.updateRecipeById(id, recipe);
     }
 
-    public List<Recipe> searchRecipe(String guess) { return recipeDao.searchRecipe(guess); }
+    public List<RecipeLikeWrapper> searchRecipe(String guess, Optional<UUID> loggedInUserId) { return recipeDao.searchRecipe(guess, loggedInUserId); }
 
-    public List<Recipe> getRecipesFromCategory(String category) { return recipeDao.getRecipesFromCategory(category); }
+    public List<RecipeLikeWrapper> getRecipesFromCategory(String category, Optional<UUID> loggedInUserId) { return recipeDao.getRecipesFromCategory(category, loggedInUserId); }
 }
