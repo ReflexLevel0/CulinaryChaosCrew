@@ -16,10 +16,10 @@
   .like-button {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     margin-top: 20px;
   }
-  
+
   .like-button button {
     background-color: #007bff;
     color: #fff;
@@ -39,4 +39,3 @@
     font-size: 18px;
     color: #555;
   }
-  

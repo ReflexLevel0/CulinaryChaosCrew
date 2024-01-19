@@ -57,6 +57,7 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
     //returns all liked recipes from this user
     static GetLikedRecipes(uid) {
         try {
@@ -121,6 +122,7 @@ export default class ApiHelper {
             console.log(e)
         }
     }
+
     // creates a new recipe
     static CreateRecipe(name, category, ingr, instr, origin, tags, iurl, vurl, preptime){
         let body = JSON.stringify({
@@ -197,6 +199,7 @@ export default class ApiHelper {
             return null;
         }
     }
+
     //get username from UID
     static async GetUsernameFromUID(uid) {
         try {
@@ -316,83 +319,77 @@ export default class ApiHelper {
         }
     }
 
-    static getFollowers(userId) {
+    
+    static likeRecipe(rid, uid) {
         try {
-            const url = this.apiUrl + '/follow?userId=' + userId
-            console.log(url)
-            return fetch(url)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-
-    static getFollowing(userId) {
-        try {
-            const url = this.apiUrl + '/follow?followerId=' + userId
-            console.log(url)
-            return fetch(url)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    static getFollowersCount(userId) {
-        try {
-            const url = this.apiUrl + 'following/count/' + userId
-            console.log(url)
-            return fetch(url)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    static getFollowingCount(userId) {
-        try {
-            const url = this.apiUrl + '/follow?followerId=' + userId
-            console.log(url)
-            return fetch(url)
-        } catch (e) {
-            console.log(e)
-        }
-    }
-
-    static Follow(userId, followerId){
-        let body = JSON.stringify({
-            userId: userId,
-            followerId: followerId
-        })
-        console.log(body)
-        try {
-            const url = this.apiUrl + '/follow'
+            const url = this.apiUrl + '/likes'
             return fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
                 },
-                body: body
+                body: JSON.stringify({
+                    rid: rid,
+                    uid: uid
+                })
             })
         } catch (e) {
             console.log(e)
         }
     }
 
-    static UnFollow(userId, followerId){
-        console.log(userId, followerId)
+    static unlikeRecipe(rid, uid) {
         try {
-            const url = this.apiUrl + '/follow?userId='+ userId + '&followerId=' + followerId
+            const url = this.apiUrl + '/likes'
             return fetch(url, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json'
-                }
+                },
+                body: JSON.stringify({
+                    rid: rid,
+                    uid: uid
+                })
             })
         } catch (e) {
             console.log(e)
         }
     }
 
+    static async isRecipeLikedByUser(rid, uid) {
+        try {
+            const url = this.apiUrl + `/likes/${uid}`;
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body : JSON.stringify({
+                    uid: uid
+            })
+            });
 
+            if (!response.ok) {
+                throw new Error(`Failed to fetch likes for user ${uid}`);
+            }
+
+            const likedRecipes = await response.json();
+            return likedRecipes.includes(rid);
+        } catch (e) {
+            console.log(e);
+            return false; // Return false in case of an error
+        }
+    }
+
+    static async getLikesForRecipe(rid) {
+        try {
+            const recipe = await this.GetRecipebyRid(rid);
+            return recipe.likes;
+        } catch (e) {
+            console.log(e);
+        }
+    }
 }

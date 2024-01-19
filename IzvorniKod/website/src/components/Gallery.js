@@ -6,7 +6,7 @@ const ImageGallery = () => {
     'https://ic.recreationid.com/outdoor-recreation/pages/camp-kitchen/camp-kitchen_big_0.jpg',
     'https://www.electroluxprofessional.com/us/wp-content/uploads/2023/07/ESL-Blog1-Featured-Image-Banner.jpg',
     'https://house.ergonfoods.com/wp-content/uploads/2019/07/cookingbg02.jpg',
-    'https://en.bishulon.co.il/images/galleries/95f5f4d36814cdc2176a58/8.webp'
+    'https://www.brc.com.au/Images/UserUploadedImages/2746/0922_BRC_Food-0669-resized-canva-1920x550-oysters.png'
   ], []);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

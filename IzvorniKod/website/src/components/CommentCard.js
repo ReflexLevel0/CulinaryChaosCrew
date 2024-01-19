@@ -1,6 +1,7 @@
 import '../styles/CommentCard.css'
 import React, {useEffect, useState} from "react";
 import ApiHelper from "../ApiHelper";
+import {Link} from "react-router-dom";
 
 function formatTimestamp(timestamp) {
     const date = new Date(timestamp);
@@ -47,7 +48,9 @@ function CommentCard({comment}){
                              src={"https://www.pngkey.com/png/full/202-2024691_my-profile-comments-my-profile-icon-png.png"}
                              alt="user"/>
                         <div className="user-info">
-                            <p>{username}</p>
+                            <Link to={`/user/${username}`} rel="noopener noreferrer">
+                                <p>{username}</p>
+                            </Link>
                         </div>
                     </div>
                 ) : (

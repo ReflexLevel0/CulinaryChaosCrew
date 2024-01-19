@@ -37,7 +37,10 @@ function RecipeView({recipe}) {
                             <p><strong>Origin:</strong> {recipe.origin}</p>
                             <p><strong>Preparation time:</strong> {recipe.preptime}</p>
                             <p><strong>Tags:</strong> {recipe.tags}</p>
+
+                            //TU SE BUNI KAD SE KORISTI ApiHelper.getLikesForRecipe(recipe.rid) umjesto recipe.likes!
                             <p><strong>Likes:</strong> {recipe.likes}</p>
+
                         </div>
                         <div>
                         </div>
