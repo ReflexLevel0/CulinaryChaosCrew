@@ -23,7 +23,6 @@ public class FollowController {
         this.followService = followService;
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path = "")
     public ResponseEntity<?> follow(@RequestBody @NonNull Follow follow) {
         if(follow.getUserId() == follow.getFollowerId()) return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
@@ -35,7 +34,6 @@ public class FollowController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "")
     public ResponseEntity<?> unfollow(@RequestBody @NonNull Follow follow) {
         try{
@@ -46,25 +44,21 @@ public class FollowController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "followers/{uid}")
     public List<Profile> getFollowers (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.getFollowers(uid);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "following/{uid}")
     public List<Profile> getFollowing (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.getFollowing(uid);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "follower/count/{uid}")
     public int followerCount (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.followerCount(uid);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "following/count/{uid}")
     public int followingCount (@PathVariable("uid") UUID uid) throws ProfileNotFound{
         return followService.followingCount(uid);

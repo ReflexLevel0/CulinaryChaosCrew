@@ -3,5 +3,7 @@ CREATE TABLE Comment(
     recipeId VARCHAR REFERENCES recipe(recipeid) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL,
     timestamp TIMESTAMP NOT NULL,
     text VARCHAR(2048),
-    PRIMARY KEY (userId, recipeId, timestamp)
+    PRIMARY KEY (userId, recipeId, timestamp),
+    FOREIGN KEY (userId) REFERENCES profile(userID) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (recipeId) REFERENCES recipe(recipeId) ON DELETE CASCADE ON UPDATE CASCADE
 );

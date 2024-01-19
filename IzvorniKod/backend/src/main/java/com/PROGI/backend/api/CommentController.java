@@ -27,7 +27,6 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @CrossOrigin(origins = "*")
     @PostMapping(path = "")
     public ResponseEntity<?> addComment(@RequestBody @NonNull Comment comment) {
         try {
@@ -41,9 +40,8 @@ public class CommentController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "")
-    public ResponseEntity<?> deleteLike(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid, @RequestParam @NonNull String timestamp) {
+    public ResponseEntity<?> deleteComment(@RequestParam @NonNull UUID uid, @RequestParam @NonNull UUID rid, @RequestParam @NonNull String timestamp) {
         try {
             Timestamp timestamp1 = Timestamp.valueOf(timestamp);
             timestamp1 = new Timestamp(timestamp1.getTime() - timestamp1.getTime() % 1000);
@@ -55,7 +53,6 @@ public class CommentController {
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "*")
     @GetMapping(path = "{rid}")
     public ResponseEntity<?> getCommentsByRecipeId(@PathVariable("rid") UUID recipeId) {
         List<Comment> comments;
