@@ -124,14 +124,9 @@ public class ProfileDataAccessService implements ProfileDao {
 
     @Override
     public List<Profile> searchProfile(String guess) {
-        String search = "%"+guess+"%";
-        String sql = "SELECT * FROM profile WHERE username LIKE "+search+" OR name LIKE "+search;
+        String search = "'%"+guess.toLowerCase()+"%'";
+        String sql = "SELECT * FROM profile WHERE LOWER(username) LIKE "+search+" OR LOWER(name) LIKE "+search;
         List<Profile> profiles = jdbcTemplate.query(sql, new ProfileMapper());
-        try{
-            if(profiles.isEmpty()) throw new ProfileSearchEmpty();
-        }catch (ProfileSearchEmpty e) {
-            throw new RuntimeException(e);
-        }
         return profiles;
     }
 }

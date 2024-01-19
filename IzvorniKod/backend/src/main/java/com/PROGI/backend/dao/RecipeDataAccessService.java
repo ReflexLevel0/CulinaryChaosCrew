@@ -95,13 +95,9 @@ public class RecipeDataAccessService implements RecipeDao {
 
     @Override
     public List<RecipeLikeWrapper> searchRecipe(String guess, Optional<UUID> loggedInUserId) {
-        String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE name LIKE CONCAT('%', ?, '%') OR specialTags LIKE CONCAT('%', ?, '%') OR ingredients LIKE CONCAT('%', ?, '%') OR origin LIKE CONCAT('%', ?, '%')";
-        List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), guess, guess, guess, guess);
-        try{
-            if(recipes.isEmpty()) throw new RecipeSearchEmpty();
-        }catch (RecipeSearchEmpty e) {
-            throw new RuntimeException(e);
-        }
+        String search = "'%"+guess.toLowerCase()+"%'";
+        String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE LOWER(name) LIKE "+search+" OR LOWER(specialTag) LIKE "+search+" OR LOWER(ingredients) LIKE "+search+" OR LOWER(origin) LIKE "+search;
+        List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper());
         return recipes;
     }
 
@@ -109,11 +105,6 @@ public class RecipeDataAccessService implements RecipeDao {
     public List<RecipeLikeWrapper> getRecipesFromCategory(String category, Optional<UUID> loggedInUserId) {
         String sql = "SELECT *, " + (loggedInUserId.map(uuid -> "(SELECT COUNT(*) FROM likes WHERE recipe.recipeid = likes.recipeid AND likes.userid LIKE '%" + uuid + "%') > 0").orElse("false")) + " FROM recipe WHERE category = ?";
         List<RecipeLikeWrapper> recipes = jdbcTemplate.query(sql, new RecipeLikeWrapperMapper(), category.toLowerCase());
-        try{
-            if(recipes.isEmpty()) throw new RecipeSearchEmpty();
-        }catch (RecipeSearchEmpty e) {
-            throw new RuntimeException(e);
-        }
         return recipes;
     }
 }

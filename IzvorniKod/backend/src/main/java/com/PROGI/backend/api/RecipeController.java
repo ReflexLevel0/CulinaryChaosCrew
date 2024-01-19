@@ -54,8 +54,8 @@ public class RecipeController {
     }
 
     @CrossOrigin(origins = "*")
-    @GetMapping(path = "search/{guess}")
-    public List<RecipeLikeWrapper> searchRecipe(@NonNull @PathVariable("guess") String guess, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId){
+    @GetMapping(path = "search/{query}")
+    public List<RecipeLikeWrapper> searchRecipe(@NonNull @PathVariable("query") String guess, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId){
         return recipeService.searchRecipe(guess, loggedInUserId);
     }
 
