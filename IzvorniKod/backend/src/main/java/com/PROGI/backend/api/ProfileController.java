@@ -1,5 +1,6 @@
 package com.PROGI.backend.api;
 
+import com.PROGI.backend.exceptions.ProfileNotFound;
 import com.PROGI.backend.model.Profile;
 import com.PROGI.backend.service.LoginRequest;
 import com.PROGI.backend.service.ProfileService;
@@ -23,7 +24,7 @@ public class ProfileController {
 
     @CrossOrigin(origins = "*")
     @PostMapping(path = "register")
-    public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalAccessException {
+    public void addProfile(@NonNull @RequestBody Profile profile) throws IllegalArgumentException {
         if (!profileService.goodEmailFormat(profile.getEmail())) {
             throw new IllegalArgumentException("Email is in the wrong format");
         }
@@ -59,23 +60,39 @@ public class ProfileController {
         return profileService.getAllProfiles();
     }
 
-    @GetMapping(path = "get/{uid}")
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "userid/{uid}")
     public Profile getProfileById(@PathVariable("uid") UUID id) {
         return profileService.getProfileById(id).orElse(null);
     }
 
-    @DeleteMapping(path = "delete/{uid}")
-    public void deleteProfileById(@PathVariable("uid") UUID id){
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "username/{username}")
+    public Profile getProfileByUsername(@PathVariable("username") String username){
+        return profileService.getProfileByUsername(username).orElse(null);
+    }
+
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "{uid}")
+    public void deleteProfileById(@PathVariable("uid") UUID id) throws ProfileNotFound {
         profileService.deleteProfile(id);
     }
 
-    @PutMapping(path = "update/{uid}")
+    @CrossOrigin(origins = "*")
+    @PutMapping(path = "{uid}")
     public void updateProfileById(@PathVariable("uid") UUID id, @NonNull @RequestBody Profile profile) {
         profileService.updateProfile(id, profile);
     }
 
+    @CrossOrigin(origins = "*")
     @DeleteMapping(path = "deleteAllProfiles")
     public void deleteAllProfiles(){
         profileService.deleteAllProfiles();
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping(path="search/{query}")
+    public List<Profile> searchProfile(@NonNull @PathVariable("query") String guess){
+        return profileService.searchProfile(guess);
     }
 }

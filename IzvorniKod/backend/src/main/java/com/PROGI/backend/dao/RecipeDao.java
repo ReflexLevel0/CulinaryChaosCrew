@@ -1,6 +1,7 @@
 package com.PROGI.backend.dao;
 
 import com.PROGI.backend.model.Recipe;
+import com.PROGI.backend.model.RecipeLikeWrapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,11 +18,15 @@ public interface RecipeDao {
         return insertRecipe(id, recipe);
     }
 
-    List<Recipe> selectAllRecipes();
+    List<RecipeLikeWrapper> selectAllWrappedRecipes(Optional<UUID> userId, Optional<UUID> authorId);
 
+    Optional<RecipeLikeWrapper> selectRecipeById(UUID recipeId, Optional<UUID> loggedInUserId);
 
-    Optional<Recipe> selectRecipeById(UUID id);
     int deleteRecipeById(UUID id);
 
     int updateRecipeById(UUID id, Recipe recipe);
+
+    List<RecipeLikeWrapper> searchRecipe(String guess, Optional<UUID> loggedInUserId);
+
+    List<RecipeLikeWrapper> getRecipesFromCategory(String category, Optional<UUID> loggedInUserId);
 }

@@ -1,18 +1,16 @@
 package com.PROGI.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.annotation.Nonnull;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.NonNullFields;
 
 import java.net.URL;
 import java.util.UUID;
 
 public class Recipe {
     @NonNull
-    private final UUID recipeId;
+    private final UUID rid;
     @NonNull
-    private final UUID userId;
+    private final UUID uid;
     private final String name;
     private final String category;
     private final String ingredients;
@@ -24,8 +22,8 @@ public class Recipe {
     private final int likes;
     private final int preparationTime;
 
-    public Recipe(@JsonProperty("rid") UUID recipeId,
-                  @JsonProperty("uid") UUID userId,
+    public Recipe(@JsonProperty("rid") UUID rid,
+                  @JsonProperty("uid") UUID uid,
                   @JsonProperty("name") String name,
                   @JsonProperty("category") String category,
                   @JsonProperty("ingr") String ingredients,
@@ -35,8 +33,8 @@ public class Recipe {
                   @JsonProperty("iurl") URL imageURL,
                   @JsonProperty("vurl") URL videoURL,
                   @JsonProperty("preptime") int preparationTime) {
-        this.recipeId = recipeId;
-        this.userId = userId;
+        this.rid = rid;
+        this.uid = uid;
         this.name = name;
         this.category = category;
         this.ingredients = ingredients;
@@ -49,12 +47,12 @@ public class Recipe {
         this.preparationTime = preparationTime;
     }
 
-    public UUID getUserId() {
-        return userId;
+    public UUID getUid() {
+        return uid;
     }
 
-    public UUID getRecipeId() {
-        return recipeId;
+    public UUID getRid() {
+        return rid;
     }
 
     public String getName() {

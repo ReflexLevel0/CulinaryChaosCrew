@@ -1,14 +1,15 @@
 package com.PROGI.backend.api;
 
 import com.PROGI.backend.model.Recipe;
+import com.PROGI.backend.model.RecipeLikeWrapper;
 import com.PROGI.backend.service.RecipeService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Period;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RequestMapping("/recipe")
@@ -22,31 +23,45 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @PostMapping(path = "add")
+    @CrossOrigin(origins = "*")
+    @PostMapping(path = "")
     public void addRecipe(@NonNull @RequestBody Recipe recipe) {
         recipeService.addRecipe(recipe);
     }
 
     @CrossOrigin(origins = "*")
     @GetMapping(path = "allRecipes")
-    public List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
+    public List<RecipeLikeWrapper> getAllRecipes(@RequestParam("loggedInUserId") Optional<UUID> loggedInUserId, @RequestParam("authorId") Optional<UUID> authorId){
+        return recipeService.getAllRecipes(loggedInUserId, authorId);
     }
 
-    @GetMapping(path = "get/{rid}")
-    public Recipe getRecipeById(@PathVariable("rid") UUID id) {
-        return recipeService.getRecipeById(id).orElse(null);
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "{rid}")
+    public RecipeLikeWrapper getRecipeById(@PathVariable("rid") UUID recipeId, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId) {
+        return recipeService.getRecipeById(recipeId, loggedInUserId).orElse(null);
     }
 
-    @DeleteMapping(path = "delete/{rid}")
+    @CrossOrigin(origins = "*")
+    @DeleteMapping(path = "{rid}")
     public void deleteRecipeById(@PathVariable("rid") UUID id){
         recipeService.deleteRecipe(id);
     }
 
-    @PutMapping(path = "update/{rid}")
+    @CrossOrigin(origins = "*")
+    @PutMapping(path = "{rid}")
     public void updateRecipeById(@PathVariable("rid") UUID id, @NonNull @RequestBody Recipe recipe) {
         recipeService.updateRecipe(id, recipe);
     }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "search/{query}")
+    public List<RecipeLikeWrapper> searchRecipe(@NonNull @PathVariable("query") String guess, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId){
+        return recipeService.searchRecipe(guess, loggedInUserId);
+    }
 
+    @CrossOrigin(origins = "*")
+    @GetMapping(path = "category/{cat}")
+    public List<RecipeLikeWrapper> getRecipesFromCategory(@NonNull @PathVariable("cat") String category, @RequestParam("loggedInUserId") Optional<UUID> loggedInUserId) {
+        return recipeService.getRecipesFromCategory(category, loggedInUserId);
+    }
 }

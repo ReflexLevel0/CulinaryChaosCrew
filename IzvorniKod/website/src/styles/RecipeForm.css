@@ -1,0 +1,46 @@
+form {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 25px;
+    color: #333;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  #submit {
+    background-color: #0056b3;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  #submit:hover {
+    background-color: #ddd;
+  }
+
+  textarea {
+    resize: none;
+    overflow: auto;
+  }
+  
